@@ -1,0 +1,23 @@
+{
+  "name": "hyltansmetall",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "sass styles/sass/main.scss styles/css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ViktorAbrahamsson/HyltansMetall.git"
+  },
+  "author": "Viktor Abrahamsson, Håkan Abrahamsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ViktorAbrahamsson/HyltansMetall/issues"
+  },
+  "homepage": "https://github.com/ViktorAbrahamsson/HyltansMetall#readme",
+  "dependencies": {
+    "sass": "^1.54.5"
+  }
+}
