@@ -1,0 +1,36 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  max-height: $header-height;
+  // background-color: $dark-color;
+  color: $primary-color;
+
+  .container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  img {
+    height: 100%;
+    max-height: 60px;
+  }
+
+  .menu {
+    display: flex;
+    gap: 4.5rem;
+
+    &__item {
+      @include text;
+      color: $dark-color;
+      height: $header-height;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
+  }
+}

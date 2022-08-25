@@ -1,13 +1,11 @@
-$font-fallback: 'Montserrat', sans-serif;
-
-@mixin heading($font: $font-fallback, $weight: 600, $fontsize: 2rem, $lineheight: 2.1rem) {
+@mixin heading($font: $font-primary, $weight: 600, $fontsize: 2rem, $lineheight: 2.1rem) {
   font-family: $font;
   font-weight: $weight;
   font-size: $fontsize;
   line-height: $lineheight;
 }
 
-@mixin text($font: $font-fallback, $weight: 400, $fontsize: 1.4rem, $lineheight: 1.5rem, $letter-spacing) {
+@mixin text($font: $font-primary, $weight: 400, $fontsize: 1.4rem, $lineheight: 1.5rem, $letter-spacing: 0.02rem) {
   font-family: $font;
   font-weight: $weight;
   font-size: $fontsize;

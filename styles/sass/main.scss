@@ -5,9 +5,10 @@
 // Base
 @import "./base/normalize";
 @import "./base/typography";
+@import "./base/base";
 
 // Components
-
+@import "./components/hero-block";
 
 // Layout
 @import "./layout/header";
