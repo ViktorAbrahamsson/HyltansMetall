@@ -1,10 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Figure from '@/components/common/Figure/Figure';
+import ProductCard from '@/components/common/ProductCard/ProductCard';
 import { getCategoryBySlug, productCategories } from '@/data/products';
 import styles from './ProductCategoryPage.module.scss';
 
 const ITEM_SIZES = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw';
+
+// Two cards inside .container-sm: 836px of content split by a 2.5rem gap.
+const MORE_SIZES = '(min-width: 900px) 400px, (min-width: 768px) 50vw, 100vw';
+
+// Most categories are made to order. One that is not carries its own ctaText.
+const DEFAULT_CTA_TEXT =
+  'Vi tillverkar på beställning. Hör av dig så återkommer vi med pris och leveranstid.';
 
 export default function ProductCategoryPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -103,8 +111,7 @@ export default function ProductCategoryPage() {
               Intresserad av {category.title.toLowerCase()}?
             </h2>
             <p className={styles['product-category__cta-text']}>
-              Vi tillverkar på beställning. Hör av dig så återkommer vi med pris
-              och leveranstid.
+              {category.ctaText ?? DEFAULT_CTA_TEXT}
             </p>
             <Link to="/kontakt" className="btn btn--light">
               Kontakta oss
@@ -117,18 +124,11 @@ export default function ProductCategoryPage() {
       <section className={`block product-category-more-block ${styles['product-category__more-block']}`}>
         <div className="container container-sm">
           <h2 className={styles['product-category__more-h2']}>Fler kategorier</h2>
-          <ul className={styles['product-category__more-list']}>
+          <div className={styles['product-category__more-grid']}>
             {others.map((other) => (
-              <li key={other.id}>
-                <Link
-                  to={`/produkter/${other.slug}`}
-                  className={styles['product-category__more-link']}
-                >
-                  {other.title}
-                </Link>
-              </li>
+              <ProductCard key={other.id} product={other} sizes={MORE_SIZES} />
             ))}
-          </ul>
+          </div>
         </div>
       </section>
     </>

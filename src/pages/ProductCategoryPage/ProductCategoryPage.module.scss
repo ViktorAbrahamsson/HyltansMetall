@@ -162,30 +162,15 @@ section.product-category__intro-block {
   margin-bottom: v.$space-4;
 }
 
-.product-category__more-list {
-  list-style: none;
-}
-
-.product-category__more-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+// The same cards as /produkter, two up — .container-sm keeps them from
+// stretching wider than they do on the index.
+.product-category__more-grid {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: v.$space-4;
-  padding-block: v.$space-3;
-  border-top: 1px solid v.$color-line;
-  font-family: v.$font-display;
-  font-size: v.$font-size-xl;
-  color: v.$color-ink;
-  text-decoration: none;
-  transition: color v.$transition-fast;
 
-  &:hover {
-    color: v.$color-bronze;
-  }
-
-  @include m.focus-ring(#B07A2E);
-
-  li:last-child & {
-    border-bottom: 1px solid v.$color-line;
+  @include m.respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: v.$space-5;
   }
 }

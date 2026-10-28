@@ -25,6 +25,12 @@ export interface ProductCategory {
   /** Singular form, for labelling an item that has no name of its own yet. */
   itemNoun: string;
   description: string;
+  /**
+   * The enquiry block's paragraph on the category page. Left out, the category
+   * gets the made-to-order default — so only a category that works differently
+   * needs a line here.
+   */
+  ctaText?: string;
   /** Undefined until the category has been photographed. */
   image?: ResponsiveImage;
   imageAlt?: string;
@@ -49,6 +55,12 @@ export const productCategories: ProductCategory[] = [
     title: 'Malmljusstakar',
     itemNoun: 'Malmljusstake',
     description: 'Klassiska malmljusstakar, svarvade och polerade för hand.',
+    // Not made to order: they are turned and polished by one person in his own
+    // time, so the page asks what is in stock rather than quoting a delivery.
+    ctaText:
+      'Malmljusstakarna svarvas och poleras för hand och tar lång tid att göra. ' +
+      'De tillverkas inte på beställning, utan i mån av tid. Hör av dig så ' +
+      'berättar vi vad som finns hemma.',
     image: images['products/ljusstakar'],
     imageAlt: 'Nypolerade malmljusstakar uppradade på arbetsbänken i verkstaden.',
     // Seeded with three so the grid is visible; the real count is not settled,

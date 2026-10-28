@@ -16,8 +16,8 @@ export default function ProductsPage() {
           <h1 className={styles['products-page__h1']}>Produkter</h1>
           <p className="page-intro__lead">
             Alla våra produkter sandgjuts för hand i brons och mässing i vår
-            verkstad i Gnosjö. Välj en kategori nedan eller kontakta oss för
-            att beställa.
+            verkstad i Gnosjö. Välj en kategori nedan, eller hör av dig med en
+            fråga.
           </p>
         </div>
       </section>

@@ -30,11 +30,14 @@ const navLinks: NavEntry[] = [
   {
     to: '/specialtillverkning',
     label: 'Specialtillverkning',
-    children: [{ to: '/tillverkning', label: 'Gjutprocessen' }],
+  },
+  {
+    to: '/tillverkning',
+    label: 'Gjutprocessen',
   },
   {
     to: '/om-oss',
-    label: 'Om företaget',
+    label: 'Om oss',
     children: [{ to: '/kontakt', label: 'Kontakta oss' }],
   },
 ];
@@ -44,7 +47,7 @@ const navLinks: NavEntry[] = [
  *
  * NavLink's own matching only covers nested paths, which works for
  * /produkter/anglar but not for a child on an unrelated path like /kontakt
- * under Om företaget — without this the nav would show nothing as current on
+ * under Om oss — without this the nav would show nothing as current on
  * those pages.
  */
 function isSectionActive(entry: NavEntry, pathname: string): boolean {
@@ -75,16 +78,8 @@ function Chevron() {
 }
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -97,16 +92,10 @@ export default function Header() {
 
   const toggleMenu = useCallback(() => setMenuOpen(o => !o), []);
 
-  // At rest the header is the same solid colour as the footer. It only turns
-  // translucent once the page has scrolled, so content passes under glass
-  // rather than the header starting see-through over the hero.
-  const isTranslucent = scrolled && !menuOpen;
-
   return (
     <header
       className={[
         styles.header,
-        isTranslucent ? styles['header--translucent'] : styles['header--opaque'],
         menuOpen ? styles['header--menu-open'] : '',
       ].join(' ')}
     >

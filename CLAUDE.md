@@ -1,7 +1,7 @@
 # Hyltans Metall Website
 
 Sand-casting foundry in brons och mässing (Gnosjö, est. 1926). Swedish copy, English identifiers.
-**Site copy is taken from the real site at hyltansmetall.se** (mainly `/om-foretaget`, `/tillverkningen` and `/specialtillverkning`) — the history, the process steps and the pull-quote are the owner's own words, signed Håkan Abrahamsson. Do not invent replacement marketing copy; fetch the source page if it needs extending.
+**Most site copy originates from the real site at hyltansmetall.se** (mainly `/om-foretaget`, `/tillverkningen` and `/specialtillverkning`) — the history, the process steps and the pull-quote are the owner's own words, signed Håkan Abrahamsson. Writing new copy is fine now, but match that register: plain and factual, the owner's voice, not marketing. **Propose any new or rewritten copy in the chat and wait for the owner's approval before editing a file** — never land a wording change unasked, not even a small one.
 Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in `src/data/*.ts`. No 3D/Three.js — the owner explicitly does not want the GLB model used.
 
 ## Commands
@@ -10,13 +10,14 @@ Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in 
 - Running a build while the dev server is up kills it on Windows: the watcher holds `dist/models/ljusstake.glb` and Vite exits with `EBUSY`. Restart the server afterwards; nothing is actually broken.
 
 ## Navigation and routes
-- Three top-level sections, each with a dropdown. **This no longer mirrors the real site's nav** — it is a deliberate departure, so don't "fix" it back:
+- Four top-level items, two of them with a dropdown. **This no longer mirrors the real site's nav** — it is a deliberate departure, so don't "fix" it back:
   - **Produkter** (`/produkter`) → Änglar, Malmljusstakar, Tomtar
-  - **Specialtillverkning** (`/specialtillverkning`) → Gjutprocessen
-  - **Om företaget** (`/om-oss`) → Kontakta oss
+  - **Specialtillverkning** (`/specialtillverkning`)
+  - **Gjutprocessen** (`/tillverkning`)
+  - **Om oss** (`/om-oss`) → Kontakta oss
 - No Start item: the logo links `/` and sits above the mobile overlay, so home is always reachable. The footer stays flat and complete — it is the site index, so pages buried in a dropdown still get a direct link there.
 - **The manufacturing page is labelled "Gjutprocessen"** (nav, footer, `h1`, `<title>`) but its URL is still `/tillverkning`, kept so existing links work. The word "Tillverkningen" still appears in body prose in `company.ts`, AboutPage and HomePage — that is the owner's copy, not a label; leave it.
-- `isSectionActive` in `Header.tsx` marks a top-level item current. `NavLink`'s own matching only covers nested paths, so it would miss `/kontakt` under Om företaget and `/tillverkning` under Specialtillverkning.
+- `isSectionActive` in `Header.tsx` marks a top-level item current. `NavLink`'s own matching only covers nested paths, so it would miss `/kontakt` under Om oss.
 - Dropdowns open on `:hover` **and** `:focus-within`, so they are keyboard-reachable with no toggle button. A touch device wide enough for the desktop nav (≥1024px) has no hover and would just follow the parent link — the categories are still reachable from the index and from each page's sibling links.
 - URLs stay Swedish-slugged: `/om-oss`, `/tillverkning`, `/produkter/:slug`, `/specialtillverkning`, `/kontakt`. An unknown product slug redirects to `/produkter` with `replace`, leaving no dead history entry.
 
@@ -24,7 +25,7 @@ Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in 
 - `vite.config.ts` injects `@use 'variables' as v; @use 'mixins' as m;` into **every** SCSS file. Never add those `@use` lines yourself. `src/styles/mixins.scss` must not reference `v.$*` (circular load).
 - `generateScopedName: '[local]'` → CSS-module class names are **global**. Every class in every `*.module.scss` must be globally unique: always prefix with the file's block name (`.contact-page__form-input`, never `.inner`, `.form`, `.grid`). Hyphenated names need bracket access in TSX: `styles['about-page__lead']`.
 - The `grain()` mixin does not set `position` — the caller must already be positioned.
-- `backdrop-filter` creates a containing block for `position: fixed` descendants (this trapped the mobile menu overlay inside the header once). `.header--menu-open` must therefore stay **last** of the header state classes, since it clears `backdrop-filter`.
+- `backdrop-filter` creates a containing block for `position: fixed` descendants (this trapped the mobile menu overlay inside the header once). **The header is one solid colour at every scroll position — no blur, no scrolled state.** Don't reintroduce `backdrop-filter` on it: the full-screen `.overlay` would be confined to the header's own box again.
 - **`m.focus-ring()` draws the outline 3px *outside* the element, so it is invisible inside anything that clips.** A link filling a card with `overflow: hidden` (`.card__link`) and a full-width dropdown row (`.nav__submenu-link`) both lost their ring entirely — focusable but with no indicator, which looks exactly like not being focusable. Override `outline-offset` to a negative value in those cases.
 - Verify focus with **real Tab presses**. Calling `.focus()` from a script does not reliably trigger `:focus-visible` in Chrome and reports no outline at all, which sends you chasing the wrong bug.
 - A module class and a global one have equal specificity, so source order decides and the global usually wins. `section.product-category__intro-block` is qualified with the element for exactly this reason — it has to outrank `.block`'s padding.

@@ -1,3 +1,8 @@
+// One solid colour — the same as the footer — at every scroll position.
+//
+// Never give this a backdrop-filter: it creates a containing block for fixed
+// descendants, which confines the full-screen .overlay to the header's own box.
+// That is what the old scrolled-and-blurred state had to work around.
 .header {
   position: fixed;
   top: 0;
@@ -5,11 +10,6 @@
   right: 0;
   height: v.$header-height;
   z-index: v.$z-header;
-  transition: background v.$transition-base, border-color v.$transition-base;
-}
-
-// At rest: the same solid colour as the footer.
-.header--opaque {
   background: v.$color-coal;
   border-bottom: 1px solid v.$color-line-dark;
 
@@ -23,35 +23,6 @@
   .burger__bar {
     background-color: v.$color-cream;
   }
-}
-
-// Once scrolled: the same colour at 82% with a blur, so content shows through
-// as it passes underneath while the nav stays legible over light pages too.
-.header--translucent {
-  background: rgba(22, 18, 16, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid v.$color-line-dark;
-
-  .logo__name,
-  .logo__tagline,
-  .nav__link,
-  .burger__bar {
-    color: v.$color-cream;
-  }
-
-  .burger__bar {
-    background-color: v.$color-cream;
-  }
-}
-
-.header--menu-open {
-  background: v.$color-coal;
-  border-bottom: 1px solid v.$color-line-dark;
-  // backdrop-filter creates a containing block for fixed descendants, which
-  // would confine the full-screen .overlay to the header's own box.
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 
 .header__inner {
@@ -229,8 +200,8 @@
 }
 
 // Active page is marked in bronze rather than with an underline. Doubled-up
-// selector because `.header--opaque .nav__link` and `.header--translucent
-// .nav__link` both set `color` with two classes and would otherwise win.
+// selector because `.header .nav__link` also sets `color` with two classes and
+// would otherwise win.
 .nav__link.nav__link--active {
   color: v.$color-bronze-light;
   font-weight: 600;
@@ -290,8 +261,8 @@
     width: 14px;
   }
 
-  // Two classes, so this outranks the .header--opaque / --translucent rules
-  // that also colour the bars.
+  // Two classes, so this outranks the `.header .burger__bar` rule that also
+  // colours the bars.
   .header--menu-open & {
     background-color: v.$color-bronze-light;
 

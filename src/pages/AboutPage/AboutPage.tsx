@@ -10,14 +10,14 @@ export default function AboutPage() {
   return (
     <>
       <Helmet>
-        <title>Om företaget. Hyltans Metall</title>
+        <title>Om oss. Hyltans Metall</title>
       </Helmet>
 
       {/* Intro block */}
       <section className={`block about-page-block ${styles['about-page__intro']}`}>
         <div className="container">
           <div className={`page-intro ${styles['about-page__intro-inner']}`}>
-            <h1 className={styles['about-page__h1']}>Om företaget</h1>
+            <h1 className={styles['about-page__h1']}>Om oss</h1>
             <p className="page-intro__lead">
               Hyltans Metall tillverkar sandgjutna produkter i brons och mässing.
               Tillverkningen sker med samma metoder som vid företagets start 1926.

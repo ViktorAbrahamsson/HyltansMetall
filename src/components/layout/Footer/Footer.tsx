@@ -9,7 +9,7 @@ const navLinks = [
   { to: '/produkter', label: 'Produkter' },
   { to: '/specialtillverkning', label: 'Specialtillverkning' },
   { to: '/tillverkning', label: 'Gjutprocessen' },
-  { to: '/om-oss', label: 'Om företaget' },
+  { to: '/om-oss', label: 'Om oss' },
   { to: '/kontakt', label: 'Kontakta oss' },
 ];
 
