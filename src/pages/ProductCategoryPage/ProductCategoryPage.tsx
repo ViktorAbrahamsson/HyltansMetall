@@ -7,6 +7,9 @@ import styles from './ProductCategoryPage.module.scss';
 
 const ITEM_SIZES = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw';
 
+// Two photos inside .container-sm: 836px of content split by a 2.5rem gap.
+const GALLERY_SIZES = '(min-width: 900px) 400px, (min-width: 768px) 50vw, 100vw';
+
 // Two cards inside .container-sm: 836px of content split by a 2.5rem gap.
 const MORE_SIZES = '(min-width: 900px) 400px, (min-width: 768px) 50vw, 100vw';
 
@@ -23,6 +26,7 @@ export default function ProductCategoryPage() {
   if (!category) return <Navigate to="/produkter" replace />;
 
   const others = productCategories.filter((c) => c.id !== category.id);
+  const itemRatio = category.itemRatio ?? 'landscape';
 
   return (
     <>
@@ -72,7 +76,7 @@ export default function ProductCategoryPage() {
                   <Figure
                     image={item.image}
                     alt={item.imageAlt ?? item.title ?? category.title}
-                    ratio="landscape"
+                    ratio={itemRatio}
                     sizes={ITEM_SIZES}
                     priority={i === 0}
                     className={styles['product-category__item-media']}
@@ -82,7 +86,12 @@ export default function ProductCategoryPage() {
                   // the grid keeps its shape and dropping a photo in later
                   // shifts nothing.
                   <div
-                    className={styles['product-category__item-placeholder']}
+                    className={[
+                      styles['product-category__item-placeholder'],
+                      itemRatio === 'portrait'
+                        ? styles['product-category__item-placeholder--portrait']
+                        : '',
+                    ].join(' ')}
                     aria-hidden="true"
                   >
                     <span className={styles['product-category__item-slot']}>
@@ -102,6 +111,30 @@ export default function ProductCategoryPage() {
           </ul>
         </div>
       </section>
+
+      {/* The kinds photographed together. Not products of their own, so no
+          titles and no links — they just close the grid off. */}
+      {category.gallery && (
+        <section
+          className={`block product-category-gallery-block ${styles['product-category__gallery-block']}`}
+          aria-label={`${category.title} tillsammans`}
+        >
+          <div className="container container-sm">
+            <ul className={styles['product-category__gallery']}>
+              {category.gallery.map((shot) => (
+                <li key={shot.image.src}>
+                  <Figure
+                    image={shot.image}
+                    alt={shot.alt}
+                    ratio="portrait"
+                    sizes={GALLERY_SIZES}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* Enquiry block */}
       <section className={`block block--dark product-category-cta-block ${styles['product-category__cta-block']}`}>

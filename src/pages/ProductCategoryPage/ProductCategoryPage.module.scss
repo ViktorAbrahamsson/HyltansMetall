@@ -90,8 +90,8 @@ section.product-category__intro-block {
 
 .product-category__item-media {}
 
-// Stands in for an unphotographed item. Carries the same aspect ratio as
-// Figure's landscape frame so swapping a photo in later moves nothing.
+// Stands in for an unphotographed item. Carries the same aspect ratio as the
+// category's Figure frame so swapping a photo in later moves nothing.
 .product-category__item-placeholder {
   position: relative;
   aspect-ratio: 3 / 2;
@@ -104,6 +104,10 @@ section.product-category__intro-block {
   border: 1px dashed v.$color-line;
 
   @include m.grain;
+}
+
+.product-category__item-placeholder--portrait {
+  aspect-ratio: 4 / 5;
 }
 
 .product-category__item-slot {
@@ -125,6 +129,24 @@ section.product-category__intro-block {
   font-family: v.$font-display;
   font-size: v.$font-size-lg;
   color: v.$color-ink;
+}
+
+// ─── The kinds together ──────────────────────────────────────────────────────
+// Group shots, two up inside .container-sm. Narrower than the item grid on
+// purpose: these are not products, and at full width a pair of portraits would
+// tower over the page.
+.product-category__gallery-block {}
+
+.product-category__gallery {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-4;
+
+  @include m.respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: v.$space-5;
+  }
 }
 
 // ─── Enquiry block ───────────────────────────────────────────────────────────

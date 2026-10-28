@@ -35,6 +35,16 @@ export interface ProductCategory {
   image?: ResponsiveImage;
   imageAlt?: string;
   items: ProductItem[];
+  /**
+   * Frame for the item photos. Portrait where the pieces are standing figures
+   * that fill the height — a landscape crop takes their tops off.
+   */
+  itemRatio?: 'portrait' | 'landscape';
+  /**
+   * Photos of several kinds together. Not products in their own right: they
+   * close the page off under the item grid.
+   */
+  gallery?: { image: ResponsiveImage; alt: string }[];
 }
 
 export const productCategories: ProductCategory[] = [
@@ -79,13 +89,37 @@ export const productCategories: ProductCategory[] = [
     description: 'Traditionella svenska tomtar gjutna i brons.',
     image: images['products/tomtar'],
     imageAlt: 'Två bronstomtar med spetsiga luvor uppställda på en mörk trähylla.',
-    // Five kinds of tomte.
+    // Three kinds, all photographed outdoors on the moss.
+    itemRatio: 'portrait',
     items: [
-      { id: 'gnome-1' },
-      { id: 'gnome-2' },
-      { id: 'gnome-3' },
-      { id: 'gnome-4' },
-      { id: 'gnome-5' },
+      {
+        id: 'gnome-tomtefar',
+        title: 'Tomtefar',
+        image: images['products/tomtefar'],
+        imageAlt: 'Tomtefar i brons med spetsig luva, stående på mossa i skogen.',
+      },
+      {
+        id: 'gnome-tomtemor',
+        title: 'Tomtemor',
+        image: images['products/tomtemor'],
+        imageAlt: 'Tomtemor i brons med korsade armar, stående på en mosskudde.',
+      },
+      {
+        id: 'gnome-tomtenisse',
+        title: 'Tomtenisse',
+        image: images['products/tomtenisse'],
+        imageAlt: 'Tomtenisse i brons med rundad luva, stående i mossan.',
+      },
+    ],
+    gallery: [
+      {
+        image: images['products/tomtar-familj'],
+        alt: 'Tomtefar, Tomtemor och Tomtenisse tillsammans på en mossbevuxen sten.',
+      },
+      {
+        image: images['products/tomtar-paret'],
+        alt: 'Tomtefar och Tomtemor sida vid sida med skogen bakom sig.',
+      },
     ],
   },
 ];

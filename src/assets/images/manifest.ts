@@ -13,6 +13,16 @@ import products_tomtar_1200 from './products/tomtar-1200.webp';
 import products_ovrigt_400 from './products/ovrigt-400.webp';
 import products_ovrigt_800 from './products/ovrigt-800.webp';
 import products_ovrigt_1200 from './products/ovrigt-1200.webp';
+import products_tomtefar_400 from './products/tomtefar-400.webp';
+import products_tomtefar_800 from './products/tomtefar-800.webp';
+import products_tomtemor_400 from './products/tomtemor-400.webp';
+import products_tomtemor_800 from './products/tomtemor-800.webp';
+import products_tomtenisse_400 from './products/tomtenisse-400.webp';
+import products_tomtenisse_800 from './products/tomtenisse-800.webp';
+import products_tomtar_familj_400 from './products/tomtar-familj-400.webp';
+import products_tomtar_familj_800 from './products/tomtar-familj-800.webp';
+import products_tomtar_paret_400 from './products/tomtar-paret-400.webp';
+import products_tomtar_paret_800 from './products/tomtar-paret-800.webp';
 import process_01_modell_400 from './process/01-modell-400.webp';
 import process_01_modell_800 from './process/01-modell-800.webp';
 import process_01_modell_1134 from './process/01-modell-1134.webp';
@@ -89,6 +99,41 @@ export const images = {
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQBACdASoUAA0APxFwsFAsJiSisAgBgCIJZQCdACESvJKvlL1KKsPwAAD+ksD0FtNQqhvUvJ0HScHeZJLTTU+j/KX1xds5soHjhGFw09+gICGgJhkVNqjNkN08AAAA',
+  },
+  'products/tomtefar': {
+    src: products_tomtefar_800,
+    srcSet: `${products_tomtefar_400} 400w, ${products_tomtefar_800} 800w`,
+    width: 800,
+    height: 1000,
+    blur: 'data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAAAQBQCdASoUABkAPxF6s1QsJ6SjKAqpgCIJagCuIagAmyFB3YhHWYPNPzWOPgDsbry2AMwFNsT17OJMTzHPuC+o4+cOoAAQ37SYWkTGolX6M4bGkxzm/VHYxw0DVbqPpGR267MI27a5bY97S2oDRxZsM4X4hJZcRIYHgNP7c5/+SuMeyjS5Yz/hVEDWFB8FE1Qyq6d0HCu6H7M0Hmst//gtjO8gUWZMiDH2AVVXQCk5UoyfiIAAAA==',
+  },
+  'products/tomtemor': {
+    src: products_tomtemor_800,
+    srcSet: `${products_tomtemor_400} 400w, ${products_tomtemor_800} 800w`,
+    width: 800,
+    height: 1000,
+    blur: 'data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAADQBACdASoUABkAPxGAuFWsKCUjKAgBgCIJZACw7BEIuYK/d3Yw7IhR0wJJK9QOgAD+srNAUDaE5XSQ4fVNPaq6HEfHfiRJRAtBO063rjoilCKFGuDqPxnIYkUT1hYTRQrjBCol6XqBAgsq6CCTtJu1LjZURgajOdd5O2+mBtbmZurTmPA6siXBSXapU8mioTZBytxLumRQLX4KkWehjyNkO84zVvzp7YDY/zBEAAA=',
+  },
+  'products/tomtenisse': {
+    src: products_tomtenisse_800,
+    srcSet: `${products_tomtenisse_400} 400w, ${products_tomtenisse_800} 800w`,
+    width: 800,
+    height: 1000,
+    blur: 'data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAACwBACdASoUABkAPxF6s1QsJ6QjKAqpgCIJZgCuHA2KpNECB+Oa9KAYOAYYuZgAAP7D24QHIyoUD1q13q6T0L5UVPtjtwG70EfGjImSdgGXhbOIzt+33HpvEXR/we7lDW/miDv3I1D/Opyx8jaTDdg7QvkDk7Z/GMS0se6ea96gIUFVoBBzDDngxU9k9vMki78Wyw6BzSGFSaMn1lhURfYhvRK4cAAA',
+  },
+  'products/tomtar-familj': {
+    src: products_tomtar_familj_800,
+    srcSet: `${products_tomtar_familj_400} 400w, ${products_tomtar_familj_800} 800w`,
+    width: 800,
+    height: 1000,
+    blur: 'data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADQBACdASoUABkAPxF+tVWsJ6SjKAgBgCIJZACzgBIyWURF/0m/l0LLhnkVM8UrAAD5bZzRumVjHWGBNmU9tsIidwjsCS88koOoc+Xf5hUqbxbqSlcSIA7DADyxhsWmgaTypcjPCi0k4I6WMXFqpdqsAzKzl50xfsoeen7GlEZLp6BdiKwU2YPtblkvv/nFLAyatDSRMsypcIuCdrVd/WL1FMVG2KAA',
+  },
+  'products/tomtar-paret': {
+    src: products_tomtar_paret_800,
+    srcSet: `${products_tomtar_paret_400} 400w, ${products_tomtar_paret_800} 800w`,
+    width: 800,
+    height: 1000,
+    blur: 'data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAADQBACdASoUABkAPxF+tVWsJ6SjKAgBgCIJaACdMw6BGPm7RJjHYkmlxdRP5EO+YAD+l5dJG5eDWsfFAeMfw+S3+4ZTKUxBqrA3A8WmY81wYZcfCJxYSBzVxiGhqU263W+WUT9f2foo0jMouaR/316W1cWySd8SzxvN1XjJPvy3LUZS+Cj6Wb8C2OqLnCggz9n2C7KpqJwJm1EykKaDMDQKMCzLOE7wAAA=',
   },
   'process/01-modell': {
     src: process_01_modell_1134,

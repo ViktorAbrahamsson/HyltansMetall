@@ -62,6 +62,18 @@ const JOBS = [
     preCrop: { left: 150, top: 0, width: 2300, height: 1848 },
   },
 
+  // --- Tomtar ---------------------------------------------------------------
+  // Shot outdoors on moss. All five are 3:4 portraits with a correct EXIF tag,
+  // and every one of them is a standing figure that fills the frame top to
+  // bottom. A landscape crop therefore keeps only the middle half of the height
+  // and takes the cap tips with it — tried, and it beheaded both group shots —
+  // so these all stay in the portrait frame, which loses ~6% of the height.
+  { src: 'tomtar/tomtefar.jpg', out: 'products/tomtefar', shape: 'portrait', rotate: true, crop: 'attention' },
+  { src: 'tomtar/tomtemor.jpg', out: 'products/tomtemor', shape: 'portrait', rotate: true, crop: 'attention' },
+  { src: 'tomtar/tomtenisse.jpg', out: 'products/tomtenisse', shape: 'portrait', rotate: true, crop: 'attention' },
+  { src: 'tomtar/tomtefamilj.jpg', out: 'products/tomtar-familj', shape: 'portrait', rotate: true, crop: 'attention' },
+  { src: 'tomtar/tomtefar-tomtemor.jpg', out: 'products/tomtar-paret', shape: 'portrait', rotate: true, crop: 'attention' },
+
   // --- Process steps (order matches ManufacturingPage copy) ---------------
   { src: 'next-generation-3.jpg', out: 'process/01-modell', shape: 'landscape', rotate: false, crop: 'attention' },
   { src: 'formpackning.jpg', out: 'process/02-sandpackning', shape: 'landscape', rotate: true, crop: 'center' },
