@@ -57,6 +57,9 @@ import place_fasad_1200 from './place/fasad-1200.webp';
 import place_natt_800 from './place/natt-800.webp';
 import place_natt_1400 from './place/natt-1400.webp';
 import place_natt_1800 from './place/natt-1800.webp';
+import brand_gjutare_32 from './brand/gjutare-32.webp';
+import brand_gjutare_64 from './brand/gjutare-64.webp';
+import brand_gjutare_96 from './brand/gjutare-96.webp';
 import hero_gjutgods_800 from './hero/gjutgods-800.webp';
 import hero_gjutgods_1200 from './hero/gjutgods-1200.webp';
 import hero_gjutgods_1600 from './hero/gjutgods-1600.webp';
@@ -218,6 +221,13 @@ export const images = {
     width: 1800,
     height: 1013,
     blur: 'data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAABwAwCdASoUAAsAPxFOv1osIqgkmAGAIgllAABDuOcCcP8UbWAA/vDd3kEG7XgPPbLKzxnzZydqCp4csVDXhcUgaAAAAA==',
+  },
+  'brand/gjutare': {
+    src: brand_gjutare_96,
+    srcSet: `${brand_gjutare_32} 32w, ${brand_gjutare_64} 64w, ${brand_gjutare_96} 96w`,
+    width: 96,
+    height: 175,
+    blur: 'data:image/webp;base64,UklGRloCAABXRUJQVlA4WAoAAAAQAAAAEwAAIwAAQUxQSGsBAAABkGttmyFbX1X1ZoRjZsYl2LaZGddgRczsyLZthbbtc7rq/7+gd9U1RMQEAIBFi0vvfn5bjmSHwRRl3hY2aTKDeo6DSzDYykDhsSqYmMMwChm4GS6WYR1DYRmylLn0VGpvuJhF8+fUwKvW2RgsOn6i8FVrWBszGdYwCG/2aAobQfnYr1Sq8Mcc2IJB+TEKSUpQLoIB4DCFXgukBA4CAIu99IwG3ikFDEpuMcSUvkOh5hUlqT1g0ewvH2vC94aRnNHAswAM6rymxjwXAYDBIYaI8nfnQoZe1IQPC+sDBu1ab2eIfV9eFxZdfv9e+JNai/BAJZBhDvXpH9auHIkSWHT8T2FUuKMhYF3j+wwaofLn2Ay9vnsmez5A+7uUNOX7YTmF6Z6nL9EzXTUf8JaapvzRC3uZe9GEwBlw1duoDBLxvFcJAzNh5xOqF1UVz++dYGEsUDr9I5Wk8kNPWABwxqD56mfvv359taY5HAAAVlA4IMgAAADwBQCdASoUACQAPxGEtFUsKSSjKrgIAYAiCUAYuTGBG7jWsqKFw/X4uboCQvgqk+QX2RgD9LjX0AD+FmgiS+TwzlYnSbWF6j9VSA6HeDKe8oTb8fM2GjoD847vnYCCHsev5Bv1dJkBvtkzQ8aqFaOTpByGQisC7+7W15wKLB913RIzS49HlJb62Voe1Ts5QEkrWrllOM/WPVGd7girNLeXEz0r3kswOb9lbX23yFjs/qLepWcH6OYTmYgzMYBwLWYLcRWSarowAA==',
   },
   'hero/gjutgods': {
     src: hero_gjutgods_1600,

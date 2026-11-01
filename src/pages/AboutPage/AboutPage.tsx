@@ -21,7 +21,7 @@ export default function AboutPage() {
             <p className="page-intro__lead">
               Hyltans Metall tillverkar sandgjutna produkter i brons och mässing.
               Tillverkningen sker med samma metoder som vid företagets start 1926.
-              Ett äkta hantverk som har ärvts från far till son i tre generationer.
+              Ett äkta hantverk som har ärvts från far till son i fyra generationer.
             </p>
           </div>
           <span

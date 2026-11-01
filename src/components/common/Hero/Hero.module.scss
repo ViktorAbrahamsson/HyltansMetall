@@ -113,6 +113,7 @@
   color: v.$color-cream;
   margin-top: v.$space-2;
   line-height: 0.95;
+  text-transform: uppercase;
 
   // shimmer sweep across the molten gradient word
   :global(.molten) {

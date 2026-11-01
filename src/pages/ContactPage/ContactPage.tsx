@@ -57,7 +57,12 @@ export default function ContactPage() {
               <address className={styles['contact-page__address']}>
                 <div className={styles['contact-page__address-item']}>
                   <span className={styles['contact-page__address-label']}>E-post</span>
-                  <span className={styles['contact-page__address-value']}>{company.email}</span>
+                  <a
+                    href={`mailto:${company.email}`}
+                    className={`${styles['contact-page__address-value']} ${styles['contact-page__address-link']}`}
+                  >
+                    {company.email}
+                  </a>
                 </div>
                 <div className={styles['contact-page__address-item']}>
                   <span className={styles['contact-page__address-label']}>Adress</span>
@@ -65,6 +70,16 @@ export default function ContactPage() {
                   <span className={styles['contact-page__address-value']}>{company.address}</span>
                 </div>
               </address>
+
+              <div className={styles['contact-page__map']}>
+                <iframe
+                  className={styles['contact-page__map-frame']}
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&z=11&output=embed`}
+                  title={`Karta över ${company.name} i ${company.city}`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
 
             {/* Form column */}

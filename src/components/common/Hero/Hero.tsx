@@ -19,12 +19,16 @@ export default function Hero() {
 
       {/* Content */}
       <div className={`container ${styles['hero__content']}`}>
-        <p className="label">Gjuteri · Gnosjö · Sedan 1926</p>
+        <p className="label">Gjuteri · Gnosjö</p>
         <h1 className={styles['hero__heading']}>
-          Hyltans <span className="molten">Metall</span>
+          Hyltans <span className="molten">Metall AB</span>
         </h1>
         <p className={styles['hero__tagline']}>
-          Sandgjutning i brons och mässing. Handgjort i Gnosjö sedan 1926.
+          Sandgjutning i brons och mässing.
+          <br />
+          Hantverk från Gnosjö.
+          <br />
+          Grundat 1926.
         </p>
         <div className={styles['hero__actions']}>
           <Link to="/produkter" className="btn">Se våra produkter</Link>

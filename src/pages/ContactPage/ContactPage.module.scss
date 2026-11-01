@@ -14,7 +14,15 @@
 }
 
 // ─── Info column ─────────────────────────────────────────────────────────────
-.contact-page__info {}
+// Stretches to the form card's height on large screens, so the map can fill
+// what is left of the column and end flush with the card.
+.contact-page__info {
+  @include m.respond-to(lg) {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+  }
+}
 
 // Lifted out of the info column so the heading sits centred above both
 // columns, matching the other content pages.
@@ -68,6 +76,45 @@
 .contact-page__address-value {
   font-size: v.$font-size-md;
   color: v.$color-ink;
+}
+
+// ─── Map ─────────────────────────────────────────────────────────────────────
+// A fixed size reserves the box before Google's frame loads.
+.contact-page__map {
+  position: relative;
+  margin-top: v.$space-6;
+  aspect-ratio: 1 / 1;
+  border: 1px solid v.$color-line;
+  background-color: v.$color-sand-deep;
+  overflow: hidden;
+
+  @include m.respond-to(lg) {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 420px;
+  }
+}
+
+.contact-page__map-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  // Takes the edge off Google's saturated palette against the sand.
+  filter: grayscale(0.35) sepia(0.12);
+}
+
+.contact-page__address-link {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color v.$transition-base;
+
+  &:hover {
+    color: v.$color-bronze-deep;
+  }
+
+  @include m.focus-ring(#B07A2E);
 }
 
 // ─── Form column ─────────────────────────────────────────────────────────────

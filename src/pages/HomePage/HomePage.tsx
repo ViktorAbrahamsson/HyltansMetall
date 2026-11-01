@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Hero from '@/components/common/Hero/Hero';
 import ProductCard from '@/components/common/ProductCard/ProductCard';
 import Figure from '@/components/common/Figure/Figure';
+import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { productCategories } from '@/data/products';
 import { images } from '@/assets/images/manifest';
 import styles from './HomePage.module.scss';
@@ -88,6 +89,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <InstagramFeed />
+
       {/* Workshop strip */}
       <section className={`block block--paper ${styles['home-strip']}`}>
         <div className="container">
@@ -117,7 +120,7 @@ export default function HomePage() {
           <span className={styles['home-quote__rule']} aria-hidden="true" />
           <blockquote className={styles['home-quote__blockquote']}>
             <p className={styles['home-quote__text']}>
-              ”Ett äkta hantverk som har ärvts från far till son i tre generationer.”
+              ”Ett äkta hantverk som har ärvts från far till son i fyra generationer.”
             </p>
             <footer>
               <span className={styles['home-quote__attribution']}>

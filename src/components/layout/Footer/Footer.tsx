@@ -22,8 +22,8 @@ export default function Footer() {
       <div className={`container ${styles['footer__inner']}`}>
         <div className={styles.headline}>
           <p className={styles.headline__text}>
-            Handgjort i Gnosjö{' '}
-            <em className={`molten ${styles.headline__year}`}>sedan 1926</em>
+            Hantverk från Gnosjö{' '}
+            <em className={`molten ${styles.headline__year}`}>grundat 1926</em>
           </p>
         </div>
 

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { productCategories } from '@/data/products';
+import { images } from '@/assets/images/manifest';
 import styles from './Header.module.scss';
 
 interface NavChild {
@@ -100,9 +101,20 @@ export default function Header() {
       ].join(' ')}
     >
       <div className={styles.header__inner}>
-        <NavLink to="/" className={styles.logo} aria-label="Hyltans Metall. Startsida">
-          <span className={styles.logo__name}>Hyltans Metall</span>
-          <span className={styles.logo__tagline}>Sedan 1926</span>
+        <NavLink to="/" className={styles.logo} aria-label="Hyltans Metall AB. Startsida">
+          <span className={styles.logo__text}>
+            <span className={styles.logo__name}>Hyltans Metall AB</span>
+            <span className={styles.logo__tagline}>Sedan 1926</span>
+          </span>
+          <img
+            className={styles.logo__figure}
+            src={images['brand/gjutare'].src}
+            srcSet={images['brand/gjutare'].srcSet}
+            sizes="25px"
+            width={images['brand/gjutare'].width}
+            height={images['brand/gjutare'].height}
+            alt=""
+          />
         </NavLink>
 
         <nav className={styles.nav} aria-label="Huvudnavigation">

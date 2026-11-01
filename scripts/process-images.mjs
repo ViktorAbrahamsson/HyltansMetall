@@ -37,6 +37,9 @@ const SHAPES = {
   strip: { ratio: 3 / 2, widths: [400, 800, 1200] },
   wide: { ratio: 16 / 9, widths: [800, 1400, 1800] },
   banner: { ratio: 3.2, widths: [800, 1200, 1600] },
+  // No ratio: keeps the source's own proportions and its transparency. For
+  // small cut-outs drawn at a fixed height, so the widths are 1x/2x/3x.
+  cutout: { ratio: null, widths: [32, 64, 96] },
 };
 
 /**
@@ -46,6 +49,7 @@ const SHAPES = {
  * `preCrop`       -> optional {left,top,width,height} on the *source* pixels,
  *                    applied before rotation. For cutting something out of frame
  *                    that no automatic crop would know to avoid.
+ * `trim`          -> cut away transparent margins first (cut-outs only).
  */
 const JOBS = [
   // --- Products -----------------------------------------------------------
@@ -92,6 +96,10 @@ const JOBS = [
   // --- Place ---------------------------------------------------------------
   { src: 'fasad-malning.jpg', out: 'place/fasad', shape: 'strip', rotate: true, crop: 'attention' },
   { src: 'fonster.jpg', out: 'place/natt', shape: 'wide', rotate: true, crop: 'attention' },
+
+  // --- Brand ---------------------------------------------------------------
+  // The foundry-worker figure from the old site's header, a transparent PNG.
+  { src: 'gjutare.png', out: 'brand/gjutare', shape: 'cutout', rotate: false, trim: true },
 
   // --- Hero ----------------------------------------------------------------
   // preCrop trims the source top, which becomes the band's right edge after the
@@ -152,7 +160,9 @@ for (const job of JOBS) {
   const render = (width) => {
     const pipeline = sharp(from, { failOn: 'none' });
     if (job.preCrop) pipeline.extract(job.preCrop);
+    if (job.trim) pipeline.trim();
     if (job.rotate) pipeline.rotate();
+    if (!shape.ratio) return pipeline.resize(width);
     return pipeline.resize(width, Math.round(width / shape.ratio), {
       fit: 'cover',
       position,

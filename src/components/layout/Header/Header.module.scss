@@ -42,11 +42,25 @@
 .logo {
   text-decoration: none;
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  align-items: center;
+  gap: 0.75rem;
   // keep the logo above the mobile overlay (flex items respect z-index)
   z-index: v.$z-modal;
   @include m.focus-ring(#D9A24B);
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+}
+
+// The foundry-worker cut-out after the name. A plain <img>, not <Figure>: it
+// is transparent, so Figure's blur placeholder and grain would show around it.
+.logo__figure {
+  display: block;
+  width: auto;
+  height: 46px;
+  flex-shrink: 0;
 }
 
 .logo__name {
