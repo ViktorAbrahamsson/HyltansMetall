@@ -79,3 +79,49 @@
   font-size: v.$font-size-sm;
   color: v.$color-ink-soft;
 }
+
+// ─── Pull-quote ───────────────────────────────────────────────────────────────
+// Håkan on his father, set in the display face with a bronze rule down the
+// left so it reads as his voice rather than more running text.
+.about-page__quote {
+  max-width: 60ch;
+  margin-top: v.$space-5;
+  padding-left: v.$space-4;
+  border-left: 2px solid v.$color-bronze;
+}
+
+.about-page__quote-p {
+  font-family: v.$font-display;
+  font-size: v.$font-size-xl;
+  line-height: 1.45;
+  color: v.$color-ink;
+
+  & + & {
+    margin-top: v.$space-2;
+  }
+}
+
+.about-page__quote-by {
+  margin-top: v.$space-3;
+  font-size: v.$font-size-sm;
+  color: v.$color-ink-soft;
+
+  &::before {
+    content: '— ';
+  }
+}
+
+// Bengt's photo with Håkan's words about him straight beneath it.
+.about-page__bengt {
+  margin-top: v.$space-5;
+
+  .about-page__quote {
+    margin-top: v.$space-4;
+  }
+}
+
+.about-page__caption {
+  margin-top: v.$space-2;
+  font-size: v.$font-size-sm;
+  color: v.$color-ink-soft;
+}

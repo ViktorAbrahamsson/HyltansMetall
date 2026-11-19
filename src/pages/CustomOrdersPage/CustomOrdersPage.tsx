@@ -1,7 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Figure from '@/components/common/Figure/Figure';
+import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { images } from '@/assets/images/manifest';
+import WorkGallery, { type WorkPiece } from '@/components/common/WorkGallery/WorkGallery';
 import styles from './CustomOrdersPage.module.scss';
 
 /**
@@ -14,6 +16,49 @@ const categories = [
   'Möbler',
   'Skyltar',
   'Konstverk',
+];
+
+/** Customer commissions, in row order (see WorkGallery). */
+const earlierWork: WorkPiece[] = [
+  {
+    image: images['custom/ringar'],
+    alt: 'Två gjutna ringar med skruvhål, den ena rå och den andra slipad.',
+    tile: 'portrait',
+  },
+  {
+    image: images['custom/kalmar'],
+    alt: 'Två gjutna skyltar med texten Kalmar Verkstads AB, Kalmar, 1932.',
+    tile: 'landscape',
+  },
+
+  {
+    image: images['custom/namnskyltar'],
+    alt: 'Tre patinerade namnskyltar, bland andra Brygghuset och PV-garaget.',
+    tile: 'landscape',
+  },
+  {
+    image: images['custom/namnskyltar-ra'],
+    alt: 'Namnskyltar direkt ur formen, fortfarande sittande på ingjutskanalen.',
+    tile: 'portrait',
+  },
+
+  // The odd portrait out: full width on phones (see WorkGallery).
+  {
+    image: images['custom/plakett'],
+    alt: 'Plakett från Gnosjö kommun: Denna byggnad har tilldelats kommunens pris för god arkitektur 2021.',
+    tile: 'portrait',
+  },
+  {
+    image: images['custom/beslag'],
+    alt: 'Nypolerade beslag i mässing uppradade på ett bord.',
+    tile: 'landscape',
+  },
+
+  {
+    image: images['custom/sweet-sixteen'],
+    alt: 'Två polerade emblem i mässing med skrivstilstexten Sweet Sixteen.',
+    tile: 'full',
+  },
 ];
 
 export default function CustomOrdersPage() {
@@ -49,8 +94,8 @@ export default function CustomOrdersPage() {
           </div>
 
           <Figure
-            image={images['products/ovrigt']}
-            alt="Nygjutna detaljer kvar i sandformen efter gjutning."
+            image={images['custom/beslag-serie']}
+            alt="En större serie små polerade beslag och detaljer i mässing."
             ratio="landscape"
             sizes="(min-width: 1024px) 45vw, 100vw"
             className={styles['custom-orders__split-media']}
@@ -78,6 +123,10 @@ export default function CustomOrdersPage() {
           />
         </div>
       </section>
+
+      <WorkGallery title="Tidigare arbeten" pieces={earlierWork} />
+
+      <InstagramFeed />
 
       {/* CTA block */}
       <section className={`block block--dark custom-orders-cta-block ${styles['custom-orders__cta-block']}`}>

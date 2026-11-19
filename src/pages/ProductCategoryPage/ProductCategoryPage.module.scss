@@ -186,13 +186,60 @@ section.product-category__intro-block {
 
 // The same cards as /produkter, two up — .container-sm keeps them from
 // stretching wider than they do on the index.
+// Columns are capped at a card's width and centred, so a lone sibling card
+// sits in the middle rather than in the left half. --cards is set inline.
 .product-category__more-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: v.$space-4;
 
   @include m.respond-to(md) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(var(--cards, 2), minmax(0, 400px));
+    justify-content: center;
     gap: v.$space-5;
   }
+}
+
+// ─── Featured product ────────────────────────────────────────────────────────
+// A category with one photographed product shows it big: the photo takes ~60%
+// of the row from lg up, with its name and details beside it, centred on it.
+.product-category__feature {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-5;
+
+  @include m.respond-to(lg) {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: v.$space-10;
+    align-items: center;
+  }
+}
+
+.product-category__feature-media {}
+
+.product-category__feature-body {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+}
+
+.product-category__feature-title {
+  font-size: v.$font-size-display-2;
+  margin-bottom: v.$space-1;
+}
+
+.product-category__feature-specs {
+  font-size: v.$font-size-sm;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  // ink, not ink-soft: small caps text on paper needs the extra contrast.
+  color: v.$color-ink;
+}
+
+.product-category__feature-note {
+  max-width: 42ch;
+  margin-top: v.$space-2;
+  color: v.$color-ink-soft;
+  line-height: 1.65;
 }

@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Figure from '@/components/common/Figure/Figure';
+import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { images } from '@/assets/images/manifest';
 import styles from './AboutPage.module.scss';
 
@@ -49,13 +50,17 @@ export default function AboutPage() {
               snart krävdes större lokaler och en helt ny fabrik byggdes hemma på
               gården. En utbyggnad var klar 1930.
             </p>
-            <Figure
-              image={images['workshop/generationer']}
-              alt="Tre man vid ugnen i gjuteriet, den yngsta generationen ser på."
-              ratio="landscape"
-              sizes={ABOUT_SIZES}
-              className={styles['about-page__section-media']}
-            />
+            <figure className={styles['about-page__section-media']}>
+              <Figure
+                image={images['workshop/generationer']}
+                alt="Tre man vid ugnen i gjuteriet, den yngsta generationen ser på."
+                ratio="landscape"
+                sizes={ABOUT_SIZES}
+              />
+              <figcaption className={styles['about-page__caption']}>
+                Från vänster: Viktor, Håkan och Gustav Abrahamsson.
+              </figcaption>
+            </figure>
           </div>
 
           <div className={styles['about-page__section']}>
@@ -70,6 +75,18 @@ export default function AboutPage() {
               värmesystem, tillverkades mängder med kopplingar och andra detaljer till
               värmepannor.
             </p>
+            {/* From a National Geographic feature. The caption names who is who. */}
+            <figure className={styles['about-page__section-media']}>
+              <Figure
+                image={images['history/national-geographic']}
+                alt="Tre män i verkstaden, den yngste håller ett gjutet kors. Ur National Geographic."
+                ratio="landscape"
+                sizes={ABOUT_SIZES}
+              />
+              <figcaption className={styles['about-page__caption']}>
+                Från vänster: Håkan, Lars och Bengt Abrahamsson.
+              </figcaption>
+            </figure>
           </div>
 
           <div className={styles['about-page__section']}>
@@ -80,13 +97,33 @@ export default function AboutPage() {
               med det genuina hantverket och investerade i svarvar och annan utrustning
               för tillverkning av malmljusstakar och andra presentföremål.
             </p>
-            <Figure
-              image={images['workshop/polerat']}
-              alt="Färdigpolerade malmljusstakar uppradade på arbetsbänken."
-              ratio="landscape"
-              sizes={ABOUT_SIZES}
-              className={styles['about-page__section-media']}
-            />
+            {/* Bengt in the old workshop, with Håkan's own words about him
+                (verbatim) directly beneath — the two belong together. */}
+            <figure className={styles['about-page__bengt']}>
+              <Figure
+                image={images['history/arkiv-gjutare']}
+                alt="Äldre svartvitt fotografi: Bengt i rutig skjorta lyfter nygjutna detaljer i den gamla verkstaden."
+                ratio="landscape"
+                sizes={ABOUT_SIZES}
+              />
+              <blockquote className={styles['about-page__quote']}>
+                <p className={styles['about-page__quote-p']}>Min pappa Bengt.</p>
+                <p className={styles['about-page__quote-p']}>
+                  Han jobbade hela sitt liv i sitt gjuteri, och det var han som lärde
+                  mig konsten att tillverka formar för hand, smälta metall och gjuta.
+                </p>
+                <p className={styles['about-page__quote-p']}>
+                  Han brukade ödmjukt konstatera ”man blir aldrig fullärd”.
+                </p>
+                <p className={styles['about-page__quote-p']}>
+                  Tillsammans med min farbror tillverkades bl a många olika modeller
+                  av malmljusstakar under 70-talet och några decennier framåt.
+                </p>
+                <footer className={styles['about-page__quote-by']}>
+                  Håkan Abrahamsson
+                </footer>
+              </blockquote>
+            </figure>
           </div>
 
           <div className={styles['about-page__section']}>
@@ -118,6 +155,8 @@ export default function AboutPage() {
 
         </div>
       </section>
+
+      <InstagramFeed />
     </>
   );
 }

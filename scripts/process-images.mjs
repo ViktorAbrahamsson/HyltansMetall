@@ -34,6 +34,7 @@ const BLUR_WIDTH = 20;
 const SHAPES = {
   portrait: { ratio: 4 / 5, widths: [400, 800] },
   landscape: { ratio: 3 / 2, widths: [400, 800, 1200] },
+  square: { ratio: 1, widths: [400, 800, 1200] },
   strip: { ratio: 3 / 2, widths: [400, 800, 1200] },
   wide: { ratio: 16 / 9, widths: [800, 1400, 1800] },
   banner: { ratio: 3.2, widths: [800, 1200, 1600] },
@@ -50,20 +51,32 @@ const SHAPES = {
  *                    applied before rotation. For cutting something out of frame
  *                    that no automatic crop would know to avoid.
  * `trim`          -> cut away transparent margins first (cut-outs only).
+ * `angle`         -> fixed clockwise turn in degrees, after the preCrop (which
+ *                    it requires). For a photo shot sideways with no EXIF tag.
  */
 const JOBS = [
   // --- Products -----------------------------------------------------------
-  { src: 'anglar.jpg', out: 'products/anglar', shape: 'landscape', rotate: false, crop: 'attention' },
   { src: 'polerade-produkter-hakan.jpg', out: 'products/ljusstakar', shape: 'landscape', rotate: true, crop: 'attention' },
-  { src: 'tomtar.jpg', out: 'products/tomtar', shape: 'landscape', rotate: true, crop: 'attention' },
-  // preCrop trims a branded glögg bottle off the right of the shelf.
+  // Category card photos, square: the tomte family stands cap to foot in a
+  // tall frame and any landscape cut takes the caps off, while a square holds
+  // all three. The angel card uses the pair with candles from its own page.
+  // preCrop is in raw pixels; angle 90 does what tomtefamilj's EXIF 6 would.
   {
-    src: 'ovrigt.jpg',
-    out: 'products/ovrigt',
-    shape: 'landscape',
+    src: 'tomtar/tomtefamilj.jpg',
+    out: 'products/tomtar-kort',
+    shape: 'square',
     rotate: false,
     crop: 'center',
-    preCrop: { left: 150, top: 0, width: 2300, height: 1848 },
+    preCrop: { left: 621, top: 0, width: 3024, height: 3024 },
+    angle: 90,
+  },
+  {
+    src: 'round3/angel-par.jpg',
+    out: 'products/anglar-kort',
+    shape: 'square',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 1146, top: 0, width: 1848, height: 1848 },
   },
 
   // --- Tomtar ---------------------------------------------------------------
@@ -78,8 +91,104 @@ const JOBS = [
   { src: 'tomtar/tomtefamilj.jpg', out: 'products/tomtar-familj', shape: 'portrait', rotate: true, crop: 'attention' },
   { src: 'tomtar/tomtefar-tomtemor.jpg', out: 'products/tomtar-paret', shape: 'portrait', rotate: true, crop: 'attention' },
 
+  // --- Änglar -------------------------------------------------------------
+  // Shot on a barrel top, 4000x1848 with upright pixels; the figures sit in
+  // the middle of the frame, so a plain centre crop keeps them whole.
+  { src: 'round3/angel-par.jpg', out: 'products/angel', shape: 'landscape', rotate: false, crop: 'center' },
+  { src: 'round3/anglar-trio.jpg', out: 'products/anglar-trio', shape: 'landscape', rotate: false, crop: 'center' },
+  { src: 'round3/anglar-verkstad.jpg', out: 'products/anglar-verkstad', shape: 'landscape', rotate: true, crop: 'attention' },
+  // Same barrel, two more angles. Tall with the candles, so 4:5; preCrop is
+  // already 4:5 and centred on the pair, which sit a little off-centre.
+  {
+    src: 'round3/angel-sida.jpg',
+    out: 'products/angel-sida',
+    shape: 'portrait',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 1318, top: 0, width: 1478, height: 1848 },
+  },
+  {
+    src: 'round3/angel-snett.jpg',
+    out: 'products/angel-snett',
+    shape: 'portrait',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 1375, top: 0, width: 1478, height: 1848 },
+  },
+
+  // --- Specialtillverkning: earlier commissions -----------------------------
+  // The "Tidigare arbeten" grid alternates portrait and landscape tiles, so
+  // each piece is cut to whichever frame its subject suits. The tiles fill
+  // their cells with object-fit, so a landscape cut lands at ~1.6:1 on screen.
+  // Shot with the plates standing on end; turned so the names read across.
+  // preCrop trims the source top so the plates stay centred once turned.
+  {
+    src: 'round3/namnskyltar.jpg',
+    out: 'custom/namnskyltar',
+    shape: 'landscape',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 0, top: 300, width: 1536, height: 1748 },
+    angle: 270,
+  },
+  { src: 'round3/namnskyltar-ra.jpg', out: 'custom/namnskyltar-ra', shape: 'portrait', rotate: false, crop: 'attention' },
+  { src: 'round3/klockor.jpg', out: 'custom/klockor', shape: 'landscape', rotate: true, crop: 'attention' },
+  { src: 'round3/plakett.jpg', out: 'custom/plakett', shape: 'portrait', rotate: true, crop: 'center' },
+  { src: 'round3/ringar.jpg', out: 'custom/ringar', shape: 'portrait', rotate: true, crop: 'attention' },
+  { src: 'round3/beslag.jpg', out: 'custom/beslag', shape: 'landscape', rotate: true, crop: 'attention' },
+  // Not in the grid: the photo beside "Vad vi gjuter", so landscape.
+  { src: 'round3/beslag-serie.jpg', out: 'custom/beslag-serie', shape: 'landscape', rotate: true, crop: 'center' },
+  // Two script pieces side by side, so it is cut wide; preCrop centres the
+  // lettering.
+  {
+    src: 'round3/sweet-sixteen.jpg',
+    out: 'custom/sweet-sixteen',
+    shape: 'wide',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 170, top: 266, width: 3200, height: 1600 },
+  },
+  // Two identical plaques side by side; the landscape frame holds both.
+  { src: 'round3/kalmar.jpg', out: 'custom/kalmar', shape: 'landscape', rotate: false, crop: 'center' },
+  // Older inbox photos of the foundry's own pieces, added to the same grid.
+  // EXIF orientation is correct on these (checked by eye).
+  { src: 'klocka.jpg', out: 'custom/pendyl', shape: 'portrait', rotate: true, crop: 'center' },
+  { src: 'kraftor.jpg', out: 'custom/kraftor', shape: 'portrait', rotate: true, crop: 'attention' },
+  // These two are tall shots cut to landscape, and 'attention' picked the box
+  // lid and the blurred background. preCrop picks the band with the pieces in
+  // it, in raw (unrotated) pixels, then angle 90 does what EXIF tag 6 would.
+  {
+    src: 'kraftor-2.jpg',
+    out: 'custom/kraftor-ask',
+    shape: 'landscape',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 1784, top: 0, width: 1232, height: 1848 },
+    angle: 90,
+  },
+  { src: 'fagel.jpg', out: 'custom/faglar-mossa', shape: 'landscape', rotate: true, crop: 'attention' },
+  {
+    src: 'faglar-3.jpg',
+    out: 'custom/faglar-rad',
+    shape: 'landscape',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 1344, top: 0, width: 1232, height: 1848 },
+    angle: 90,
+  },
+
   // --- Process steps (order matches ManufacturingPage copy) ---------------
-  { src: 'next-generation-3.jpg', out: 'process/01-modell', shape: 'landscape', rotate: false, crop: 'attention' },
+  // A square shot; 'attention' locked onto the face and cut the models out.
+  // preCrop frames the models (cross piece and horseshoe) on the mould plate,
+  // with the hands placing them, already at 3:2.
+  {
+    src: 'next-generation-3.jpg',
+    out: 'process/01-modell',
+    shape: 'landscape',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 90, top: 520, width: 900, height: 600 },
+  },
   { src: 'formpackning.jpg', out: 'process/02-sandpackning', shape: 'landscape', rotate: true, crop: 'center' },
   { src: 'ugn-2.jpg', out: 'process/03-smaltning', shape: 'landscape', rotate: false, crop: 'attention' },
   { src: 'form-ten.jpg', out: 'process/04-gjutning', shape: 'landscape', rotate: false, crop: 'attention' },
@@ -87,11 +196,31 @@ const JOBS = [
   { src: 'fardiga-produkter-ten.jpg', out: 'process/05-rensning', shape: 'landscape', rotate: false, crop: 'attention' },
 
   // --- Workshop / people ---------------------------------------------------
+  // The painted foundry-worker figurine on its own, beside the home page's
+  // "Hantverket lever vidare". 4000x1848 with the figure dead centre.
+  { src: 'round3/gjutarfigur.jpg', out: 'workshop/gjutarfigur', shape: 'portrait', rotate: false, crop: 'center' },
   { src: 'next-generation.jpg', out: 'workshop/generationer', shape: 'strip', rotate: false, crop: 'attention' },
   { src: 'next-generation-2.jpg', out: 'workshop/larling', shape: 'strip', rotate: false, crop: 'attention' },
   { src: 'form-metall.jpg', out: 'workshop/deglar', shape: 'strip', rotate: true, crop: 'attention' },
   { src: 'kol.jpg', out: 'workshop/kol', shape: 'strip', rotate: true, crop: 'attention' },
   { src: 'polerade-produkter-hakan.jpg', out: 'workshop/polerat', shape: 'strip', rotate: true, crop: 'attention' },
+
+  // --- History -------------------------------------------------------------
+  // A phone photo of a framed black-and-white print, taken sideways. preCrop
+  // drops the frame edge (source left = picture bottom), angle stands it up.
+  {
+    src: 'round3/arkiv-gjutare.jpg',
+    out: 'history/arkiv-gjutare',
+    shape: 'landscape',
+    rotate: false,
+    crop: 'north',
+    preCrop: { left: 36, top: 0, width: 1750, height: 2310 },
+    angle: 270,
+  },
+  // Håkan, Lars and Bengt, photographed for National Geographic: a phone shot
+  // of the printed page. Cropped from the bottom so the magazine's logo, in the
+  // lower right corner, stays whole.
+  { src: 'round3/national-geographic.jpg', out: 'history/national-geographic', shape: 'landscape', rotate: false, crop: 'south' },
 
   // --- Place ---------------------------------------------------------------
   { src: 'fasad-malning.jpg', out: 'place/fasad', shape: 'strip', rotate: true, crop: 'attention' },
@@ -120,11 +249,13 @@ if (!existsSync(INBOX)) {
 }
 
 /** Source dimensions as they will be *after* any preCrop and rotation. */
-async function sourceSize(file, rotate, preCrop) {
+async function sourceSize(file, rotate, preCrop, angle) {
   const meta = await sharp(file).metadata();
   const w = preCrop ? preCrop.width : meta.width;
   const h = preCrop ? preCrop.height : meta.height;
-  const swap = rotate && meta.orientation && meta.orientation >= 5;
+  const swap =
+    (rotate && meta.orientation && meta.orientation >= 5) ||
+    (angle && angle % 180 !== 0);
   return swap ? { w: h, h: w } : { w, h };
 }
 
@@ -143,7 +274,7 @@ for (const job of JOBS) {
   }
 
   const shape = SHAPES[job.shape];
-  const source = await sourceSize(from, job.rotate, job.preCrop);
+  const source = await sourceSize(from, job.rotate, job.preCrop, job.angle);
 
   // Never render wider than the source. Where the source falls between two
   // rungs of the ladder, add its own width so we use every pixel it has
@@ -157,9 +288,19 @@ for (const job of JOBS) {
   const position =
     job.crop === 'attention' ? sharp.strategy.attention : job.crop;
 
+  // A fixed angle is baked into an intermediate buffer first: chained in one
+  // pipeline with extract and resize, it did not apply in call order and the
+  // output was a zoomed-in, unrotated corner of the picture.
+  const input = job.angle
+    ? await sharp(from, { failOn: 'none' })
+        .extract(job.preCrop)
+        .rotate(job.angle)
+        .toBuffer()
+    : from;
+
   const render = (width) => {
-    const pipeline = sharp(from, { failOn: 'none' });
-    if (job.preCrop) pipeline.extract(job.preCrop);
+    const pipeline = sharp(input, { failOn: 'none' });
+    if (job.preCrop && !job.angle) pipeline.extract(job.preCrop);
     if (job.trim) pipeline.trim();
     if (job.rotate) pipeline.rotate();
     if (!shape.ratio) return pipeline.resize(width);

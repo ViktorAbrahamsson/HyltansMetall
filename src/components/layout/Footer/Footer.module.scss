@@ -132,6 +132,20 @@
   max-width: none;
 }
 
+.contact__social {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: v.$space-2;
+  color: v.$color-cream;
+  transition: color v.$transition-base;
+
+  &:hover {
+    color: v.$color-bronze-light;
+  }
+
+  @include m.focus-ring(#D9A24B);
+}
+
 // ─── Bottom row ──────────────────────────────────────────────────────────────
 .bottom {
   display: flex;

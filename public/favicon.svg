@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- A ladle (skänk) pouring molten bronze into a glowing pool, on the
+       site's dark tile. Drawn on a 32px grid so it stays crisp at tab size.
+       scripts/make-favicons.mjs builds the PNG copies from this file. -->
+  <defs>
+    <linearGradient id="molten" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE7A0"/>
+      <stop offset=".45" stop-color="#F8A93A"/>
+      <stop offset="1" stop-color="#E0561B"/>
+    </linearGradient>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D9A24B"/>
+      <stop offset="1" stop-color="#82591F"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#F8A93A" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#F8A93A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect id="tile" width="32" height="32" rx="7" fill="#161210"/>
+  <!-- Handle: a touch thicker than the sketch so it survives at 16px. -->
+  <path d="M3.5 4.5 L10 10.5" stroke="#B07A2E" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- Ladle bowl, with the molten surface along its rim. -->
+  <path d="M8 9.5 L19.5 6.5 L21 13.5 Q16 18 10.5 16.5 Z" fill="url(#bronze)"/>
+  <path d="M9 9.6 L19.4 6.9 L19.9 8.6 L9.6 11.3 Z" fill="#FFD27A"/>
+  <!-- The pour and the pool it lands in. -->
+  <path d="M20 7.5 Q23.5 10 22.6 17.5 L22.2 24" stroke="url(#molten)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <ellipse cx="22" cy="26" rx="8" ry="3.5" fill="url(#glow)"/>
+  <ellipse cx="22" cy="25.6" rx="4.6" ry="1.6" fill="#F8A93A"/>
+</svg>

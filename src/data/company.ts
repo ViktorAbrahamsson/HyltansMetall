@@ -5,7 +5,9 @@ export const company = {
   city: 'Gnosjö',
   address: 'SE 335 91 GNOSJÖ',
   email: 'info@hyltansmetall.se',
-  phone: '',
+  phone: '070-910 44 38',
+  /** International form for the tel: link. */
+  phoneHref: '+46709104438',
   website: 'hyltansmetall.se',
   // What the contact-page map searches Google Maps for.
   mapQuery: 'Hyltan 40, 335 91 Gnosjö',

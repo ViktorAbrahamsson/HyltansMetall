@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { company } from '@/data/company';
+import { instagram } from '@/data/instagram';
 import styles from './Footer.module.scss';
 
 // Kept flat and complete, unlike the header: the footer is the site's index,
@@ -62,6 +63,19 @@ export default function Footer() {
             </a>
             <p className={styles.contact__addr}>{company.name}</p>
             <p className={styles.contact__addr}>{company.address}</p>
+            <a
+              href={instagram.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.contact__social}
+              aria-label={`${company.name} på Instagram`}
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+                <rect x="2.75" y="2.75" width="18.5" height="18.5" rx="5.25" fill="none" stroke="currentColor" strokeWidth="1.75" />
+                <circle cx="12" cy="12" r="4.25" fill="none" stroke="currentColor" strokeWidth="1.75" />
+                <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" />
+              </svg>
+            </a>
           </address>
         </div>
 

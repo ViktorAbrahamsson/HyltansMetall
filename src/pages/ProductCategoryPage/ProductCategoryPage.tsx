@@ -1,11 +1,17 @@
+import type { CSSProperties } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Figure from '@/components/common/Figure/Figure';
+import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import ProductCard from '@/components/common/ProductCard/ProductCard';
+import WorkGallery from '@/components/common/WorkGallery/WorkGallery';
 import { getCategoryBySlug, productCategories } from '@/data/products';
 import styles from './ProductCategoryPage.module.scss';
 
 const ITEM_SIZES = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw';
+
+// The featured photo: ~60% of the 1200px container from lg up.
+const FEATURE_SIZES = '(min-width: 1200px) 680px, (min-width: 1024px) 57vw, 100vw';
 
 // Two photos inside .container-sm: 836px of content split by a 2.5rem gap.
 const GALLERY_SIZES = '(min-width: 900px) 400px, (min-width: 768px) 50vw, 100vw';
@@ -27,6 +33,12 @@ export default function ProductCategoryPage() {
 
   const others = productCategories.filter((c) => c.id !== category.id);
   const itemRatio = category.itemRatio ?? 'landscape';
+  // A category with a single photographed product shows it big, with its
+  // details beside it, rather than as one small card in a three-up grid.
+  const featured =
+    category.items.length === 1 && category.items[0].image
+      ? category.items[0]
+      : undefined;
 
   return (
     <>
@@ -69,46 +81,74 @@ export default function ProductCategoryPage() {
       {/* Items */}
       <section className={`block block--paper product-category-items-block ${styles['product-category__items-block']}`}>
         <div className="container">
-          <ul className={styles['product-category__grid']}>
-            {category.items.map((item, i) => (
-              <li key={item.id} className={styles['product-category__item']}>
-                {item.image ? (
-                  <Figure
-                    image={item.image}
-                    alt={item.imageAlt ?? item.title ?? category.title}
-                    ratio={itemRatio}
-                    sizes={ITEM_SIZES}
-                    priority={i === 0}
-                    className={styles['product-category__item-media']}
-                  />
-                ) : (
-                  // No photo yet. Reserve the same box the Figure would take so
-                  // the grid keeps its shape and dropping a photo in later
-                  // shifts nothing.
-                  <div
-                    className={[
-                      styles['product-category__item-placeholder'],
-                      itemRatio === 'portrait'
-                        ? styles['product-category__item-placeholder--portrait']
-                        : '',
-                    ].join(' ')}
-                    aria-hidden="true"
-                  >
-                    <span className={styles['product-category__item-slot']}>
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className={styles['product-category__item-pending']}>
-                      Foto kommer
-                    </span>
-                  </div>
+          {featured?.image ? (
+            <div className={styles['product-category__feature']}>
+              <Figure
+                image={featured.image}
+                alt={featured.imageAlt ?? featured.title ?? category.title}
+                ratio={itemRatio}
+                sizes={FEATURE_SIZES}
+                priority
+                className={styles['product-category__feature-media']}
+              />
+              <div className={styles['product-category__feature-body']}>
+                <h2 className={styles['product-category__feature-title']}>
+                  {featured.title ?? category.itemNoun}
+                </h2>
+                {featured.specs && (
+                  <p className={styles['product-category__feature-specs']}>
+                    {featured.specs}
+                  </p>
                 )}
+                {featured.note && (
+                  <p className={styles['product-category__feature-note']}>
+                    {featured.note}
+                  </p>
+                )}
+              </div>
+            </div>
+          ) : (
+            <ul className={styles['product-category__grid']}>
+              {category.items.map((item, i) => (
+                <li key={item.id} className={styles['product-category__item']}>
+                  {item.image ? (
+                    <Figure
+                      image={item.image}
+                      alt={item.imageAlt ?? item.title ?? category.title}
+                      ratio={itemRatio}
+                      sizes={ITEM_SIZES}
+                      priority={i === 0}
+                      className={styles['product-category__item-media']}
+                    />
+                  ) : (
+                    // No photo yet. Reserve the same box the Figure would take so
+                    // the grid keeps its shape and dropping a photo in later
+                    // shifts nothing.
+                    <div
+                      className={[
+                        styles['product-category__item-placeholder'],
+                        itemRatio === 'portrait'
+                          ? styles['product-category__item-placeholder--portrait']
+                          : '',
+                      ].join(' ')}
+                      aria-hidden="true"
+                    >
+                      <span className={styles['product-category__item-slot']}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className={styles['product-category__item-pending']}>
+                        Foto kommer
+                      </span>
+                    </div>
+                  )}
 
-                <p className={styles['product-category__item-title']}>
-                  {item.title ?? `${category.itemNoun} ${i + 1}`}
-                </p>
-              </li>
-            ))}
-          </ul>
+                  <p className={styles['product-category__item-title']}>
+                    {item.title ?? `${category.itemNoun} ${i + 1}`}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
 
@@ -126,7 +166,7 @@ export default function ProductCategoryPage() {
                   <Figure
                     image={shot.image}
                     alt={shot.alt}
-                    ratio="portrait"
+                    ratio={itemRatio}
                     sizes={GALLERY_SIZES}
                   />
                 </li>
@@ -135,6 +175,17 @@ export default function ProductCategoryPage() {
           </div>
         </section>
       )}
+
+      {/* More photos, mixed shapes, as the zig-zag block. */}
+      {category.showcase && (
+        <WorkGallery
+          label={`Fler bilder: ${category.title}`}
+          pieces={category.showcase}
+          tone="sand"
+        />
+      )}
+
+      <InstagramFeed />
 
       {/* Enquiry block */}
       <section className={`block block--dark product-category-cta-block ${styles['product-category__cta-block']}`}>
@@ -157,7 +208,10 @@ export default function ProductCategoryPage() {
       <section className={`block product-category-more-block ${styles['product-category__more-block']}`}>
         <div className="container container-sm">
           <h2 className={styles['product-category__more-h2']}>Fler kategorier</h2>
-          <div className={styles['product-category__more-grid']}>
+          <div
+            className={styles['product-category__more-grid']}
+            style={{ '--cards': Math.min(others.length, 2) } as CSSProperties}
+          >
             {others.map((other) => (
               <ProductCard key={other.id} product={other} sizes={MORE_SIZES} />
             ))}

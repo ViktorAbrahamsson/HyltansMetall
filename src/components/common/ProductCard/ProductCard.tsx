@@ -32,7 +32,7 @@ export default function ProductCard({
           <Figure
             image={product.image}
             alt={product.imageAlt ?? product.title}
-            ratio="landscape"
+            ratio="square"
             sizes={sizes}
             priority={priority}
             className={styles['card__media']}

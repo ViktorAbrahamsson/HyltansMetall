@@ -29,9 +29,34 @@
     align-items: start;
   }
 
-  // Photo moves into its own column once there is room for it beside the text.
+  // Photo moves into its own column once there is room for it beside the text,
+  // and the numeral and text centre on it vertically.
   @include m.respond-to(lg) {
-    grid-template-columns: auto minmax(0, 1fr) minmax(0, 38%);
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 46%);
+    align-items: center;
+  }
+
+  // Every other step mirrors: photo on the left, numeral and text to its
+  // right, so the photos zig-zag down the page instead of forming one column.
+  // Below lg the photo sits under the text either way.
+  &:nth-child(even) {
+    @include m.respond-to(lg) {
+      grid-template-columns: minmax(0, 46%) auto minmax(0, 1fr);
+
+      .mfg-step__media {
+        grid-column: 1;
+      }
+
+      .mfg-step__numeral {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .mfg-step__body {
+        grid-column: 3;
+        grid-row: 1;
+      }
+    }
   }
 }
 

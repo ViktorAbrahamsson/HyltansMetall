@@ -1,4 +1,5 @@
 import { images, type ResponsiveImage } from '@/assets/images/manifest';
+import type { WorkPiece } from '@/components/common/WorkGallery/WorkGallery';
 
 /**
  * One physical product within a category.
@@ -15,6 +16,10 @@ export interface ProductItem {
   /** Undefined until the item has been photographed. */
   image?: ResponsiveImage;
   imageAlt?: string;
+  /** One line of measurements, e.g. "Höjd 7 cm · Vikt 0,3 kg". */
+  specs?: string;
+  /** A short note beside the photo, e.g. a gift box it also comes in. */
+  note?: string;
 }
 
 export interface ProductCategory {
@@ -41,27 +46,77 @@ export interface ProductCategory {
    */
   itemRatio?: 'portrait' | 'landscape';
   /**
-   * Photos of several kinds together. Not products in their own right: they
-   * close the page off under the item grid.
+   * Photos of several pieces together. Not products in their own right: they
+   * close the page off under the item grid, in the same frame as the items.
    */
   gallery?: { image: ResponsiveImage; alt: string }[];
+  /**
+   * More photos as the zig-zag block (see WorkGallery), in row order. For a
+   * category with mixed portrait and landscape shots; `gallery` suits a pair
+   * of the same shape.
+   */
+  showcase?: WorkPiece[];
+  /**
+   * Kept in the data but off the site: no nav entry, no card, and its URL
+   * redirects to /produkter like an unknown slug. For a category that is not
+   * ready yet — remove the flag to publish it.
+   */
+  hidden?: boolean;
 }
 
-export const productCategories: ProductCategory[] = [
+const allCategories: ProductCategory[] = [
   {
     id: 'angels',
     slug: 'anglar',
     title: 'Änglar',
     itemNoun: 'Ängel',
-    description: 'Handgjutna änglar i brons, i olika storlekar och utföranden.',
-    image: images['products/anglar'],
-    imageAlt: 'Två bronsänglar som ljusstakar med tända ljus.',
+    description: 'Handgjutna änglar i brons.',
+    image: images['products/anglar-kort'],
+    imageAlt: 'Två bronsänglar med vita ljus mellan sig, på locket av en gammal tunna.',
     // Only one kind of ängel.
-    items: [{ id: 'angel-1' }],
+    // Only one kind, so the page features it (see ProductCategoryPage).
+    // Measurements and the gift-box line are the owner's, from the old site.
+    items: [
+      {
+        id: 'angel-1',
+        title: 'Ängel',
+        image: images['products/angel'],
+        imageAlt: 'Två bronsänglar med vita ljus mellan sig, på locket av en gammal tunna.',
+        specs: 'Höjd 7 cm · Vikt 0,3 kg',
+        note:
+          'Finns även som presentförpackning med 2 st änglar och handstöpta ' +
+          'ljus. Äkthetsintyg ingår.',
+      },
+    ],
+    showcase: [
+      {
+        image: images['products/angel-sida'],
+        alt: 'Två änglar med vita ljus på en trätunna, sedda lite från sidan.',
+        tile: 'portrait',
+      },
+      {
+        image: images['products/anglar-trio'],
+        alt: 'Tre bronsänglar uppställda tillsammans på en trätunna.',
+        tile: 'landscape',
+      },
+
+      {
+        image: images['products/anglar-verkstad'],
+        alt: 'Rader av nygjutna änglar med ljushållare på arbetsbänken i verkstaden.',
+        tile: 'landscape',
+      },
+      {
+        image: images['products/angel-snett'],
+        alt: 'Två änglar med tända ljushållare på en trätunna, snett framifrån.',
+        tile: 'portrait',
+      },
+    ],
   },
   {
     id: 'candlesticks',
     slug: 'malmljusstakar',
+    // Hidden until release: no product names or photos yet.
+    hidden: true,
     title: 'Malmljusstakar',
     itemNoun: 'Malmljusstake',
     description: 'Klassiska malmljusstakar, svarvade och polerade för hand.',
@@ -87,8 +142,8 @@ export const productCategories: ProductCategory[] = [
     title: 'Tomtar',
     itemNoun: 'Tomte',
     description: 'Traditionella svenska tomtar gjutna i brons.',
-    image: images['products/tomtar'],
-    imageAlt: 'Två bronstomtar med spetsiga luvor uppställda på en mörk trähylla.',
+    image: images['products/tomtar-kort'],
+    imageAlt: 'Tomtefar, Tomtemor och Tomtenisse tillsammans på en mossbevuxen sten.',
     // Three kinds, all photographed outdoors on the moss.
     itemRatio: 'portrait',
     items: [
@@ -123,6 +178,9 @@ export const productCategories: ProductCategory[] = [
     ],
   },
 ];
+
+/** The published categories. Everything on the site reads this, not the full list. */
+export const productCategories = allCategories.filter((category) => !category.hidden);
 
 export function getCategoryBySlug(slug: string | undefined): ProductCategory | undefined {
   return productCategories.find((category) => category.slug === slug);

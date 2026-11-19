@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Figure from '@/components/common/Figure/Figure';
+import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { images } from '@/assets/images/manifest';
 import styles from './ManufacturingPage.module.scss';
 
@@ -93,7 +94,7 @@ export default function ManufacturingPage() {
                   image={step.image}
                   alt={step.imageAlt}
                   ratio="landscape"
-                  sizes="(min-width: 1024px) 38vw, (min-width: 768px) 60vw, 100vw"
+                  sizes="(min-width: 1200px) 530px, (min-width: 1024px) 44vw, (min-width: 768px) 60vw, 100vw"
                   priority={i === 0}
                   className={styles['mfg-step__media']}
                 />
@@ -102,6 +103,8 @@ export default function ManufacturingPage() {
           </ol>
         </div>
       </section>
+
+      <InstagramFeed />
     </>
   );
 }

@@ -3,24 +3,39 @@
   overflow-x: clip;
 }
 
+// Phones: text, then the figure photo, so the heading is not pushed below a
+// tall picture. From lg the photo takes the narrow left column, beside the text.
 .home-about__inner {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-areas:
+    'body'
+    'media';
   gap: v.$space-8;
   position: relative;
 
   @include m.respond-to(lg) {
     grid-template-columns: 280px 1fr;
+    grid-template-areas: 'media body';
     gap: v.$space-12;
     align-items: start;
   }
 }
 
-.home-about__meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: v.$space-2;
+.home-about__body {
+  grid-area: body;
+}
+
+// Above the ghost numeral, which is absolutely positioned in the same box.
+.home-about__media {
+  grid-area: media;
+  width: 100%;
+  max-width: 320px;
+  z-index: 1;
+
+  @include m.respond-to(lg) {
+    max-width: none;
+  }
 }
 
 .home-about__heading {
@@ -74,8 +89,10 @@
   grid-template-columns: 1fr;
   gap: v.$space-4;
 
+  // --cards is set inline from the number of published categories (max 3),
+  // so two categories fill the row instead of leaving a third column empty.
   @include m.respond-to(md) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(var(--cards, 3), minmax(0, 1fr));
     gap: v.$space-5;
   }
 }

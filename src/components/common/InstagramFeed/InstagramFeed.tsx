@@ -26,6 +26,37 @@ type FeedState =
 
 const PLACEHOLDER_COUNT = 4;
 
+/**
+ * The section sits on several pages, so the feed is fetched once per visit and
+ * shared: the first section to mount starts the request, every later one reuses
+ * it, and a section mounted after it has settled renders the posts at once.
+ * A failed request is not cached, so the next page tries again.
+ */
+let feedRequest: Promise<BeholdPost[]> | null = null;
+let feedPosts: BeholdPost[] | null = null;
+
+function loadFeed(url: string): Promise<BeholdPost[]> {
+  feedRequest ??= fetch(url)
+    .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+    .then((data: { posts?: BeholdPost[] }) => {
+      feedPosts = (data.posts ?? []).filter((post) => post.sizes?.medium?.mediaUrl);
+      return feedPosts;
+    })
+    .catch((error) => {
+      feedRequest = null;
+      throw error;
+    });
+  return feedRequest;
+}
+
+function initialState(): FeedState {
+  if (!instagram.feedUrl) return { status: 'empty' };
+  if (feedPosts) {
+    return feedPosts.length ? { status: 'ready', posts: feedPosts } : { status: 'empty' };
+  }
+  return { status: 'loading' };
+}
+
 function describe(post: BeholdPost): string {
   const text = post.altText || post.prunedCaption;
   if (!text) return 'Inlägg på Instagram';
@@ -41,29 +72,29 @@ function srcSet(post: BeholdPost): string {
 }
 
 export default function InstagramFeed() {
-  const [feed, setFeed] = useState<FeedState>(
-    instagram.feedUrl ? { status: 'loading' } : { status: 'empty' },
-  );
+  const [feed, setFeed] = useState<FeedState>(initialState);
   const trackRef = useRef<HTMLUListElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
 
   useEffect(() => {
-    if (!instagram.feedUrl) return;
-    const controller = new AbortController();
+    if (!instagram.feedUrl || feedPosts) return;
+    // The request is shared, so it is not aborted on unmount; this section
+    // just stops listening for the answer.
+    let active = true;
 
-    fetch(instagram.feedUrl, { signal: controller.signal })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .then((data: { posts?: BeholdPost[] }) => {
-        const posts = (data.posts ?? []).filter((post) => post.sizes?.medium?.mediaUrl);
-        setFeed(posts.length ? { status: 'ready', posts } : { status: 'empty' });
+    loadFeed(instagram.feedUrl)
+      .then((posts) => {
+        if (active) setFeed(posts.length ? { status: 'ready', posts } : { status: 'empty' });
       })
       .catch(() => {
         // A failed feed hides the row rather than leaving empty frames behind.
-        if (!controller.signal.aborted) setFeed({ status: 'empty' });
+        if (active) setFeed({ status: 'empty' });
       });
 
-    return () => controller.abort();
+    return () => {
+      active = false;
+    };
   }, []);
 
   const updateArrows = useCallback(() => {
@@ -103,7 +134,12 @@ export default function InstagramFeed() {
               Följ oss på Instagram
             </h2>
           </div>
-          <a href={instagram.profileUrl} className="btn btn--ghost">
+          <a
+            href={instagram.profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--ghost"
+          >
             Till Instagram
           </a>
         </div>
@@ -129,6 +165,8 @@ export default function InstagramFeed() {
                 <li key={post.id} className={styles['instagram-feed__item']}>
                   <a
                     href={post.permalink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={styles['instagram-feed__link']}
                     style={
                       post.colorPalette?.muted

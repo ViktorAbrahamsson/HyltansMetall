@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
+import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { company } from '@/data/company';
 import styles from './ContactPage.module.scss';
 
@@ -42,18 +43,16 @@ export default function ContactPage() {
         <div className="container">
           <div className={`page-intro ${styles['contact-page__intro']}`}>
             <h1 className={styles['contact-page__h1']}>Kontakta oss</h1>
+            <p className="page-intro__lead">
+              Du är varmt välkommen att kontakta oss, helst via e-post.
+              Förfrågningar, beställningar och övriga frågor.
+            </p>
           </div>
 
           <div className={styles['contact-page__layout']}>
 
             {/* Info column */}
             <div className={styles['contact-page__info']}>
-              <a
-                href={`mailto:${company.email}`}
-                className={styles['contact-page__email-link']}
-              >
-                {company.email}
-              </a>
               <address className={styles['contact-page__address']}>
                 <div className={styles['contact-page__address-item']}>
                   <span className={styles['contact-page__address-label']}>E-post</span>
@@ -65,9 +64,16 @@ export default function ContactPage() {
                   </a>
                 </div>
                 <div className={styles['contact-page__address-item']}>
-                  <span className={styles['contact-page__address-label']}>Adress</span>
-                  <span className={styles['contact-page__address-value']}>{company.name}</span>
-                  <span className={styles['contact-page__address-value']}>{company.address}</span>
+                  <span className={styles['contact-page__address-label']}>Telefon</span>
+                  <a
+                    href={`tel:${company.phoneHref}`}
+                    className={`${styles['contact-page__address-value']} ${styles['contact-page__address-link']}`}
+                  >
+                    {company.phone}
+                  </a>
+                  <span className={styles['contact-page__address-value']}>
+                    Främst kvällar och helger
+                  </span>
                 </div>
               </address>
 
@@ -151,6 +157,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <InstagramFeed />
     </>
   );
 }

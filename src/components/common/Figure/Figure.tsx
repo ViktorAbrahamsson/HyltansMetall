@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { ResponsiveImage } from '@/assets/images/manifest';
 import styles from './Figure.module.scss';
 
-export type FigureRatio = 'portrait' | 'landscape' | 'wide' | 'banner';
+export type FigureRatio = 'portrait' | 'square' | 'landscape' | 'wide' | 'banner';
 
 interface FigureProps {
   image: ResponsiveImage;

@@ -6,5 +6,5 @@ export const instagram = {
    * 'https://feeds.behold.so/<feedId>'. While empty, the section shows its
    * heading and the Instagram link but no posts. The free plan returns 6.
    */
-  feedUrl: '',
+  feedUrl: 'https://feeds.behold.so/1OKUVj7vHN91Px1iWHWm',
 } as const;

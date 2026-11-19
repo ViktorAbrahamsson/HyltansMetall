@@ -32,25 +32,6 @@
 
 .contact-page__h1 {}
 
-.contact-page__email-link {
-  display: inline-block;
-  font-family: v.$font-display;
-  font-size: v.$font-size-display-3;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: v.$color-bronze;
-  text-decoration: none;
-  line-height: 1.2;
-  margin-bottom: v.$space-6;
-  transition: color v.$transition-base;
-
-  &:hover {
-    color: v.$color-bronze-light;
-  }
-
-  @include m.focus-ring(#B07A2E);
-}
-
 .contact-page__address {
   font-style: normal;
   display: flex;
@@ -58,9 +39,13 @@
   gap: v.$space-4;
 }
 
+// align-items keeps each link as wide as its text; the default `stretch` made
+// every row's link span the whole column, so clicks far right of the words
+// still followed it.
 .contact-page__address-item {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.25rem;
 }
 

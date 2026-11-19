@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import type { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '@/components/common/Hero/Hero';
 import ProductCard from '@/components/common/ProductCard/ProductCard';
@@ -23,6 +24,9 @@ const strip = [
   },
 ];
 
+// Card width when fewer than three categories share the row.
+const TWO_UP_SIZES = '(min-width: 1200px) 570px, (min-width: 768px) 48vw, 100vw';
+
 export default function HomePage() {
   const featuredProducts = productCategories.slice(0, 3);
 
@@ -38,10 +42,7 @@ export default function HomePage() {
       <section className={`block block--paper about-block ${styles['home-about']}`}>
         <div className="container">
           <div className={styles['home-about__inner']}>
-            <div className={styles['home-about__meta']}>
-              <p className="label">Tre generationer</p>
-            </div>
-            <div>
+            <div className={styles['home-about__body']}>
               <h2 className={styles['home-about__heading']}>Hantverket lever vidare</h2>
               <p className={styles['home-about__text']}>
                 Hyltans Metall tillverkar sandgjutna produkter i brons och mässing.
@@ -51,6 +52,13 @@ export default function HomePage() {
               </p>
               <Link to="/om-oss" className="btn btn--ghost">Läs mer om företaget</Link>
             </div>
+            <Figure
+              image={images['workshop/gjutarfigur']}
+              alt="Målad figur av en gjutare i läderförkläde som häller smält metall i en form."
+              ratio="portrait"
+              sizes="(min-width: 1024px) 280px, (min-width: 640px) 320px, 100vw"
+              className={styles['home-about__media']}
+            />
             <span
               className={`ghost-numeral ${styles['home-about__ghost']}`}
               aria-hidden="true"
@@ -81,9 +89,16 @@ export default function HomePage() {
             </div>
             <Link to="/produkter" className="btn btn--ghost">Se alla produkter</Link>
           </div>
-          <div className={styles['home-products__grid']}>
+          <div
+            className={styles['home-products__grid']}
+            style={{ '--cards': featuredProducts.length } as CSSProperties}
+          >
             {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                sizes={featuredProducts.length < 3 ? TWO_UP_SIZES : undefined}
+              />
             ))}
           </div>
         </div>

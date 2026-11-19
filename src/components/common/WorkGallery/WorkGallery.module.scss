@@ -1,0 +1,86 @@
+.work-gallery__h2 {
+  font-size: v.$font-size-display-3;
+  text-align: center;
+  margin-bottom: v.$space-8;
+}
+
+// Phones: two columns. Portraits pair up two across and landscapes take a
+// full row; `dense` lets the second portrait of a pair fill the gap beside the
+// first even though landscapes sit between them in the source order.
+// Desktop: six columns. Each row is one portrait (2) and one landscape (4),
+// swapping sides every row because the data alternates; `full` spans all six.
+.work-gallery__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  gap: v.$space-3;
+
+  @include m.respond-to(md) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-flow: row;
+    gap: v.$space-5;
+  }
+}
+
+// Each cell sets its own size and the photo fills it, so a landscape tile can
+// take its row's height from the portrait beside it.
+.work-gallery__item {
+  position: relative;
+}
+
+.work-gallery__item--portrait {
+  aspect-ratio: 4 / 5;
+
+  @include m.respond-to(md) {
+    grid-column: span 2;
+  }
+}
+
+.work-gallery__item--landscape {
+  grid-column: span 2;
+  aspect-ratio: 3 / 2;
+
+  @include m.respond-to(md) {
+    grid-column: span 4;
+    aspect-ratio: auto;
+  }
+}
+
+// Comes in twos: a row of two landscapes.
+.work-gallery__item--half {
+  grid-column: span 2;
+  aspect-ratio: 3 / 2;
+
+  @include m.respond-to(md) {
+    grid-column: span 3;
+  }
+}
+
+// The last of an odd number of portraits: full width on phones, where it
+// would otherwise have no partner. A normal portrait from md up.
+.work-gallery__item--solo {
+  grid-column: span 2;
+
+  @include m.respond-to(md) {
+    grid-column: span 2;
+  }
+}
+
+.work-gallery__item--full {
+  grid-column: span 2;
+  aspect-ratio: 2 / 1;
+
+  @include m.respond-to(md) {
+    grid-column: 1 / -1;
+    aspect-ratio: 3 / 1;
+  }
+}
+
+// Fills the cell rather than sizing it. Qualified with `li >` to outrank the
+// Figure's own `.fig` position and ratio, which load in another module.
+li > .work-gallery__fig {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+}

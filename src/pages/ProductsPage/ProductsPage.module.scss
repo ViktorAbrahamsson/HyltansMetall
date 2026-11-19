@@ -14,7 +14,8 @@
     gap: v.$space-5;
   }
 
+  // --cards is set inline from the number of published categories (max 3).
   @include m.respond-to(lg) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(var(--cards, 3), minmax(0, 1fr));
   }
 }
