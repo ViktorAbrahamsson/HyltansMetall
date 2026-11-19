@@ -1,0 +1,5 @@
+# Netlify response headers.
+# PREVIEW ONLY: keeps the unfinished site out of search engines (the National
+# Geographic photo is still waiting for permission). Remove at launch.
+/*
+  X-Robots-Tag: noindex

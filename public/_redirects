@@ -1,0 +1,3 @@
+# Netlify: every address is served the app, which routes it itself. Without
+# this, opening /om-oss directly or refreshing a subpage gives a 404.
+/*    /index.html    200
