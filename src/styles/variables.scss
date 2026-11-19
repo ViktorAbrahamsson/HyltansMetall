@@ -51,7 +51,9 @@ $gradient-brass-wipe: linear-gradient(
 $font-display: 'Fraunces', Georgia, serif;
 $font-body: 'Inter', system-ui, sans-serif;
 
-$font-size-display:   clamp(3.25rem, 9vw, 6.5rem);
+// The floor and slope let the longest page title, "Specialtillverkning"
+// (~8.2em wide), fit a 320px phone; the 6.5rem ceiling is unchanged.
+$font-size-display:   clamp(2rem, 10vw, 6.5rem);
 $font-size-display-2: clamp(2.25rem, 5vw, 3.75rem);
 $font-size-display-3: clamp(1.5rem, 2.5vw, 2rem);
 

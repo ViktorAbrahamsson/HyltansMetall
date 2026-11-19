@@ -110,15 +110,16 @@
 
 // ─── Arrows ──────────────────────────────────────────────────────────────────
 // Overlap the edge tiles, centred on the square, as in the reference layout.
+// Shown at every width: on a phone they sit just inside the screen edge.
 .instagram-feed__arrow {
   position: absolute;
   top: 50%;
   z-index: 3;
-  display: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   border: 1px solid v.$color-line;
   border-radius: 50%;
@@ -130,7 +131,8 @@
   transition: opacity v.$transition-base, color v.$transition-base;
 
   @include m.respond-to(md) {
-    display: inline-flex;
+    width: 44px;
+    height: 44px;
   }
 
   &:hover:not(:disabled) {
@@ -145,10 +147,63 @@
   @include m.focus-ring(#B07A2E);
 }
 
+// The page gutter is 1.5rem on phones, so -12px keeps the arrow on screen.
 .instagram-feed__arrow--prev {
-  left: -22px;
+  left: -12px;
+
+  @include m.respond-to(md) {
+    left: -22px;
+  }
 }
 
 .instagram-feed__arrow--next {
-  right: -22px;
+  right: -12px;
+
+  @include m.respond-to(md) {
+    right: -22px;
+  }
+}
+
+// ─── Dots ────────────────────────────────────────────────────────────────────
+// One per place the row can rest. Each button is a 24px touch target around
+// an 8px dot; the current one is bronze and a little wider.
+.instagram-feed__dots {
+  display: flex;
+  justify-content: center;
+  margin-top: v.$space-3;
+}
+
+.instagram-feed__dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: v.$color-ink-soft;
+    opacity: 0.35;
+    transition: width v.$transition-base, opacity v.$transition-base, background-color v.$transition-base;
+  }
+
+  &:hover::before {
+    opacity: 0.6;
+  }
+
+  &[aria-current='true']::before {
+    width: 20px;
+    opacity: 1;
+    background-color: v.$color-bronze-deep;
+  }
+
+  @include m.focus-ring(#B07A2E);
 }

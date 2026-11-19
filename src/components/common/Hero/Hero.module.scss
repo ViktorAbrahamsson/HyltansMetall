@@ -154,13 +154,17 @@
   max-width: v.$container-width;
   padding-inline: 1.5rem;
   z-index: 2;
-  display: flex;
+  // Hidden on phones: there the 1926 numeral fills the bottom of the hero and
+  // the cue ran straight through it — and nobody needs telling to scroll on a
+  // touch screen.
+  display: none;
   flex-direction: column;
   align-items: flex-start;
   gap: v.$space-1;
   pointer-events: none;
 
   @include m.respond-to(md) {
+    display: flex;
     padding-inline: 2rem;
   }
 }

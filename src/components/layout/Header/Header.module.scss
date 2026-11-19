@@ -292,9 +292,13 @@
   background-color: v.$color-coal;
   @include m.grain;
   display: flex;
-  align-items: center;
+  // Links start under the header rather than centring in the space, which
+  // left an empty band above them. Scrolls if a short screen cannot fit all.
+  align-items: flex-start;
   padding-inline: 2rem;
-  padding-top: v.$header-height;
+  padding-top: calc(#{v.$header-height} + #{v.$space-5});
+  padding-bottom: v.$space-6;
+  overflow-y: auto;
   z-index: v.$z-nav;
   opacity: 0;
   pointer-events: none;

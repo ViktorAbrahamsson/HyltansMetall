@@ -76,6 +76,10 @@ export default function InstagramFeed() {
   const trackRef = useRef<HTMLUListElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
+  // One dot per scroll stop: with four tiles in view and six posts there are
+  // three places the row can rest, not six.
+  const [stops, setStops] = useState(1);
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     if (!instagram.feedUrl || feedPosts) return;
@@ -97,12 +101,31 @@ export default function InstagramFeed() {
     };
   }, []);
 
+  /** Width of one tile plus the gap after it: the distance of one step. */
+  function tileStep(track: HTMLElement): number {
+    const tile = track.firstElementChild as HTMLElement | null;
+    if (!tile) return 0;
+    return tile.offsetWidth + (parseFloat(getComputedStyle(track).columnGap) || 0);
+  }
+
   const updateArrows = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
     // 1px slack: fractional scroll positions never quite reach the end.
-    setCanPrev(track.scrollLeft > 1);
-    setCanNext(track.scrollLeft + track.clientWidth < track.scrollWidth - 1);
+    const atStart = track.scrollLeft <= 1;
+    const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+    setCanPrev(!atStart);
+    setCanNext(!atEnd);
+
+    const step = tileStep(track);
+    if (!step) return;
+    // Whole tiles that fit in view; the last gap does not need to fit.
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    const inView = Math.max(1, Math.floor((track.clientWidth + gap + 1) / step));
+    const total = Math.max(1, track.children.length - inView + 1);
+    setStops(total);
+    // The last stop can be shorter than a full step, so pin it at the end.
+    setCurrent(atEnd ? total - 1 : Math.min(total - 1, Math.round(track.scrollLeft / step)));
   }, []);
 
   useEffect(() => {
@@ -112,16 +135,20 @@ export default function InstagramFeed() {
     return () => window.removeEventListener('resize', updateArrows);
   }, [feed.status, updateArrows]);
 
+  function scrollBehavior(): ScrollBehavior {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  }
+
   function scrollByTile(direction: 1 | -1) {
     const track = trackRef.current;
-    const tile = track?.firstElementChild as HTMLElement | null;
-    if (!track || !tile) return;
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    track.scrollBy({
-      left: direction * (tile.offsetWidth + gap),
-      behavior: reduceMotion ? 'auto' : 'smooth',
-    });
+    if (!track) return;
+    track.scrollBy({ left: direction * tileStep(track), behavior: scrollBehavior() });
+  }
+
+  function scrollToStop(index: number) {
+    const track = trackRef.current;
+    if (!track) return;
+    track.scrollTo({ left: index * tileStep(track), behavior: scrollBehavior() });
   }
 
   return (
@@ -218,6 +245,21 @@ export default function InstagramFeed() {
                 <path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
+          </div>
+        )}
+
+        {feed.status === 'ready' && stops > 1 && (
+          <div className={styles['instagram-feed__dots']}>
+            {Array.from({ length: stops }, (_, i) => (
+              <button
+                key={i}
+                type="button"
+                className={styles['instagram-feed__dot']}
+                onClick={() => scrollToStop(i)}
+                aria-label={`Visa inlägg från nummer ${i + 1}`}
+                aria-current={i === current ? 'true' : undefined}
+              />
+            ))}
           </div>
         )}
       </div>
