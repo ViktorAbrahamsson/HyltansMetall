@@ -2,7 +2,7 @@
 
 Sand-casting foundry in brons och mässing (Gnosjö, est. 1926). Swedish copy, English identifiers.
 **Most site copy originates from the real site at hyltansmetall.se** (mainly `/om-foretaget`, `/tillverkningen` and `/specialtillverkning`) — the history, the process steps and the pull-quote are the owner's own words, signed Håkan Abrahamsson. Writing new copy is fine now, but match that register: plain and factual, the owner's voice, not marketing. **Propose any new or rewritten copy in the chat and wait for the owner's approval before editing a file** — never land a wording change unasked, not even a small one.
-Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in `src/data/*.ts`. No 3D/Three.js — the owner explicitly does not want the GLB model used.
+Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in `src/data/*.ts`. No 3D/Three.js — the owner explicitly does not want the 3D model; it and every Three.js package are gone from the repo.
 
 ## Hosting
 - **Preview on Netlify** (hyltansmetall-687f.netlify.app, or whatever it was renamed to), connected to the GitHub repo: every push to `main` rebuilds it. `public/_redirects` sends every path to `index.html` so deep links and refreshes work. **`public/_headers` sets `X-Robots-Tag: noindex` for the preview — delete it at launch**, or the real site stays out of Google.
@@ -11,7 +11,7 @@ Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in 
 ## Commands
 - Dev: `npm run dev`
 - Build: `npm run build` (tsc && vite build)
-- Running a build while the dev server is up kills it on Windows: the watcher holds `dist/models/ljusstake.glb` and Vite exits with `EBUSY`. Restart the server afterwards; nothing is actually broken.
+- **npm only.** `package-lock.json` is the one lockfile. A stale `pnpm-lock.yaml` from the Three.js days made Vercel install with pnpm and fail; don't add another package manager's lockfile.
 
 ## Navigation and routes
 - Four top-level items, two of them with a dropdown. **This no longer mirrors the real site's nav** — it is a deliberate departure, so don't "fix" it back:
@@ -44,7 +44,7 @@ Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in 
 - All colors/spacing/sizes via tokens in `src/styles/variables.scss`; responsive only via `m.respond-to(sm|md|lg|xl)`, mobile-first.
 - Interactive elements get `:focus-visible` via `m.focus-ring($color)` (literal hex args — #B07A2E on light bg, #D9A24B on dark). A global `prefers-reduced-motion` block in `main.scss` collapses all transitions/animations.
 - Design system "Sand & Brons": motif classes `.label`, `.molten`, `.ghost-numeral`, `.batch-stamp`, `.btn`/`.btn--ghost`/`.btn--light` in `src/styles/main.scss`. Fonts: Fraunces + Inter (loaded in index.html).
-- The hero stays typographic/generative: a hand-rolled canvas ember field (`src/components/common/Hero/EmberField.tsx`, no deps, respects prefers-reduced-motion) + molten glow + ghost numeral. Do not reintroduce Three.js or use `public/models/ljusstake.glb` — the owner explicitly does not want the GLB model.
+- The hero stays typographic/generative: a hand-rolled canvas ember field (`src/components/common/Hero/EmberField.tsx`, no deps, respects prefers-reduced-motion) + molten glow + ghost numeral. Do not reintroduce Three.js or a 3D model — the owner explicitly does not want it (the old `public/models/ljusstake.glb` was deleted).
 
 ## Images
 - **`src/assets/images/manifest.ts` is generated — never edit it by hand.** It is the only way images enter the app: `import { images } from '@/assets/images/manifest'`, then `images['process/04-gjutning']`. Each entry carries `src`, `srcSet` (several widths), `width`/`height`, and `blur` (a ~20px placeholder inlined as a data URI). Keys are literal-typed, so a typo is a build error.
