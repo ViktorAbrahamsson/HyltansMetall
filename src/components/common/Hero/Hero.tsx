@@ -1,10 +1,23 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import EmberField from './EmberField';
 import styles from './Hero.module.scss';
 
 export default function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  /** Bring the block after the hero to the top, just under the fixed header. */
+  function scrollToNext() {
+    const next = heroRef.current?.nextElementSibling;
+    if (!next) return;
+    const header = document.querySelector('header');
+    const top = next.getBoundingClientRect().top + window.scrollY - (header?.offsetHeight ?? 0);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
   return (
-    <section className={`block--dark ${styles.hero}`} aria-label="Introduktion">
+    <section ref={heroRef} className={`block--dark ${styles.hero}`} aria-label="Introduktion">
       {/* Molten glow pool */}
       <div className={styles['hero__glow']} aria-hidden="true" />
 
@@ -36,11 +49,17 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <div className={styles['hero__scroll-cue']} aria-hidden="true">
-        <span className={styles['hero__scroll-cue-stack']}>
-          <span className={styles['hero__scroll-cue-label']}>Scrolla</span>
-          <span className={styles['hero__scroll-cue-mark']}>
+      {/* Scroll cue. Only the stack is the button: the wrapper spans the
+          container's width and would otherwise catch clicks across the hero. */}
+      <div className={styles['hero__scroll-cue']}>
+        <button
+          type="button"
+          className={styles['hero__scroll-cue-stack']}
+          onClick={scrollToNext}
+          aria-label="Scrolla ner till nästa del"
+        >
+          <span className={styles['hero__scroll-cue-label']} aria-hidden="true">Scrolla</span>
+          <span className={styles['hero__scroll-cue-mark']} aria-hidden="true">
             <span className={styles['hero__scroll-cue-line']} />
             <svg
               className={styles['hero__scroll-cue-arrow']}
@@ -59,7 +78,7 @@ export default function Hero() {
               />
             </svg>
           </span>
-        </span>
+        </button>
       </div>
     </section>
   );

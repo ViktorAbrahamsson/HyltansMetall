@@ -21,6 +21,30 @@
 // ─── Base ────────────────────────────────────────────────────────────────────
 html {
   scroll-behavior: smooth;
+  // Bronze scrollbar. scrollbar-color covers Chrome/Edge 121+ and Firefox (and
+  // inherits into every scroll area); the ::-webkit-scrollbar rules below are
+  // for Safari, which ignores it. Phones draw their own overlay bars.
+  scrollbar-color: v.$color-bronze v.$color-sand-deep;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: v.$color-sand-deep;
+}
+
+// The track-coloured border insets the thumb so it reads as a bar, not a slab.
+::-webkit-scrollbar-thumb {
+  background-color: v.$color-bronze;
+  border: 3px solid v.$color-sand-deep;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: v.$color-bronze-deep;
+  }
 }
 
 body {

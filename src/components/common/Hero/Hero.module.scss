@@ -172,11 +172,26 @@
 // The label is vertical text about 1em wide while the rule under it is 1px, so
 // the two need their own centring context. The cue itself stays pinned to the
 // container's left edge.
+// The button. The wrapper above has pointer-events: none, so this opts back in.
 .hero__scroll-cue-stack {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: v.$space-1;
+  padding: v.$space-1;
+  margin: calc(-1 * #{v.$space-1});
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity v.$transition-base;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @include m.focus-ring(#D9A24B);
 }
 
 .hero__scroll-cue-label {

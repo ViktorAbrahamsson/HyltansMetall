@@ -299,6 +299,8 @@
   padding-top: calc(#{v.$header-height} + #{v.$space-5});
   padding-bottom: v.$space-6;
   overflow-y: auto;
+  // The page's bronze-on-sand scrollbar would glare on the dark overlay.
+  scrollbar-color: v.$color-bronze v.$color-coal;
   z-index: v.$z-nav;
   opacity: 0;
   pointer-events: none;
