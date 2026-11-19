@@ -16,7 +16,7 @@ export interface ProductItem {
   /** Undefined until the item has been photographed. */
   image?: ResponsiveImage;
   imageAlt?: string;
-  /** One line of measurements, e.g. "Höjd 7 cm · Vikt 0,3 kg". */
+  /** One line of facts, e.g. "Art.nr 541 · Höjd 7 cm · Vikt 0,3 kg". */
   specs?: string;
   /** A short note beside the photo, e.g. a gift box it also comes in. */
   note?: string;
@@ -82,10 +82,10 @@ const allCategories: ProductCategory[] = [
         title: 'Ängel',
         image: images['products/angel'],
         imageAlt: 'Två bronsänglar med vita ljus mellan sig, på locket av en gammal tunna.',
-        specs: 'Höjd 7 cm · Vikt 0,3 kg',
+        specs: 'Art.nr 541 · Höjd 7 cm · Vikt 0,3 kg',
         note:
           'Finns även som presentförpackning med 2 st änglar och handstöpta ' +
-          'ljus. Äkthetsintyg ingår.',
+          'ljus. Äkthetsintyg ingår. Art.nr 541-2.',
       },
     ],
     showcase: [
@@ -144,7 +144,10 @@ const allCategories: ProductCategory[] = [
     description: 'Traditionella svenska tomtar gjutna i brons.',
     image: images['products/tomtar-kort'],
     imageAlt: 'Tomtefar, Tomtemor och Tomtenisse tillsammans på en mossbevuxen sten.',
-    // Three kinds, all photographed outdoors on the moss.
+    // Three kinds, all photographed outdoors on the moss. The facts come from
+    // the old site's table, which names them differently; matched by prop and
+    // size (Tomtefar = "Tomte med lykta", Tomtemor = "Tomtegumma") — not yet
+    // confirmed by the owner. Prices left out on purpose.
     itemRatio: 'portrait',
     items: [
       {
@@ -152,18 +155,21 @@ const allCategories: ProductCategory[] = [
         title: 'Tomtefar',
         image: images['products/tomtefar'],
         imageAlt: 'Tomtefar i brons med spetsig luva, stående på mossa i skogen.',
+        specs: 'Art.nr 531 · Höjd 10 cm · Vikt 0,45 kg',
       },
       {
         id: 'gnome-tomtemor',
         title: 'Tomtemor',
         image: images['products/tomtemor'],
         imageAlt: 'Tomtemor i brons med korsade armar, stående på en mosskudde.',
+        specs: 'Art.nr 532 · Höjd 9 cm · Vikt 0,45 kg',
       },
       {
         id: 'gnome-tomtenisse',
         title: 'Tomtenisse',
         image: images['products/tomtenisse'],
         imageAlt: 'Tomtenisse i brons med rundad luva, stående i mossan.',
+        specs: 'Art.nr 533 · Höjd 7 cm · Vikt 0,3 kg',
       },
     ],
     gallery: [

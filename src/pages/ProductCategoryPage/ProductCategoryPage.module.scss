@@ -131,6 +131,17 @@ section.product-category__intro-block {
   color: v.$color-ink;
 }
 
+// Art.nr and measurements, in the same small caps as the featured product's.
+// ink rather than ink-soft: text this small on paper needs the contrast.
+.product-category__item-specs {
+  margin-top: -0.25rem;
+  font-size: v.$font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: v.$color-ink;
+}
+
 // ─── The kinds together ──────────────────────────────────────────────────────
 // Group shots, two up inside .container-sm. Narrower than the item grid on
 // purpose: these are not products, and at full width a pair of portraits would

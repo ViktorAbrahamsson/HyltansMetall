@@ -61,6 +61,9 @@ export default function Footer() {
             <a href={`mailto:${company.email}`} className={styles.contact__email}>
               {company.email}
             </a>
+            <a href={`tel:${company.phoneHref}`} className={styles.contact__phone}>
+              {company.phone}
+            </a>
             <p className={styles.contact__addr}>{company.name}</p>
             <p className={styles.contact__addr}>{company.address}</p>
             <a

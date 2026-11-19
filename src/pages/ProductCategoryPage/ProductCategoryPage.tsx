@@ -145,6 +145,9 @@ export default function ProductCategoryPage() {
                   <p className={styles['product-category__item-title']}>
                     {item.title ?? `${category.itemNoun} ${i + 1}`}
                   </p>
+                  {item.specs && (
+                    <p className={styles['product-category__item-specs']}>{item.specs}</p>
+                  )}
                 </li>
               ))}
             </ul>

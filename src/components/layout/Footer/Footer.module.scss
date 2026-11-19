@@ -118,12 +118,26 @@
   gap: 0.25rem;
 }
 
+// align-self keeps the link as wide as its text, not the whole column.
 .contact__email {
   font-size: v.$font-size-sm;
   color: v.$color-bronze-light;
   text-decoration: underline;
   text-underline-offset: 3px;
   margin-bottom: v.$space-2;
+  align-self: flex-start;
+}
+
+// Same look as the e-mail link above it; tel: opens the dialler on phones.
+.contact__phone {
+  font-size: v.$font-size-sm;
+  color: v.$color-bronze-light;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-bottom: v.$space-2;
+  align-self: flex-start;
+
+  @include m.focus-ring(#D9A24B);
 }
 
 .contact__addr {
