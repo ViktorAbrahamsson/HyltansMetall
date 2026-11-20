@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { BrowserRouter } from 'react-router';
 import App from './App';
 // Self-hosted fonts (no request to Google: faster first paint, and no visitor
 // IP sent to a third party). Variable fonts with the same axes the Google
@@ -15,13 +14,18 @@ import './styles/main.scss';
 
 const app = (
   <StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>
 );
+
+// The <head> arrives with the page's title, description, canonical and share
+// tags already in place (prerendered, or index.html's defaults in dev), each
+// marked data-prerendered. From here on React renders those tags itself from
+// <Seo> and keeps them current while navigating, so the static copies go
+// first; otherwise every tag would be there twice.
+document.head.querySelectorAll('[data-prerendered]').forEach((tag) => tag.remove());
 
 const root = document.getElementById('root')!;
 

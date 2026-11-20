@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ProductCategory } from '@/data/products';
 import Figure from '@/components/common/Figure/Figure';
 import styles from './ProductCard.module.scss';

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { company } from '@/data/company';
 import { instagram } from '@/data/instagram';
 import styles from './Footer.module.scss';

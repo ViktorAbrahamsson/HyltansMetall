@@ -1,5 +1,4 @@
-import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { company } from '@/data/company';
 
 /** Used when a page has no description of its own. Same as index.html's. */
@@ -18,9 +17,11 @@ interface SeoProps {
  * Every page's <head>: title, description, canonical URL and the Open Graph /
  * Twitter tags used when a link is shared.
  *
- * index.html carries the same tags as a fallback for crawlers that do not run
- * JavaScript. Those are marked `data-rh`, which tells react-helmet-async they
- * are its own, so it replaces them here instead of adding a second copy.
+ * Plain elements: React 19 hoists <title>, <meta> and <link> into <head>
+ * wherever they are rendered, and removes them again when the page unmounts,
+ * so client-side navigation swaps them without a helper library. On the
+ * server they come out first in the rendered HTML, where
+ * src/entry-server.tsx picks them up for the prerendered <head>.
  *
  * Canonical and og:url always point at the live domain (`company.siteUrl`),
  * so the preview deploy never competes with the real site.
@@ -31,7 +32,7 @@ export default function Seo({ title, description = DEFAULT_DESCRIPTION, noindex 
   const image = `${company.siteUrl}/og-image.jpg`;
 
   return (
-    <Helmet>
+    <>
       <title>{title}</title>
       <meta name="description" content={description} />
       {noindex && <meta name="robots" content="noindex" />}
@@ -41,6 +42,6 @@ export default function Seo({ title, description = DEFAULT_DESCRIPTION, noindex 
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
       <meta name="twitter:card" content="summary_large_image" />
-    </Helmet>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import Seo from '@/components/layout/Seo';
 import type { CSSProperties } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Hero from '@/components/common/Hero/Hero';
 import ProductCard from '@/components/common/ProductCard/ProductCard';
 import Figure from '@/components/common/Figure/Figure';

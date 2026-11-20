@@ -1,6 +1,5 @@
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom/server';
-import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
+import { StaticRouter } from 'react-router';
 import App from './App';
 import { productCategories } from './data/products';
 
@@ -21,25 +20,26 @@ export const routes: string[] = [
 ];
 
 export interface RenderResult {
+  /** The page markup for #root. */
   html: string;
+  /** The page's <title>, <meta> and <link> tags, for <head>. */
   head: string;
 }
 
-export function render(url: string): RenderResult {
-  const helmetContext: { helmet?: HelmetServerState | null } = {};
+/**
+ * React 19 renders the head tags from <Seo> (title, meta, link) at the very
+ * start of renderToString's output rather than where they sit in the tree.
+ * This splits that leading run off so it can go in <head>.
+ */
+const LEADING_HEAD_TAGS = /^(?:<title>[\s\S]*?<\/title>|<meta\b[^>]*>|<link\b[^>]*>)+/;
 
-  const html = renderToString(
-    <HelmetProvider context={helmetContext}>
-      <StaticRouter location={url}>
-        <App />
-      </StaticRouter>
-    </HelmetProvider>,
+export function render(url: string): RenderResult {
+  const markup = renderToString(
+    <StaticRouter location={url}>
+      <App />
+    </StaticRouter>,
   );
 
-  const helmet = helmetContext.helmet;
-  const head = helmet
-    ? [helmet.title.toString(), helmet.meta.toString(), helmet.link.toString()].join('\n    ')
-    : '';
-
-  return { html, head };
+  const head = LEADING_HEAD_TAGS.exec(markup)?.[0] ?? '';
+  return { head, html: markup.slice(head.length) };
 }

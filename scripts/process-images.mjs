@@ -24,7 +24,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const INBOX = process.env.INBOX || path.join(root, 'src/assets/images/inbox');
 const OUT = path.join(root, 'src/assets/images');
 
-const QUALITY = 78;
+// WebP quality for every rendered width (the blur placeholder has its own).
+const QUALITY = 80;
 const BLUR_WIDTH = 20;
 
 /**

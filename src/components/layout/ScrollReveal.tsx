@@ -1,5 +1,5 @@
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 /**
  * Lets page content float up into place as it scrolls into view. Works on the

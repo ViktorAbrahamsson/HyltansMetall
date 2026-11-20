@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router';
 import { productCategories } from '@/data/products';
 import { images } from '@/assets/images/manifest';
 import styles from './Header.module.scss';

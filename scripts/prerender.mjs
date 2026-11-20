@@ -75,12 +75,14 @@ function page(url, prerenderedPath) {
   if (!head.includes('<title')) {
     throw new Error(`prerender: ${url} rendered no <title>; is <Seo> missing?`);
   }
+  // Marked so src/main.tsx can drop them once React renders its own copies.
+  const headTags = head.replace(/<(title|meta|link)\b/g, '<$1 data-prerendered');
   const attr = prerenderedPath ? ` data-prerendered-path="${prerenderedPath}"` : '';
   return template
     // A function, so `$` sequences in the CSS are not read as replacement patterns.
     .replace(STYLESHEET, () => inlineCss)
     .replace(FONT_PRELOAD, preloadFonts.join('\n    '))
-    .replace(SEO_BLOCK, head)
+    .replace(SEO_BLOCK, () => headTags)
     .replace(ROOT, `<div id="root"${attr}>${html}</div>`);
 }
 

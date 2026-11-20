@@ -1,5 +1,5 @@
 import Seo from '@/components/layout/Seo';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { images } from '@/assets/images/manifest';

@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import Seo from '@/components/layout/Seo';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import ProductCard from '@/components/common/ProductCard/ProductCard';

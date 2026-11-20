@@ -1,5 +1,5 @@
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect';
-import { useLocation, useNavigationType } from 'react-router-dom';
+import { useLocation, useNavigationType } from 'react-router';
 
 /**
  * The router keeps the scroll position when the path changes, so a click from

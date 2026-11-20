@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Seo from '@/components/layout/Seo';
 import styles from './NotFoundPage.module.scss';
 
 /**
  * Any address the router doesn't know. noindex, so a mistyped or removed URL
- * never ends up in search results. Static hosting still answers these with
- * 200 (the SPA fallback serves index.html for every path).
+ * never ends up in search results. Prerendered as dist/404.html, which the
+ * host serves with a real 404 status for any address that has no page file.
  */
 export default function NotFoundPage() {
   return (
