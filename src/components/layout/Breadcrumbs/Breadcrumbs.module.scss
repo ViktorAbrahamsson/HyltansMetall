@@ -1,6 +1,41 @@
 // A slim bar directly under the fixed header, ahead of the page's first block.
+// It sticks there while the page scrolls, so it reads as part of the header.
+// Rendered in App.tsx between <Header> and <main> (see Breadcrumbs.tsx), so
+// it sticks over the whole page, footer included, and is "stuck" from the
+// first pixel. z-index sits above all page
+// content (which goes up to 3) and below the header (300), whose dropdowns and
+// mobile menu therefore still cover it. No ancestor may set overflow, or
+// sticky stops working.
 .breadcrumbs {
+  position: sticky;
+  top: v.$header-height;
+  z-index: v.$z-above;
   background-color: v.$color-sand;
+  transition: transform 250ms ease;
+}
+
+// Scrolling down: slide up by its own height, which puts it wholly behind the
+// header (76px tall, above it in z-order). Breadcrumbs.tsx toggles this.
+// Focus inside the bar always brings it back, so a keyboard user tabbing
+// into a crumb can see it.
+.breadcrumbs--hidden:not(:focus-within) {
+  transform: translateY(-100%);
+}
+
+// A hairline under the bar once content scrolls beneath it, so the two read
+// as separate layers. Scroll-driven: no JS, no scroll listener. Browsers
+// without animation-timeline just show no line.
+@supports (animation-timeline: scroll()) {
+  .breadcrumbs {
+    animation: breadcrumbs-lift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 24px;
+  }
+}
+
+@keyframes breadcrumbs-lift {
+  from { box-shadow: 0 1px 0 rgba(31, 27, 22, 0); }
+  to { box-shadow: 0 1px 0 v.$color-line; }
 }
 
 .breadcrumbs__list {
@@ -46,11 +81,10 @@
   @include m.focus-ring(#B07A2E);
 }
 
-// The bar already separates the page from the header, so the first block's
-// usual top padding would leave a gap twice over. Qualified with the element
-// so it outranks the global `.block` padding, which has equal specificity and
-// would otherwise win on source order.
-.breadcrumbs + section.block {
+// The bar already separates the page from the header, so the page's first
+// block's usual top padding would leave a gap twice over. The bar is <main>'s
+// previous sibling; the selector outranks the global `.block` padding.
+.breadcrumbs + main > section.block:first-child {
   padding-top: v.$space-6;
 
   @include m.respond-to(lg) {

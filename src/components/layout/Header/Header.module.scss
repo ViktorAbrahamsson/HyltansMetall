@@ -123,6 +123,12 @@
 
 // Hover keeps it open for pointers; focus-within keeps it open for keyboards,
 // so tabbing to Produkter reveals the categories with no toggle button.
+//
+// The panel hangs from the header's bottom edge (the menu items stretch the
+// full header height, so `top: 100%` is that edge, and there is no gap for
+// the pointer to fall through). One shade lighter than the header, with a
+// soft shadow, so it reads as a layer dropping out of it; a molten-bronze
+// seam along the top ties it to the bar it came from.
 .nav__submenu {
   position: absolute;
   top: 100%;
@@ -131,46 +137,119 @@
   // so both states carry it.
   left: 50%;
   z-index: v.$z-nav;
-  min-width: 220px;
+  min-width: 240px;
   list-style: none;
-  padding-block: v.$space-2;
-  background-color: v.$color-coal;
-  border: 1px solid v.$color-line-dark;
+  padding-block: v.$space-1;
+  background-color: v.$color-coal-soft;
+  box-shadow:
+    0 0 0 1px v.$color-line-dark,
+    0 20px 40px -16px rgba(0, 0, 0, 0.6);
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, -4px);
-  transition: opacity v.$transition-fast, transform v.$transition-fast,
-    visibility 0s v.$transition-fast;
+  transform: translate(-50%, -6px);
+  transition: opacity 140ms ease, transform 140ms ease, visibility 0s 140ms;
+
+  // The seam.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 2px;
+    background: v.$gradient-molten;
+  }
 
   .nav__item--has-menu:hover &,
   .nav__item--has-menu:focus-within & {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0);
-    transition: opacity v.$transition-fast, transform v.$transition-fast;
+    transition: opacity 180ms ease-out, transform 180ms ease-out;
+  }
+
+  // The last menu item (Om oss) sits at the right edge of the bar, where a
+  // centred panel ran past the window at 1280px and below. Align it to the
+  // item's right edge instead; no X centring to carry through the transition.
+  .nav__item--has-menu:last-child & {
+    left: auto;
+    right: 0;
+    transform: translateY(-6px);
+  }
+
+  .nav__item--has-menu:last-child:hover &,
+  .nav__item--has-menu:last-child:focus-within & {
+    transform: translateY(0);
+  }
+
+  // Faint rules between rows.
+  li + li {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 }
 
 .nav__submenu-link {
-  display: block;
-  padding: v.$space-2 v.$space-4;
-  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$space-3;
+  padding: 0.8rem 1.25rem 0.8rem 1.5rem;
   font-family: v.$font-body;
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: v.$color-cream-soft;
   text-decoration: none;
   white-space: nowrap;
-  transition: color v.$transition-fast;
+  transition: color v.$transition-fast, background-color v.$transition-fast;
 
-  &:hover {
-    color: v.$color-bronze-light;
+  // Bronze bar on the left edge: grows on hover/focus, stays for the current
+  // page.
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 2px;
+    height: 0;
+    background-color: v.$color-bronze-light;
+    transform: translateY(-50%);
+    transition: height v.$transition-fast;
+  }
+
+  // A small chevron that slides in from the left on hover/focus. Drawn with
+  // borders rather than a "→" character, so screen readers don't read it.
+  &::after {
+    content: '';
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-top: 1.5px solid currentColor;
+    border-right: 1.5px solid currentColor;
+    opacity: 0;
+    transform: translateX(-6px) rotate(45deg);
+    transition: opacity v.$transition-fast, transform v.$transition-fast;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: v.$color-cream;
+    background-color: rgba(217, 162, 75, 0.1);
+
+    &::before {
+      height: 60%;
+    }
+
+    &::after {
+      opacity: 1;
+      transform: translateX(0) rotate(45deg);
+      color: v.$color-bronze-light;
+    }
   }
 
   @include m.focus-ring(#D9A24B);
 
   // These rows span the panel's full width, so the mixin's outset ring spilled
-  // over the panel border. Inset, it frames the row the way the ring frames a
+  // over the panel's edge. Inset, it frames the row the way the ring frames a
   // .btn.
   &:focus-visible {
     outline-offset: -4px;
@@ -180,6 +259,15 @@
 .nav__submenu-link--active {
   color: v.$color-bronze-light;
   font-weight: 600;
+
+  &::before {
+    height: 60%;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: v.$color-bronze-light;
+  }
 }
 
 .nav__link {

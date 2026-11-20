@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react';
 import Seo from '@/components/layout/Seo';
-import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
 import { Link, Navigate, useParams } from 'react-router';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
@@ -45,7 +44,6 @@ export default function ProductCategoryPage() {
     <>
       <Seo title={`${category.title}. Hyltans Metall`} description={category.description} />
 
-      <Breadcrumbs trail={[{ label: 'Produkter', to: '/produkter' }, { label: category.title }]} />
 
       {/* Intro block */}
       <section className="block product-category-block">

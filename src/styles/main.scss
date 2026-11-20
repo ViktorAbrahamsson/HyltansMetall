@@ -116,6 +116,10 @@
 // ─── Base ────────────────────────────────────────────────────────────────────
 html {
   scroll-behavior: smooth;
+  // Anything scrolled into view by the browser (a focused element on Tab, an
+  // anchor) stops below the fixed header and the sticky breadcrumb bar
+  // (~3.5rem) instead of behind them. Normal scrolling is unaffected.
+  scroll-padding-top: calc(#{v.$header-height} + 3.5rem);
   // Bronze scrollbar. scrollbar-color covers Chrome/Edge 121+ and Firefox (and
   // inherits into every scroll area); the ::-webkit-scrollbar rules below are
   // for Safari, which ignores it. Phones draw their own overlay bars.

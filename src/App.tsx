@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router';
 import Header from '@/components/layout/Header/Header';
 import Footer from '@/components/layout/Footer/Footer';
+import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import ScrollReveal from '@/components/layout/ScrollReveal';
 import RouteFocus from '@/components/layout/RouteFocus';
@@ -24,6 +25,7 @@ export default function App() {
       <ScrollToTop />
       <a href="#main" className="skip-link">Hoppa till innehållet</a>
       <Header />
+      <Breadcrumbs />
       <main id="main" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<HomePage />} />
