@@ -14,10 +14,13 @@
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <!-- Fallbacks for crawlers that do not run JavaScript (link previews on
-         Facebook, LinkedIn, Messenger...). data-rh hands them to
-         react-helmet-async, so src/components/layout/Seo.tsx replaces them per
-         page instead of adding a second copy. -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Per-page head tags. scripts/prerender.mjs replaces everything between
+         these markers with each page's own tags from src/components/layout/
+         Seo.tsx; what is here is only used by `npm run dev`. data-rh hands the
+         tags to react-helmet-async, which replaces them on navigation instead
+         of adding a second copy. -->
+    <!--seo-start-->
     <title>Hyltans Metall. Sandgjutning i brons sedan 1926</title>
     <meta name="description" content="Hyltans Metall AB i Gnosjö tillverkar sandgjutna produkter i brons och mässing, med samma metoder som vid företagets start 1926." data-rh="true" />
     <link rel="canonical" href="https://hyltansmetall.se/" data-rh="true" />
@@ -26,6 +29,7 @@
     <meta property="og:url" content="https://hyltansmetall.se/" data-rh="true" />
     <meta property="og:image" content="https://hyltansmetall.se/og-image.jpg" data-rh="true" />
     <meta name="twitter:card" content="summary_large_image" data-rh="true" />
+    <!--seo-end-->
     <meta property="og:site_name" content="Hyltans Metall" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="sv_SE" />
@@ -57,7 +61,11 @@
     </script>
   </head>
   <body>
+    <!-- scripts/prerender.mjs fills this with each page's markup at build
+         time, so crawlers and AI agents get the full page without running
+         JavaScript. -->
     <div id="root"></div>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

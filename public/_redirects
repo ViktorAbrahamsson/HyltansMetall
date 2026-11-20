@@ -6,7 +6,6 @@
 /om-foretaget      /om-oss          301
 /tillverkningen    /tillverkning    301
 
-# Every other address is served the app, which routes it itself. Without this,
-# opening /om-oss directly or refreshing a subpage gives a 404. Real files
-# (robots.txt, sitemap.xml, /assets/...) are served before this rule applies.
-/*    /index.html    200
+# No catch-all rewrite to index.html: every page is prerendered to its own
+# file (scripts/prerender.mjs), which Netlify serves for /om-oss from
+# om-oss.html. Anything else gets dist/404.html with a real 404 status.

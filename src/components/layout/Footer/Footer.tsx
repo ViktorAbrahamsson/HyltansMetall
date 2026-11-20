@@ -83,7 +83,9 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <span>© {year} {company.name}</span>
+          {/* The year is baked in at build time and may be a year behind
+              until the next deploy; React then corrects it without a warning. */}
+          <span suppressHydrationWarning>© {year} {company.name}</span>
           <span className={styles.bottom__location}>Gnosjö, Sverige</span>
         </div>
       </div>

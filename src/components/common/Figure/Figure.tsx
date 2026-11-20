@@ -68,7 +68,10 @@ export default function Figure({
         height={image.height}
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
+        // Lowercase on purpose: React 18 doesn't know `fetchPriority` and
+        // warns (also in every prerender), but passes the lowercase HTML
+        // attribute straight through. Spread, as TypeScript lacks it too.
+        {...{ fetchpriority: priority ? 'high' : 'auto' }}
         decoding="async"
         onLoad={() => setLoaded(true)}
       />

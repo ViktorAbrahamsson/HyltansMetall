@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Header from '@/components/layout/Header/Header';
 import Footer from '@/components/layout/Footer/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
@@ -13,9 +13,13 @@ import CustomOrdersPage from '@/pages/CustomOrdersPage/CustomOrdersPage';
 import ContactPage from '@/pages/ContactPage/ContactPage';
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage';
 
+/**
+ * The whole site, without a router: main.tsx wraps it in a BrowserRouter,
+ * entry-server.tsx in a StaticRouter for prerendering (scripts/prerender.mjs).
+ */
 export default function App() {
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <a href="#main" className="skip-link">Hoppa till innehållet</a>
       <Header />
@@ -34,6 +38,6 @@ export default function App() {
       <Footer />
       <ScrollReveal />
       <RouteFocus />
-    </BrowserRouter>
+    </>
   );
 }

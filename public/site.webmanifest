@@ -1,0 +1,16 @@
+{
+  "name": "Hyltans Metall AB",
+  "short_name": "Hyltans Metall",
+  "description": "Hyltans Metall AB i Gnosjö tillverkar sandgjutna produkter i brons och mässing, med samma metoder som vid företagets start 1926.",
+  "lang": "sv",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#E9E2D4",
+  "theme_color": "#161210",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

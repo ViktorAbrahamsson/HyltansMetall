@@ -9,6 +9,8 @@
  *   favicon-32.png, favicon-48.png  the tile as drawn, rounded corners
  *   apple-touch-icon.png (180)      square-cornered: iOS rounds it itself and
  *                                   would show the SVG's corners as a dark rim
+ *   icon-192.png, icon-512.png      for site.webmanifest (Android home screen,
+ *                                   install prompts), square-cornered too
  */
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -41,4 +43,6 @@ async function icon(source, size, file) {
 await icon(svg, 32, 'favicon-32.png');
 await icon(svg, 48, 'favicon-48.png');
 await icon(squareSvg, 180, 'apple-touch-icon.png');
+await icon(squareSvg, 192, 'icon-192.png');
+await icon(squareSvg, 512, 'icon-512.png');
 console.log('favicons written to public/');

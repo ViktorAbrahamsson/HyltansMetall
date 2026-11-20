@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect';
 import { useLocation } from 'react-router-dom';
 
 /**
@@ -81,7 +81,7 @@ function collectTargets(): HTMLElement[] {
 export default function ScrollReveal() {
   const { pathname } = useLocation();
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (typeof IntersectionObserver === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
