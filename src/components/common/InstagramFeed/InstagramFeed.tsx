@@ -182,7 +182,7 @@ export default function InstagramFeed() {
         )}
 
         {feed.status === 'ready' && (
-          <div className={styles['instagram-feed__carousel']}>
+          <div className={styles['instagram-feed__carousel']} data-no-reveal>
             <ul
               ref={trackRef}
               className={styles['instagram-feed__track']}
@@ -249,7 +249,7 @@ export default function InstagramFeed() {
         )}
 
         {feed.status === 'ready' && stops > 1 && (
-          <div className={styles['instagram-feed__dots']}>
+          <div className={styles['instagram-feed__dots']} data-no-reveal>
             {Array.from({ length: stops }, (_, i) => (
               <button
                 key={i}

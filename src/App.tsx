@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '@/components/layout/Header/Header';
 import Footer from '@/components/layout/Footer/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
+import ScrollReveal from '@/components/layout/ScrollReveal';
 import HomePage from '@/pages/HomePage/HomePage';
 import AboutPage from '@/pages/AboutPage/AboutPage';
 import ManufacturingPage from '@/pages/ManufacturingPage/ManufacturingPage';
@@ -27,6 +28,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <ScrollReveal />
     </BrowserRouter>
   );
 }
