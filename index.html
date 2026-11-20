@@ -14,13 +14,47 @@
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Fallbacks for crawlers that do not run JavaScript (link previews on
+         Facebook, LinkedIn, Messenger...). data-rh hands them to
+         react-helmet-async, so src/components/layout/Seo.tsx replaces them per
+         page instead of adding a second copy. -->
     <title>Hyltans Metall. Sandgjutning i brons sedan 1926</title>
-    <meta name="description" content="Hyltans Metall AB i Gnosjö tillverkar sandgjutna produkter i brons och mässing, med samma metoder som vid företagets start 1926." />
+    <meta name="description" content="Hyltans Metall AB i Gnosjö tillverkar sandgjutna produkter i brons och mässing, med samma metoder som vid företagets start 1926." data-rh="true" />
+    <link rel="canonical" href="https://hyltansmetall.se/" data-rh="true" />
+    <meta property="og:title" content="Hyltans Metall. Sandgjutning i brons sedan 1926" data-rh="true" />
+    <meta property="og:description" content="Hyltans Metall AB i Gnosjö tillverkar sandgjutna produkter i brons och mässing, med samma metoder som vid företagets start 1926." data-rh="true" />
+    <meta property="og:url" content="https://hyltansmetall.se/" data-rh="true" />
+    <meta property="og:image" content="https://hyltansmetall.se/og-image.jpg" data-rh="true" />
+    <meta name="twitter:card" content="summary_large_image" data-rh="true" />
     <meta property="og:site_name" content="Hyltans Metall" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Hyltans Metall. Sandgjutning i brons sedan 1926" />
-    <meta property="og:description" content="Hyltans Metall AB i Gnosjö tillverkar sandgjutna produkter i brons och mässing, med samma metoder som vid företagets start 1926." />
     <meta property="og:locale" content="sv_SE" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Tre bronsänglar uppställda tillsammans på en trätunna." />
+    <!-- Company facts for search engines, all taken from src/data/company.ts. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Hyltans Metall AB",
+        "url": "https://hyltansmetall.se/",
+        "logo": "https://hyltansmetall.se/apple-touch-icon.png",
+        "image": "https://hyltansmetall.se/og-image.jpg",
+        "description": "Hyltans Metall tillverkar sandgjutna produkter i brons och mässing. Tillverkningen sker med samma metoder som vid företagets start 1926.",
+        "foundingDate": "1926",
+        "email": "info@hyltansmetall.se",
+        "telephone": "+46709104438",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Hyltan 40",
+          "postalCode": "335 91",
+          "addressLocality": "Gnosjö",
+          "addressCountry": "SE"
+        },
+        "sameAs": ["https://www.instagram.com/hyltansmetall/"]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

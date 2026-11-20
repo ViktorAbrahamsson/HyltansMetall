@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Seo from '@/components/layout/Seo';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { company } from '@/data/company';
 import styles from './ContactPage.module.scss';
@@ -35,9 +35,10 @@ export default function ContactPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Kontakta oss. Hyltans Metall</title>
-      </Helmet>
+      <Seo
+        title="Kontakta oss. Hyltans Metall"
+        description="Kontakta Hyltans Metall i Gnosjö via e-post, info@hyltansmetall.se, eller telefon 070-910 44 38. Förfrågningar, beställningar och övriga frågor."
+      />
 
       <section className={`block contact-block ${styles['contact-page__section']}`}>
         <div className="container">

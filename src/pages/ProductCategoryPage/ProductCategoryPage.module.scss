@@ -14,8 +14,7 @@
   font-size: v.$font-size-xs;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  // $color-ink-soft is 4.44:1 on sand — just under the 4.5:1 AA floor for text
-  // this small. Links are told apart by their underline, not by being paler.
+  // Full ink: links are told apart by their underline, not by being paler.
   color: v.$color-ink;
 }
 

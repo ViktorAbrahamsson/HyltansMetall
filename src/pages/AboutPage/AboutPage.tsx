@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import Seo from '@/components/layout/Seo';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { images } from '@/assets/images/manifest';
@@ -10,9 +10,10 @@ const ABOUT_SIZES = '(min-width: 900px) 900px, 100vw';
 export default function AboutPage() {
   return (
     <>
-      <Helmet>
-        <title>Om oss. Hyltans Metall</title>
-      </Helmet>
+      <Seo
+        title="Om oss. Hyltans Metall"
+        description="Hyltans Metall tillverkar sandgjutna produkter i brons och mässing i Gnosjö sedan 1926. Ett äkta hantverk som har ärvts från far till son i fyra generationer."
+      />
 
       {/* Intro block */}
       <section className={`block about-page-block ${styles['about-page__intro']}`}>

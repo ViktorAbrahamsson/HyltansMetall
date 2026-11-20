@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import Seo from '@/components/layout/Seo';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { images } from '@/assets/images/manifest';
@@ -58,9 +58,10 @@ const steps = [
 export default function ManufacturingPage() {
   return (
     <>
-      <Helmet>
-        <title>Gjutprocessen. Hyltans Metall</title>
-      </Helmet>
+      <Seo
+        title="Gjutprocessen. Hyltans Metall"
+        description="Varje form används bara en gång. Sanden packas för hand runt modellen och metallen smälts i en kokseldad gjutugn, med samma metoder som 1926."
+      />
 
       {/* Intro block */}
       <section className={`block manufacturing-block ${styles['mfg-intro']}`}>

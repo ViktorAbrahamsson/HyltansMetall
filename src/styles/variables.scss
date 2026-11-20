@@ -3,7 +3,10 @@ $color-sand: #E9E2D4;
 $color-sand-deep: #DCD2BE;
 $color-paper: #F6F2E9;
 $color-ink: #1F1B16;
-$color-ink-soft: #6E655A;
+// Secondary text. At least 4.5:1 (WCAG AA) on every light surface, sand-deep
+// included (4.74:1). The old #6E655A was 4.44:1 on sand and 3.81:1 on
+// sand-deep.
+$color-ink-soft: #5F574D;
 $color-coal: #161210;
 $color-coal-soft: #221C16;
 // Text on dark surfaces. Pure white rather than a warm cream, so headings and
@@ -16,6 +19,10 @@ $color-bronze-light: #D9A24B;
 $color-bronze-deep: #82591F;
 
 $color-verdigris: #5C8077;
+// Verdigris dark enough for small text on light surfaces: .label is 12px, and
+// plain verdigris is only 2.91:1 on sand-deep. This is 4.63:1 there and more
+// on sand and paper.
+$color-verdigris-deep: #445F58;
 $color-verdigris-light: #84A99E;
 
 $color-line: rgba(31, 27, 22, 0.16);

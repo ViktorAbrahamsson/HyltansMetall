@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Seo from '@/components/layout/Seo';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
@@ -42,10 +42,7 @@ export default function ProductCategoryPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{`${category.title}. Hyltans Metall`}</title>
-        <meta name="description" content={category.description} />
-      </Helmet>
+      <Seo title={`${category.title}. Hyltans Metall`} description={category.description} />
 
       {/* Breadcrumbs. First thing in <main>, which clears the fixed header, so
           this sits directly beneath it. */}

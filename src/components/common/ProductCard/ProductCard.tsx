@@ -12,13 +12,21 @@ interface ProductCardProps {
   priority?: boolean;
   /** Override when the card sits in a narrower grid than /produkter's. */
   sizes?: string;
+  /**
+   * Heading level of the card title. 3 under a section h2 (home page, sibling
+   * links); 2 where the cards sit straight under the page h1 (/produkter), so
+   * the outline does not skip a level.
+   */
+  headingLevel?: 2 | 3;
 }
 
 export default function ProductCard({
   product,
   priority = false,
   sizes = DEFAULT_SIZES,
+  headingLevel = 3,
 }: ProductCardProps) {
+  const Heading = headingLevel === 2 ? 'h2' : 'h3';
   return (
     <article className={styles.card}>
       {/* The whole card is the target, so the link would otherwise be
@@ -39,7 +47,7 @@ export default function ProductCard({
           />
         )}
         <div className={styles['card__body']}>
-          <h3 className={styles.card__title}>{product.title}</h3>
+          <Heading className={styles.card__title}>{product.title}</Heading>
           <p className={styles.card__desc}>{product.description}</p>
         </div>
       </Link>

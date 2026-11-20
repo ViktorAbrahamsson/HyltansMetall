@@ -9,6 +9,13 @@ export const company = {
   /** International form for the tel: link. */
   phoneHref: '+46709104438',
   website: 'hyltansmetall.se',
+  /**
+   * The live site's origin, no trailing slash. Canonical URLs, og:url and the
+   * sitemap all use it. Must match the domain the site is served from at
+   * launch (with or without www) — also in public/robots.txt,
+   * public/sitemap.xml and the JSON-LD in index.html.
+   */
+  siteUrl: 'https://hyltansmetall.se',
   // What the contact-page map searches Google Maps for.
   mapQuery: 'Hyltan 40, 335 91 Gnosjö',
   description:

@@ -7,6 +7,36 @@
   padding: 0;
 }
 
+// ─── Skip link ───────────────────────────────────────────────────────────────
+// First thing in the Tab order (App.tsx): lets keyboard and screen reader
+// users jump past the header nav to <main> (WCAG 2.4.1). Off-screen until it
+// takes focus, then shown over the header's top-left corner.
+.skip-link {
+  position: fixed;
+  top: v.$space-1;
+  left: v.$space-1;
+  z-index: v.$z-modal + 1;
+  padding: v.$space-1 v.$space-2;
+  background-color: v.$color-paper;
+  color: v.$color-ink;
+  font-weight: 600;
+  text-decoration: underline;
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: none;
+    outline: 2px solid #B07A2E;
+    outline-offset: 2px;
+  }
+}
+
+// ─── Programmatic focus targets ──────────────────────────────────────────────
+// RouteFocus.tsx focuses the page's h1 after navigation so screen readers
+// announce the new page. It is not interactive, so no ring.
+[tabindex='-1']:focus {
+  outline: none;
+}
+
 // ─── Scroll reveal ───────────────────────────────────────────────────────────
 // Driven by src/components/layout/ScrollReveal.tsx. `translate` (not
 // `transform`) so an element's own transforms are left alone; both classes are
@@ -128,7 +158,7 @@ a {
 }
 
 .label {
-  @include m.eyebrow(v.$color-verdigris);
+  @include m.eyebrow(v.$color-verdigris-deep);
 
   .block--dark & {
     color: v.$color-verdigris-light;
@@ -328,6 +358,19 @@ a {
 }
 
 // ─── Main layout ─────────────────────────────────────────────────────────────
+// The footer always sits at the bottom of the window, even when a page is
+// shorter than the screen (an unknown address, a short page on a tall
+// monitor): #root is a full-height column and <main> takes the spare space.
+// The header is position: fixed, so it is out of this flow. svh, not vh, so
+// mobile browser bars don't push the footer below the fold.
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
 main {
+  flex: 1 0 auto;
   padding-top: v.$header-height;
 }

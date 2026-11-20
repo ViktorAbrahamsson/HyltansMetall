@@ -1,0 +1,9 @@
+.not-found__h1 {
+  margin-bottom: v.$space-4;
+}
+
+// The lead's negative bottom margin trims its own half-leading; the button
+// needs real space above it.
+.not-found__btn {
+  margin-top: v.$space-6;
+}

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import Seo from '@/components/layout/Seo';
 import type { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '@/components/common/Hero/Hero';
@@ -32,9 +32,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Helmet>
-        <title>Hyltans Metall. Sandgjutning i brons sedan 1926</title>
-      </Helmet>
+      <Seo title="Hyltans Metall. Sandgjutning i brons sedan 1926" />
 
       <Hero />
 
@@ -132,7 +130,6 @@ export default function HomePage() {
           aria-hidden="true"
         />
         <div className={`container container-sm ${styles['home-quote__inner']}`}>
-          <span className={styles['home-quote__rule']} aria-hidden="true" />
           <blockquote className={styles['home-quote__blockquote']}>
             <p className={styles['home-quote__text']}>
               ”Ett äkta hantverk som har ärvts från far till son i fyra generationer.”

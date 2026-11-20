@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Every public page. Add a URL here when a page or product category is
+     published (e.g. /produkter/malmljusstakar once its hidden flag is gone). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://hyltansmetall.se/</loc></url>
+  <url><loc>https://hyltansmetall.se/produkter</loc></url>
+  <url><loc>https://hyltansmetall.se/produkter/anglar</loc></url>
+  <url><loc>https://hyltansmetall.se/produkter/tomtar</loc></url>
+  <url><loc>https://hyltansmetall.se/specialtillverkning</loc></url>
+  <url><loc>https://hyltansmetall.se/tillverkning</loc></url>
+  <url><loc>https://hyltansmetall.se/om-oss</loc></url>
+  <url><loc>https://hyltansmetall.se/kontakt</loc></url>
+</urlset>

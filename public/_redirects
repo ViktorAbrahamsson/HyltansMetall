@@ -1,3 +1,12 @@
-# Netlify: every address is served the app, which routes it itself. Without
-# this, opening /om-oss directly or refreshing a subpage gives a 404.
+# Netlify redirects. Rules are matched top to bottom.
+
+# The old hyltansmetall.se addresses, so links and search results pointing at
+# them land on the matching new page (301 = moved for good, which also tells
+# Google to move the ranking over). /specialtillverkning kept its address.
+/om-foretaget      /om-oss          301
+/tillverkningen    /tillverkning    301
+
+# Every other address is served the app, which routes it itself. Without this,
+# opening /om-oss directly or refreshing a subpage gives a 404. Real files
+# (robots.txt, sitemap.xml, /assets/...) are served before this rule applies.
 /*    /index.html    200

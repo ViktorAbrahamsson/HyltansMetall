@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Seo from '@/components/layout/Seo';
 import { images } from '@/assets/images/manifest';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import ProductCard from '@/components/common/ProductCard/ProductCard';
@@ -53,9 +53,10 @@ const TWO_UP_SIZES = '(min-width: 1200px) 570px, (min-width: 768px) 48vw, 100vw'
 export default function ProductsPage() {
   return (
     <>
-      <Helmet>
-        <title>Produkter. Hyltans Metall</title>
-      </Helmet>
+      <Seo
+        title="Produkter. Hyltans Metall"
+        description="Änglar och tomtar i brons och mässing, sandgjutna för hand i vår verkstad i Gnosjö."
+      />
 
       {/* Header block */}
       <section className="block products-page-block">
@@ -81,6 +82,7 @@ export default function ProductsPage() {
                 key={product.id}
                 product={product}
                 priority={i === 0}
+                headingLevel={2}
                 sizes={productCategories.length < 3 ? TWO_UP_SIZES : undefined}
               />
             ))}

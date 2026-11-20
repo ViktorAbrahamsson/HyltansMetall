@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { productCategories } from '@/data/products';
 import { images } from '@/assets/images/manifest';
@@ -91,6 +91,31 @@ export default function Header() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
+  // While the full-screen menu is open, the page behind it is covered, so it
+  // is made inert: Tab stays within the header (logo, menu button, menu links)
+  // and screen readers don't wander into content nobody can see. Escape
+  // closes the menu and hands focus back to the button that opened it.
+  // `inert` is set on the DOM directly; React 18 does not know the attribute.
+  const burgerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const covered = document.querySelectorAll<HTMLElement>('main, footer');
+    covered.forEach((el) => { el.inert = true; });
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setMenuOpen(false);
+      burgerRef.current?.focus();
+    };
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      covered.forEach((el) => { el.inert = false; });
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [menuOpen]);
+
   const toggleMenu = useCallback(() => setMenuOpen(o => !o), []);
 
   return (
@@ -167,6 +192,9 @@ export default function Header() {
         </nav>
 
         <button
+          ref={burgerRef}
+          type="button"
+          aria-controls="mobile-menu"
           className={styles.burger}
           onClick={toggleMenu}
           aria-expanded={menuOpen}
@@ -179,7 +207,11 @@ export default function Header() {
       </div>
 
       {/* Mobile overlay */}
-      <div className={[styles.overlay, menuOpen ? styles['overlay--open'] : ''].join(' ')} aria-hidden={!menuOpen}>
+      <div
+        id="mobile-menu"
+        className={[styles.overlay, menuOpen ? styles['overlay--open'] : ''].join(' ')}
+        aria-hidden={!menuOpen}
+      >
         <nav aria-label="Mobilnavigation">
           <ul className={styles.overlay__list}>
             {navLinks.map(({ to, label, children }, i) => (

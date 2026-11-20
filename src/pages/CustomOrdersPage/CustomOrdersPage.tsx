@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import Seo from '@/components/layout/Seo';
 import { Link } from 'react-router-dom';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
@@ -64,9 +64,10 @@ const earlierWork: WorkPiece[] = [
 export default function CustomOrdersPage() {
   return (
     <>
-      <Helmet>
-        <title>Specialtillverkning. Hyltans Metall</title>
-      </Helmet>
+      <Seo
+        title="Specialtillverkning. Hyltans Metall"
+        description="Vi tillverkar plaketter och skyltar, beslag, låsdetaljer och handtag till dörrar och möbler, och delar till veteranbilar och båtar. Sandgjutet i brons och mässing."
+      />
 
       {/* Intro block */}
       <section className={`block custom-orders-block ${styles['custom-orders__intro']}`}>
