@@ -1,0 +1,59 @@
+// A slim bar directly under the fixed header, ahead of the page's first block.
+.breadcrumbs {
+  background-color: v.$color-sand;
+}
+
+.breadcrumbs__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: v.$space-1;
+  padding-block: v.$space-2;
+  font-size: v.$font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  // Full ink: links are told apart by their underline, not by being paler.
+  // ink-soft would also pass now, but these are 12px.
+  color: v.$color-ink;
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+  gap: v.$space-1;
+
+  // Separator between crumbs rather than after the last one. $color-line-dark
+  // is meant for dark blocks and all but vanishes on sand.
+  & + &::before {
+    content: '·';
+    color: v.$color-ink-soft;
+  }
+}
+
+.breadcrumbs__link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid v.$color-line;
+  transition: color v.$transition-fast, border-color v.$transition-fast;
+
+  &:hover {
+    // $color-bronze is only 2.87:1 on sand; the deep tone clears AA.
+    color: v.$color-bronze-deep;
+    border-color: v.$color-bronze-deep;
+  }
+
+  @include m.focus-ring(#B07A2E);
+}
+
+// The bar already separates the page from the header, so the first block's
+// usual top padding would leave a gap twice over. Qualified with the element
+// so it outranks the global `.block` padding, which has equal specificity and
+// would otherwise win on source order.
+.breadcrumbs + section.block {
+  padding-top: v.$space-6;
+
+  @include m.respond-to(lg) {
+    padding-top: v.$space-8;
+  }
+}

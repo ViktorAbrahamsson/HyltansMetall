@@ -1,4 +1,5 @@
 import Seo from '@/components/layout/Seo';
+import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
 import { Link } from 'react-router';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
@@ -68,6 +69,7 @@ export default function CustomOrdersPage() {
         title="Specialtillverkning. Hyltans Metall"
         description="Vi tillverkar plaketter och skyltar, beslag, låsdetaljer och handtag till dörrar och möbler, och delar till veteranbilar och båtar. Sandgjutet i brons och mässing."
       />
+      <Breadcrumbs trail={[{ label: 'Specialtillverkning' }]} />
 
       {/* Intro block */}
       <section className={`block custom-orders-block ${styles['custom-orders__intro']}`}>

@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import Seo from '@/components/layout/Seo';
+import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
 import { Link, Navigate, useParams } from 'react-router';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
@@ -44,31 +45,10 @@ export default function ProductCategoryPage() {
     <>
       <Seo title={`${category.title}. Hyltans Metall`} description={category.description} />
 
-      {/* Breadcrumbs. First thing in <main>, which clears the fixed header, so
-          this sits directly beneath it. */}
-      <nav
-        className={styles['product-category__crumbs']}
-        aria-label="Brödsmulor"
-      >
-        <ol className={`container ${styles['product-category__crumb-list']}`}>
-          <li className={styles['product-category__crumb']}>
-            <Link to="/" className={styles['product-category__crumb-link']}>
-              Start
-            </Link>
-          </li>
-          <li className={styles['product-category__crumb']}>
-            <Link to="/produkter" className={styles['product-category__crumb-link']}>
-              Produkter
-            </Link>
-          </li>
-          <li className={styles['product-category__crumb']} aria-current="page">
-            {category.title}
-          </li>
-        </ol>
-      </nav>
+      <Breadcrumbs trail={[{ label: 'Produkter', to: '/produkter' }, { label: category.title }]} />
 
       {/* Intro block */}
-      <section className={`block product-category-block ${styles['product-category__intro-block']}`}>
+      <section className="block product-category-block">
         <div className="container container-sm page-intro">
           <h1 className={styles['product-category__h1']}>{category.title}</h1>
           <p className="page-intro__lead">{category.description}</p>

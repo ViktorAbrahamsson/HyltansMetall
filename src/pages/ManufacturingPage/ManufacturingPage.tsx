@@ -1,4 +1,5 @@
 import Seo from '@/components/layout/Seo';
+import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { images } from '@/assets/images/manifest';
@@ -62,6 +63,7 @@ export default function ManufacturingPage() {
         title="Gjutprocessen. Hyltans Metall"
         description="Varje form används bara en gång. Sanden packas för hand runt modellen och metallen smälts i en kokseldad gjutugn, med samma metoder som 1926."
       />
+      <Breadcrumbs trail={[{ label: 'Gjutprocessen' }]} />
 
       {/* Intro block */}
       <section className={`block manufacturing-block ${styles['mfg-intro']}`}>

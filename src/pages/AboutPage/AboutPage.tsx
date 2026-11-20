@@ -1,4 +1,5 @@
 import Seo from '@/components/layout/Seo';
+import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
 import Figure from '@/components/common/Figure/Figure';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import { images } from '@/assets/images/manifest';
@@ -14,6 +15,7 @@ export default function AboutPage() {
         title="Om oss. Hyltans Metall"
         description="Hyltans Metall tillverkar sandgjutna produkter i brons och mässing i Gnosjö sedan 1926. Ett äkta hantverk som har ärvts från far till son i fyra generationer."
       />
+      <Breadcrumbs trail={[{ label: 'Om oss' }]} />
 
       {/* Intro block */}
       <section className={`block about-page-block ${styles['about-page__intro']}`}>

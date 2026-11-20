@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import Seo from '@/components/layout/Seo';
+import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
 import { images } from '@/assets/images/manifest';
 import InstagramFeed from '@/components/common/InstagramFeed/InstagramFeed';
 import ProductCard from '@/components/common/ProductCard/ProductCard';
@@ -57,6 +58,7 @@ export default function ProductsPage() {
         title="Produkter. Hyltans Metall"
         description="Änglar och tomtar i brons och mässing, sandgjutna för hand i vår verkstad i Gnosjö."
       />
+      <Breadcrumbs trail={[{ label: 'Produkter' }]} />
 
       {/* Header block */}
       <section className="block products-page-block">

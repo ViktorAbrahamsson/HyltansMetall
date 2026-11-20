@@ -1,0 +1,36 @@
+// Thin molten-bronze bar across the top of the window, above the fixed header
+// (and above the skip link). scaleX rather than width, so it never triggers
+// layout. Under prefers-reduced-motion the global block collapses the
+// transitions: the bar then simply appears and disappears.
+.nav-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: v.$z-modal + 2;
+  background: v.$gradient-molten;
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+// Running: a quick start that slows as it goes, so it creeps towards the end
+// without ever reaching it until the page is done.
+.nav-progress--running {
+  opacity: 1;
+  transform: scaleX(0.85);
+  transition:
+    transform 2.5s cubic-bezier(0.1, 0.7, 0.2, 1),
+    opacity 120ms linear;
+}
+
+// Done: fill the rest quickly, then fade.
+.nav-progress--done {
+  opacity: 0;
+  transform: scaleX(1);
+  transition:
+    transform 200ms ease-out,
+    opacity 300ms ease 200ms;
+}
