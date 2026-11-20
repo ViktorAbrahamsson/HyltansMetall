@@ -21,8 +21,17 @@ Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in 
 - `#root` carries `data-prerendered-path`; `main.tsx` hydrates only when it equals the current path, otherwise renders fresh (`404.html` has no attribute; an unknown product slug redirects). `npm run dev` has no prerendered markup and always renders fresh.
 - `scripts/prerender.mjs` swaps everything between `<!--seo-start-->` and `<!--seo-end-->` in `index.html` for the page's Helmet tags. Keep those markers.
 - **Render code must be server-safe**: no `window`/`document`/`matchMedia` outside effects and event handlers, and nothing that differs between build and visit (random values, dates) in markup — or hydration mismatches. Use `useIsomorphicLayoutEffect` (`src/hooks/`) instead of `useLayoutEffect`. The footer year uses `suppressHydrationWarning`, since the build year can lag.
+- `scripts/prerender.mjs` also fills the `<!--font-preload ... -->` marker in `index.html` with preload links for the two fonts every page paints first. Keep that marker too.
 - `npm run preview` serves the prerendered files like Netlify, except that it answers unknown paths with `index.html` instead of `404.html` (the client still shows the 404 page).
 - **npm only.** `package-lock.json` is the one lockfile. A stale `pnpm-lock.yaml` from the Three.js days made Vercel install with pnpm and fail; don't add another package manager's lockfile.
+
+## Performance
+- **Fonts are self-hosted** through `@fontsource-variable/fraunces` (opsz + opsz-italic) and `@fontsource-variable/inter` (wght), imported in `main.tsx`; no request goes to Google (faster first paint, no visitor IP to a third party). The families are `'Fraunces Variable'` / `'Inter Variable'` (tokens in `variables.scss`, plus the hardcoded stack in the `eyebrow` mixin).
+- **Metric-adjusted fallback faces** (`Inter Fallback` from Arial, `Fraunces Fallback` from Georgia, in `main.scss`) sit second in each stack, so the swap to the web font barely moves text. Without them Inter re-wrapped the Om oss intro on phones and pushed the page 33px. The overrides come from `@capsizecss/metrics` (not a dependency; numbers are in the comment) — recompute if a font changes.
+- `vite.config.ts` splits `node_modules` JS into a `vendor` chunk (cached across content deploys). CSS is kept out of it on purpose, or the font CSS becomes a second render-blocking stylesheet.
+- The Instagram feed is fetched only when its section comes within ~1000px of the viewport (IntersectionObserver); the placeholder frames hold the height until then.
+- The home quote's backdrop is a plain `<img srcSet>` (not a CSS background, not `Figure`), so phones get `natt-800`.
+- **Measure in a top-level page with the Browser pane visible.** Measuring inside an iframe reported CLS 0.5 from the body's default 8px margin (a paint before the stylesheet applied) that never happens top-level; a hidden pane throttles paint timings.
 
 ## Navigation and routes
 - Four top-level items, two of them with a dropdown. **This no longer mirrors the real site's nav** — it is a deliberate departure, so don't "fix" it back:
@@ -66,7 +75,7 @@ Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in 
 - Product category pages show a breadcrumb bar as the first thing in `<main>`, which already clears the fixed header. Crumb text uses `$color-ink`: `$color-ink-soft` is 4.44:1 on sand and these are 12px, just under the 4.5:1 AA floor. `$color-bronze` fails too (2.87:1) — hover uses `$color-bronze-deep`.
 - All colors/spacing/sizes via tokens in `src/styles/variables.scss`; responsive only via `m.respond-to(sm|md|lg|xl)`, mobile-first.
 - Interactive elements get `:focus-visible` via `m.focus-ring($color)` (literal hex args — #B07A2E on light bg, #D9A24B on dark). A global `prefers-reduced-motion` block in `main.scss` collapses all transitions/animations.
-- Design system "Sand & Brons": motif classes `.label`, `.molten`, `.ghost-numeral`, `.batch-stamp`, `.btn`/`.btn--ghost`/`.btn--light` in `src/styles/main.scss`. Fonts: Fraunces + Inter (loaded in index.html).
+- Design system "Sand & Brons": motif classes `.label`, `.molten`, `.ghost-numeral`, `.batch-stamp`, `.btn`/`.btn--ghost`/`.btn--light` in `src/styles/main.scss`. Fonts: Fraunces + Inter, **self-hosted** (see Performance).
 - The hero stays typographic/generative: a hand-rolled canvas ember field (`src/components/common/Hero/EmberField.tsx`, no deps, respects prefers-reduced-motion) + molten glow + ghost numeral. Do not reintroduce Three.js or a 3D model — the owner explicitly does not want it (the old `public/models/ljusstake.glb` was deleted).
 
 ## Images

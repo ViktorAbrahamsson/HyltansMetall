@@ -3,6 +3,14 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
+// Self-hosted fonts (no request to Google: faster first paint, and no visitor
+// IP sent to a third party). Variable fonts with the same axes the Google
+// Fonts URL asked for: Fraunces wght+opsz, roman and italic; Inter wght.
+// Each CSS file covers several unicode-range subsets, and the browser only
+// fetches the ones the page's text needs (latin for Swedish).
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/fraunces/opsz-italic.css';
+import '@fontsource-variable/inter/wght.css';
 import './styles/main.scss';
 
 const app = (

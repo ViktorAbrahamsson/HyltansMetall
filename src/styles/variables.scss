@@ -55,8 +55,10 @@ $gradient-brass-wipe: linear-gradient(
 );
 
 // ─── Typography ─────────────────────────────────────────────────────────────
-$font-display: 'Fraunces', Georgia, serif;
-$font-body: 'Inter', system-ui, sans-serif;
+// Self-hosted through @fontsource-variable (imported in src/main.tsx), which
+// names the families '… Variable'. Same variable fonts and axes Google served.
+$font-display: 'Fraunces Variable', 'Fraunces Fallback', Georgia, serif;
+$font-body: 'Inter Variable', 'Inter Fallback', system-ui, sans-serif;
 
 // The floor and slope let the longest page title, "Specialtillverkning"
 // (~8.2em wide), fit a 320px phone; the 6.5rem ceiling is unchanged.

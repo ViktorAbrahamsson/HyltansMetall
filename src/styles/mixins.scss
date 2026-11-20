@@ -68,7 +68,7 @@
 // ─── Eyebrow label ───────────────────────────────────────────────────────────
 // Uses literal values to avoid circular @use dependency with variables.scss
 @mixin eyebrow($color: currentColor) {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter Variable', 'Inter Fallback', system-ui, sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;

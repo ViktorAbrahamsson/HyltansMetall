@@ -74,6 +74,7 @@ function srcSet(post: BeholdPost): string {
 export default function InstagramFeed() {
   const [feed, setFeed] = useState<FeedState>(initialState);
   const trackRef = useRef<HTMLUListElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
   // One dot per scroll stop: with four tiles in view and six posts there are
@@ -82,22 +83,44 @@ export default function InstagramFeed() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    if (!instagram.feedUrl || feedPosts) return;
+    const feedUrl = instagram.feedUrl;
+    if (!feedUrl || feedPosts) return;
     // The request is shared, so it is not aborted on unmount; this section
     // just stops listening for the answer.
     let active = true;
 
-    loadFeed(instagram.feedUrl)
-      .then((posts) => {
-        if (active) setFeed(posts.length ? { status: 'ready', posts } : { status: 'empty' });
-      })
-      .catch(() => {
-        // A failed feed hides the row rather than leaving empty frames behind.
-        if (active) setFeed({ status: 'empty' });
-      });
+    const load = () =>
+      loadFeed(feedUrl)
+        .then((posts) => {
+          if (active) setFeed(posts.length ? { status: 'ready', posts } : { status: 'empty' });
+        })
+        .catch(() => {
+          // A failed feed hides the row rather than leaving empty frames behind.
+          if (active) setFeed({ status: 'empty' });
+        });
+
+    // The section sits near the bottom of every page, so the feed (and the
+    // connection to Behold) waits until the visitor scrolls within ~1000px of
+    // it, leaving the bandwidth at page load to the page's own photos. The
+    // placeholder frames hold the row's height meanwhile, so nothing shifts.
+    const section = sectionRef.current;
+    if (!section || typeof IntersectionObserver === 'undefined') {
+      load();
+      return () => { active = false; };
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        load();
+      },
+      { rootMargin: '1000px 0px' },
+    );
+    observer.observe(section);
 
     return () => {
       active = false;
+      observer.disconnect();
     };
   }, []);
 
@@ -152,7 +175,11 @@ export default function InstagramFeed() {
   }
 
   return (
-    <section className="block block--alt instagram-block" aria-labelledby="instagram-heading">
+    <section
+      ref={sectionRef}
+      className="block block--alt instagram-block"
+      aria-labelledby="instagram-heading"
+    >
       <div className="container">
         <div className={styles['instagram-feed__header']}>
           <div className={styles['instagram-feed__meta']}>

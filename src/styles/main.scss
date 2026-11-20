@@ -53,6 +53,55 @@
   transition-delay: var(--reveal-delay, 0ms);
 }
 
+// ─── Font fallbacks ──────────────────────────────────────────────────────────
+// The web fonts swap in after first paint (font-display: swap). Until then the
+// text is set in a local font stretched to the web font's proportions, so the
+// swap barely moves anything (without this, Inter's wider letters re-wrapped
+// the Om oss intro on phones and pushed the page down 33px). Overrides follow
+// the Capsize / next/font method from published metrics (@capsizecss/metrics):
+// size-adjust = web font's average char width / local font's, then the web
+// font's ascent and descent divided by that. Recompute if a font changes.
+// Android has neither Arial nor Georgia; it simply skips these faces.
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('ArialMT');
+  font-weight: 400;
+  size-adjust: 107.12%;
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT');
+  font-weight: 700;
+  size-adjust: 107.12%;
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Fraunces Fallback';
+  src: local('Georgia');
+  font-style: normal;
+  size-adjust: 105.2%;
+  ascent-override: 92.96%;
+  descent-override: 24.24%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Fraunces Fallback';
+  src: local('Georgia Italic'), local('Georgia-Italic');
+  font-style: italic;
+  size-adjust: 105.2%;
+  ascent-override: 92.96%;
+  descent-override: 24.24%;
+  line-gap-override: 0%;
+}
+
 // ─── Reduced motion ──────────────────────────────────────────────────────────
 @media (prefers-reduced-motion: reduce) {
   *,

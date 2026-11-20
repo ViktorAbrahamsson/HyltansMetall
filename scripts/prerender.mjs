@@ -14,7 +14,7 @@
  *   /produkter/tomtar      -> dist/produkter/tomtar.html
  *   any unknown address    -> dist/404.html (served with status 404)
  */
-import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -26,9 +26,27 @@ const template = readFileSync(path.join(dist, 'index.html'), 'utf8');
 const { render, routes } = await import(pathToFileURL(path.join(ssrDir, 'entry-server.js')).href);
 
 const SEO_BLOCK = /<!--seo-start-->[\s\S]*?<!--seo-end-->/;
+const FONT_PRELOAD = /<!--font-preload[\s\S]*?-->/;
+
+/**
+ * Preload the fonts every page paints with first — Fraunces roman (headings)
+ * and Inter (body), latin subset — so they download alongside the CSS
+ * instead of after it has been parsed. Not the Fraunces italic: it only shows
+ * further down (the home quote, the footer) and loads on its own. The hashed
+ * names come from the build, so they are looked up here.
+ */
+const assetNames = readdirSync(path.join(dist, 'assets'));
+const preloadFonts = ['fraunces-latin-opsz-normal-', 'inter-latin-wght-normal-'].map((prefix) => {
+  const file = assetNames.find((name) => name.startsWith(prefix) && name.endsWith('.woff2'));
+  if (!file) {
+    console.error(`prerender: no ${prefix}*.woff2 in dist/assets; did the font packages change?`);
+    process.exit(1);
+  }
+  return `<link rel="preload" href="/assets/${file}" as="font" type="font/woff2" crossorigin />`;
+});
 const ROOT = '<div id="root"></div>';
-if (!SEO_BLOCK.test(template) || !template.includes(ROOT)) {
-  console.error('prerender: dist/index.html lacks the <!--seo-start/end--> markers or an empty #root.');
+if (!SEO_BLOCK.test(template) || !FONT_PRELOAD.test(template) || !template.includes(ROOT)) {
+  console.error('prerender: dist/index.html lacks the <!--seo-start/end--> or <!--font-preload--> markers, or an empty #root.');
   process.exit(1);
 }
 
@@ -44,6 +62,7 @@ function page(url, prerenderedPath) {
   }
   const attr = prerenderedPath ? ` data-prerendered-path="${prerenderedPath}"` : '';
   return template
+    .replace(FONT_PRELOAD, preloadFonts.join('\n    '))
     .replace(SEO_BLOCK, head)
     .replace(ROOT, `<div id="root"${attr}>${html}</div>`);
 }

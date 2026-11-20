@@ -124,11 +124,21 @@ export default function HomePage() {
 
       {/* Quote section */}
       <section className={`block block--dark craft-block ${styles['home-quote']}`}>
-        <div
-          className={styles['home-quote__bg']}
-          style={{ backgroundImage: `url(${images['place/natt'].src})` }}
-          aria-hidden="true"
-        />
+        {/* Decorative backdrop: a plain <img> rather than a CSS background,
+            so phones get the 800px file through srcSet instead of the 1800px
+            one, and it loads lazily. Not a Figure: it is dimmed and covered
+            by its own scrim, so the blur placeholder and grain add nothing. */}
+        <div className={styles['home-quote__bg']} aria-hidden="true">
+          <img
+            className={styles['home-quote__bg-img']}
+            src={images['place/natt'].src}
+            srcSet={images['place/natt'].srcSet}
+            sizes="100vw"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
         <div className={`container container-sm ${styles['home-quote__inner']}`}>
           <blockquote className={styles['home-quote__blockquote']}>
             <p className={styles['home-quote__text']}>

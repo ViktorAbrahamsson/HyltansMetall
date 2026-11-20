@@ -153,8 +153,7 @@
 .home-quote__bg {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   opacity: 0.5;
   pointer-events: none;
 
@@ -170,6 +169,17 @@
       rgba(22, 18, 16, 0.85) 100%
     );
   }
+}
+
+// Fills the backdrop like `background-size: cover; background-position:
+// center` did. The scrim (::after above) comes later, so it paints on top.
+.home-quote__bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .home-quote__inner {
