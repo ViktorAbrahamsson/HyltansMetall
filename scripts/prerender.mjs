@@ -26,6 +26,21 @@ const template = readFileSync(path.join(dist, 'index.html'), 'utf8');
 const { render, routes } = await import(pathToFileURL(path.join(ssrDir, 'entry-server.js')).href);
 
 const SEO_BLOCK = /<!--seo-start-->[\s\S]*?<!--seo-end-->/;
+
+/**
+ * Inline the stylesheet. As a <link> it is render-blocking: the browser has
+ * to fetch it before the first paint, one more round trip on a slow mobile
+ * connection (Lighthouse put it at ~430 ms). It is ~7 KB gzipped, so each
+ * page grows a little, and in-site navigation never refetches HTML anyway.
+ * Its url()s are absolute (/assets/...), so they work from any page.
+ */
+const STYLESHEET = /<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/;
+const stylesheetMatch = STYLESHEET.exec(readFileSync(path.join(dist, 'index.html'), 'utf8'));
+if (!stylesheetMatch) {
+  console.error('prerender: no /assets/*.css stylesheet link in dist/index.html to inline.');
+  process.exit(1);
+}
+const inlineCss = `<style>${readFileSync(path.join(dist, stylesheetMatch[1]), 'utf8')}</style>`;
 const FONT_PRELOAD = /<!--font-preload[\s\S]*?-->/;
 
 /**
@@ -62,6 +77,8 @@ function page(url, prerenderedPath) {
   }
   const attr = prerenderedPath ? ` data-prerendered-path="${prerenderedPath}"` : '';
   return template
+    // A function, so `$` sequences in the CSS are not read as replacement patterns.
+    .replace(STYLESHEET, () => inlineCss)
     .replace(FONT_PRELOAD, preloadFonts.join('\n    '))
     .replace(SEO_BLOCK, head)
     .replace(ROOT, `<div id="root"${attr}>${html}</div>`);

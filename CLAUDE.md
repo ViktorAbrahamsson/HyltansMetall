@@ -21,7 +21,7 @@ Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in 
 - `#root` carries `data-prerendered-path`; `main.tsx` hydrates only when it equals the current path, otherwise renders fresh (`404.html` has no attribute; an unknown product slug redirects). `npm run dev` has no prerendered markup and always renders fresh.
 - `scripts/prerender.mjs` swaps everything between `<!--seo-start-->` and `<!--seo-end-->` in `index.html` for the page's Helmet tags. Keep those markers.
 - **Render code must be server-safe**: no `window`/`document`/`matchMedia` outside effects and event handlers, and nothing that differs between build and visit (random values, dates) in markup — or hydration mismatches. Use `useIsomorphicLayoutEffect` (`src/hooks/`) instead of `useLayoutEffect`. The footer year uses `suppressHydrationWarning`, since the build year can lag.
-- `scripts/prerender.mjs` also fills the `<!--font-preload ... -->` marker in `index.html` with preload links for the two fonts every page paints first. Keep that marker too.
+- `scripts/prerender.mjs` **inlines the stylesheet** into every page as a `<style>` (about 7 KB gzipped) instead of a render-blocking `<link>`: with real mobile throttling that took first paint on Om oss from 2.13 s to 1.40 s. The CSS file stays in `dist/assets` unused. The script also fills the `<!--font-preload ... -->` marker in `index.html` with preload links for the two fonts every page paints first. Keep that marker too.
 - `npm run preview` serves the prerendered files like Netlify, except that it answers unknown paths with `index.html` instead of `404.html` (the client still shows the 404 page).
 - **npm only.** `package-lock.json` is the one lockfile. A stale `pnpm-lock.yaml` from the Three.js days made Vercel install with pnpm and fail; don't add another package manager's lockfile.
 
@@ -31,6 +31,7 @@ Vite 4 + React 18 + TS + SCSS modules. Static site, no CMS — content lives in 
 - `vite.config.ts` splits `node_modules` JS into a `vendor` chunk (cached across content deploys). CSS is kept out of it on purpose, or the font CSS becomes a second render-blocking stylesheet.
 - The Instagram feed is fetched only when its section comes within ~1000px of the viewport (IntersectionObserver); the placeholder frames hold the height until then.
 - The home quote's backdrop is a plain `<img srcSet>` (not a CSS background, not `Figure`), so phones get `natt-800`.
+- **Lighthouse** (Nov 2026, local `npm run preview`): desktop 99–100 on every page and category; mobile performance 85–94, accessibility/best practices/SEO 100. Judge mobile timings with `--throttling-method=devtools`: the default simulated mode models the inlined CSS and preloaded fonts badly and reports ~3 s LCP where the real throttled LCP equals first paint (~1.4 s). Its "properly size images" notes are the 400/800 width ladder against a 412px × 1.75 DPR test phone, not wrong `sizes`. Run it from a scratch folder (`npm i lighthouse`), not as a project dependency.
 - **Measure in a top-level page with the Browser pane visible.** Measuring inside an iframe reported CLS 0.5 from the body's default 8px margin (a paint before the stylesheet applied) that never happens top-level; a hidden pane throttles paint timings.
 
 ## Navigation and routes

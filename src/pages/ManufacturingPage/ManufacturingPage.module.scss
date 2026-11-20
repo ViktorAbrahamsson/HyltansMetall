@@ -81,8 +81,10 @@
   font-weight: 500;
   line-height: 0.85;
   // Solid bronze fill. With the "Steg xx" stamp gone this numeral is the only
-  // thing marking the sequence, so it is no longer a faint outline.
-  color: v.$color-bronze-light;
+  // thing marking the sequence, so it is no longer a faint outline — and it
+  // must meet the 3:1 large-text contrast floor: bronze is 3.32:1 on paper,
+  // bronze-light only 2.04:1 (flagged by Lighthouse).
+  color: v.$color-bronze;
   -webkit-text-stroke: 0;
   pointer-events: none;
   user-select: none;
