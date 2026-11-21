@@ -7,8 +7,8 @@
  * Run by `npm run build` after the client build and the SSR build of
  * src/entry-server.tsx (into dist-ssr/, deleted again at the end).
  *
- * Output, for hosts that serve /om-oss from om-oss.html (Netlify by default,
- * Vercel with cleanUrls):
+ * Output, for a host that serves /om-oss from om-oss.html (Vercel with
+ * cleanUrls; One.com will need rewrite rules, see CLAUDE.md "Hosting"):
  *   /                      -> dist/index.html
  *   /om-oss                -> dist/om-oss.html
  *   /produkter/tomtar      -> dist/produkter/tomtar.html

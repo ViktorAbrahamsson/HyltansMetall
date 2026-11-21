@@ -256,19 +256,6 @@ a {
   }
 }
 
-.batch-stamp {
-  display: inline-block;
-  // prevent cross-axis stretch when placed in a column flex container
-  width: fit-content;
-  font-family: v.$font-body;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  border: 1px solid currentColor;
-  padding: 4px 10px;
-}
-
 // ─── Buttons ─────────────────────────────────────────────────────────────────
 .btn {
   display: inline-block;
