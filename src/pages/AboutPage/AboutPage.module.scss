@@ -30,8 +30,6 @@
 }
 
 // ─── Content block ────────────────────────────────────────────────────────────
-.about-page__content-block {}
-
 .about-page__section {
   padding-block: v.$space-8;
   border-top: 1px solid v.$color-line;
@@ -39,6 +37,12 @@
   &:first-child {
     border-top: none;
     padding-top: 0;
+  }
+
+  // The padding is the space around the rules between sections; the last one
+  // has no rule below it, and the block's own padding already ends the page.
+  &:last-child {
+    padding-bottom: 0;
   }
 }
 
@@ -62,22 +66,6 @@
 
 .about-page__section-media {
   margin-top: v.$space-5;
-}
-
-.about-page__signature {
-  margin-top: v.$space-5;
-  font-family: v.$font-display;
-  font-size: v.$font-size-lg;
-  color: v.$color-ink;
-  line-height: 1.3;
-}
-
-.about-page__signature-meta {
-  display: block;
-  margin-top: v.$space-1;
-  font-family: v.$font-body;
-  font-size: v.$font-size-sm;
-  color: v.$color-ink-soft;
 }
 
 // ─── Pull-quote ───────────────────────────────────────────────────────────────

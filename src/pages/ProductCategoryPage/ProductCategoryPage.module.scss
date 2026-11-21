@@ -4,8 +4,6 @@
 }
 
 // ─── Items ───────────────────────────────────────────────────────────────────
-.product-category__items-block {}
-
 .product-category__grid {
   list-style: none;
   display: grid;
@@ -26,8 +24,6 @@
   flex-direction: column;
   gap: v.$space-2;
 }
-
-.product-category__item-media {}
 
 // Stands in for an unphotographed item. Carries the same aspect ratio as the
 // category's Figure frame so swapping a photo in later moves nothing.
@@ -85,8 +81,6 @@
 // Group shots, two up inside .container-sm. Narrower than the item grid on
 // purpose: these are not products, and at full width a pair of portraits would
 // tower over the page.
-.product-category__gallery-block {}
-
 .product-category__gallery {
   list-style: none;
   display: grid;
@@ -100,8 +94,6 @@
 }
 
 // ─── Enquiry block ───────────────────────────────────────────────────────────
-.product-category__cta-block {}
-
 .product-category__cta-inner {
   display: flex;
   flex-direction: column;
@@ -127,8 +119,6 @@
 }
 
 // ─── Sibling categories ──────────────────────────────────────────────────────
-.product-category__more-block {}
-
 .product-category__more-h2 {
   font-size: v.$font-size-display-3;
   margin-bottom: v.$space-4;
@@ -164,8 +154,6 @@
     align-items: center;
   }
 }
-
-.product-category__feature-media {}
 
 .product-category__feature-body {
   display: flex;

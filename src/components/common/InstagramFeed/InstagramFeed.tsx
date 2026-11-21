@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { instagram } from '@/data/instagram';
+import { useDragToScroll } from './useDragToScroll';
 import styles from './InstagramFeed.module.scss';
 
 // The subset of a Behold feed post this section uses.
@@ -71,6 +72,13 @@ function srcSet(post: BeholdPost): string {
     .join(', ');
 }
 
+/** Width of one tile plus the gap after it: the distance of one step. */
+function tileStep(track: HTMLElement): number {
+  const tile = track.firstElementChild as HTMLElement | null;
+  if (!tile) return 0;
+  return tile.offsetWidth + (parseFloat(getComputedStyle(track).columnGap) || 0);
+}
+
 export default function InstagramFeed() {
   const [feed, setFeed] = useState<FeedState>(initialState);
   const trackRef = useRef<HTMLUListElement>(null);
@@ -124,13 +132,6 @@ export default function InstagramFeed() {
     };
   }, []);
 
-  /** Width of one tile plus the gap after it: the distance of one step. */
-  function tileStep(track: HTMLElement): number {
-    const tile = track.firstElementChild as HTMLElement | null;
-    if (!tile) return 0;
-    return tile.offsetWidth + (parseFloat(getComputedStyle(track).columnGap) || 0);
-  }
-
   const updateArrows = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -157,6 +158,13 @@ export default function InstagramFeed() {
     window.addEventListener('resize', updateArrows);
     return () => window.removeEventListener('resize', updateArrows);
   }, [feed.status, updateArrows]);
+
+  // Mouse users can drag the row like a finger swipes it.
+  useDragToScroll(trackRef, {
+    enabled: feed.status === 'ready',
+    step: tileStep,
+    draggingClass: styles['instagram-feed__track--dragging'],
+  });
 
   function scrollBehavior(): ScrollBehavior {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';

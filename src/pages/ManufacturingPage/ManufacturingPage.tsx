@@ -64,7 +64,7 @@ export default function ManufacturingPage() {
       />
 
       {/* Intro block */}
-      <section className={`block manufacturing-block ${styles['mfg-intro']}`}>
+      <section className="block manufacturing-block">
         <div className="container container-sm page-intro">
           <h1 className={styles['mfg-intro__h1']}>Gjutprocessen</h1>
           <p className="page-intro__lead">
@@ -76,7 +76,7 @@ export default function ManufacturingPage() {
       </section>
 
       {/* Steps section */}
-      <section className={`block block--paper steps-block ${styles['mfg-steps']}`}>
+      <section className="block block--paper steps-block">
         <div className="container">
           <ol className={styles['mfg-steps__list']}>
             {steps.map((step, i) => (

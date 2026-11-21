@@ -71,7 +71,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Grid section */}
-      <section className={`block block--paper ${styles['products-page__grid-section']}`}>
+      <section className="block block--paper">
         <div className="container">
           <div
             className={styles['products-page__grid']}

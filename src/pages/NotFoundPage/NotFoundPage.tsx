@@ -12,7 +12,7 @@ export default function NotFoundPage() {
     <>
       <Seo title="Sidan finns inte. Hyltans Metall" noindex />
 
-      <section className={`block not-found-block ${styles['not-found']}`}>
+      <section className="block not-found-block">
         <div className="container container-sm page-intro">
           <h1 className={styles['not-found__h1']}>Sidan finns inte</h1>
           <p className="page-intro__lead">

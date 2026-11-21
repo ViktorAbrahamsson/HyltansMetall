@@ -54,7 +54,7 @@ export default function ProductCategoryPage() {
       </section>
 
       {/* Items */}
-      <section className={`block block--paper product-category-items-block ${styles['product-category__items-block']}`}>
+      <section className="block block--paper product-category-items-block">
         <div className="container">
           {featured?.image ? (
             <div className={styles['product-category__feature']}>
@@ -64,7 +64,6 @@ export default function ProductCategoryPage() {
                 ratio={itemRatio}
                 sizes={FEATURE_SIZES}
                 priority
-                className={styles['product-category__feature-media']}
               />
               <div className={styles['product-category__feature-body']}>
                 <h2 className={styles['product-category__feature-title']}>
@@ -93,7 +92,6 @@ export default function ProductCategoryPage() {
                       ratio={itemRatio}
                       sizes={ITEM_SIZES}
                       priority={i === 0}
-                      className={styles['product-category__item-media']}
                     />
                   ) : (
                     // No photo yet. Reserve the same box the Figure would take so
@@ -134,7 +132,7 @@ export default function ProductCategoryPage() {
           titles and no links — they just close the grid off. */}
       {category.gallery && (
         <section
-          className={`block product-category-gallery-block ${styles['product-category__gallery-block']}`}
+          className="block product-category-gallery-block"
           aria-label={`${category.title} tillsammans`}
         >
           <div className="container container-sm">
@@ -166,7 +164,7 @@ export default function ProductCategoryPage() {
       <InstagramFeed />
 
       {/* Enquiry block */}
-      <section className={`block block--dark product-category-cta-block ${styles['product-category__cta-block']}`}>
+      <section className="block block--dark product-category-cta-block">
         <div className="container container-xs">
           <div className={styles['product-category__cta-inner']}>
             <h2 className={styles['product-category__cta-h2']}>
@@ -183,7 +181,7 @@ export default function ProductCategoryPage() {
       </section>
 
       {/* Sibling categories */}
-      <section className={`block product-category-more-block ${styles['product-category__more-block']}`}>
+      <section className="block product-category-more-block">
         <div className="container container-sm">
           <h2 className={styles['product-category__more-h2']}>Fler kategorier</h2>
           <div

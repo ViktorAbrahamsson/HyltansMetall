@@ -105,7 +105,7 @@ export default function HomePage() {
       <InstagramFeed />
 
       {/* Workshop strip */}
-      <section className={`block block--paper ${styles['home-strip']}`}>
+      <section className="block block--paper">
         <div className="container">
           <p className="label">I verkstaden</p>
           <div className={styles['home-strip__grid']}>

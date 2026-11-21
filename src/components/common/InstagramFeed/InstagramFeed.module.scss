@@ -50,6 +50,25 @@
   @include m.respond-to(lg) {
     grid-auto-columns: calc((100% - 3 * #{v.$space-3}) / 4);
   }
+
+  // Mouse users can drag the row (useDragToScroll.ts); show that with the
+  // grab hand. Touch screens swipe natively and get no cursor.
+  @media (hover: hover) and (pointer: fine) {
+    cursor: grab;
+  }
+}
+
+// While a mouse drags the row: no snapping (it would fight the drag), no text
+// selection, and the posts ignore the pointer so their hover zoom does not
+// flicker underneath. useDragToScroll removes the class once the row settles.
+.instagram-feed__track--dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+
+  .instagram-feed__link {
+    pointer-events: none;
+  }
 }
 
 .instagram-feed__item {

@@ -40,7 +40,7 @@ export default function ContactPage() {
         description="Kontakta Hyltans Metall i Gnosjö via e-post, info@hyltansmetall.se, eller telefon 070-910 44 38. Förfrågningar, beställningar och övriga frågor."
       />
 
-      <section className={`block contact-block ${styles['contact-page__section']}`}>
+      <section className="block contact-block">
         <div className="container">
           <div className={`page-intro ${styles['contact-page__intro']}`}>
             <h1 className={styles['contact-page__h1']}>Kontakta oss</h1>

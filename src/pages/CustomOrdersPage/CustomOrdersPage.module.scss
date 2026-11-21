@@ -1,6 +1,4 @@
 // ─── Intro block ─────────────────────────────────────────────────────────────
-.custom-orders__intro {}
-
 .custom-orders__h1 {
   margin-bottom: v.$space-4;
 }
@@ -62,8 +60,6 @@
 }
 
 // ─── What we cast ────────────────────────────────────────────────────────────
-.custom-orders__list-block {}
-
 .custom-orders__list {
   list-style: none;
 }
@@ -81,11 +77,7 @@
 }
 
 // ─── Model block ─────────────────────────────────────────────────────────────
-.custom-orders__model-block {}
-
 // ─── CTA block ───────────────────────────────────────────────────────────────
-.custom-orders__cta-block {}
-
 .custom-orders__cta-inner {
   display: flex;
   flex-direction: column;

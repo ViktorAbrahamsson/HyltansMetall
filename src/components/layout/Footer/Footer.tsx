@@ -29,12 +29,12 @@ export default function Footer() {
         </div>
 
         <div className={styles.columns}>
-          <div className={styles.col}>
+          <div>
             <p className={styles.col__heading}>Hyltans Metall</p>
             <p className={styles.col__body}>{company.description}</p>
           </div>
 
-          <nav className={styles.col} aria-label="Sidfotnavigation">
+          <nav aria-label="Sidfotnavigation">
             <p className={styles.col__heading}>Sidor</p>
             <ul className={styles['footer__nav-list']}>
               {navLinks.map(({ to, label }) => (
@@ -56,7 +56,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <address className={`${styles.col} ${styles['col--contact']}`}>
+          <address className={styles['col--contact']}>
             <p className={styles.col__heading}>Kontakt</p>
             <a href={`mailto:${company.email}`} className={styles.contact__email}>
               {company.email}

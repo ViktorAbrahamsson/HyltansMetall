@@ -70,7 +70,7 @@ export default function CustomOrdersPage() {
       />
 
       {/* Intro block */}
-      <section className={`block custom-orders-block ${styles['custom-orders__intro']}`}>
+      <section className="block custom-orders-block">
         <div className="container container-sm page-intro">
           <h1 className={styles['custom-orders__h1']}>Specialtillverkning</h1>
           <p className="page-intro__lead">
@@ -81,7 +81,7 @@ export default function CustomOrdersPage() {
       </section>
 
       {/* What we cast */}
-      <section className={`block block--paper custom-orders-list-block ${styles['custom-orders__list-block']}`}>
+      <section className="block block--paper custom-orders-list-block">
         <div className={`container ${styles['custom-orders__split']}`}>
           <div className={styles['custom-orders__split-text']}>
             <h2 className={styles['custom-orders__h2']}>Vad vi gjuter</h2>
@@ -105,7 +105,7 @@ export default function CustomOrdersPage() {
       </section>
 
       {/* Working from a customer's own model */}
-      <section className={`block custom-orders-model-block ${styles['custom-orders__model-block']}`}>
+      <section className="block custom-orders-model-block">
         <div className={`container ${styles['custom-orders__split']} ${styles['custom-orders__split--reverse']}`}>
           <div className={styles['custom-orders__split-text']}>
             <h2 className={styles['custom-orders__h2']}>Har ni en modell?</h2>
@@ -130,7 +130,7 @@ export default function CustomOrdersPage() {
       <InstagramFeed />
 
       {/* CTA block */}
-      <section className={`block block--dark custom-orders-cta-block ${styles['custom-orders__cta-block']}`}>
+      <section className="block block--dark custom-orders-cta-block">
         <div className="container container-xs">
           <div className={styles['custom-orders__cta-inner']}>
             <h2 className={styles['custom-orders__cta-h2']}>

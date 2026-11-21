@@ -36,7 +36,7 @@ export default function AboutPage() {
       </section>
 
       {/* Content block */}
-      <section className={`block block--paper ${styles['about-page__content-block']}`}>
+      <section className="block block--paper">
         <div className="container container-sm">
 
           <div className={styles['about-page__section']}>
@@ -139,19 +139,17 @@ export default function AboutPage() {
               att vårda den gamla fabriksbyggnaden, som är klassad som ”högt
               kulturhistoriskt värde”.
             </p>
-            <p className={styles['about-page__signature']}>
-              Håkan Abrahamsson
-              <span className={styles['about-page__signature-meta']}>
-                Hyltans Metall AB, Gnosjö
-              </span>
-            </p>
-            <Figure
-              image={images['place/fasad']}
-              alt="Gjuteriets röda träfasad målas om en sommardag."
-              ratio="landscape"
-              sizes={ABOUT_SIZES}
-              className={styles['about-page__section-media']}
-            />
+            <figure className={styles['about-page__section-media']}>
+              <Figure
+                image={images['place/fasad']}
+                alt="Gjuteriets röda träfasad målas om en sommardag."
+                ratio="landscape"
+                sizes={ABOUT_SIZES}
+              />
+              <figcaption className={styles['about-page__caption']}>
+                Håkan Abrahamsson
+              </figcaption>
+            </figure>
           </div>
 
         </div>
