@@ -115,7 +115,10 @@ const allCategories: ProductCategory[] = [
   {
     id: 'candlesticks',
     slug: 'malmljusstakar',
-    // Hidden until release: no product names or photos yet.
+    // Hidden until release: no product names or photos yet. To publish, remove
+    // this flag AND the temporary /produkter/malmljusstakar redirect in
+    // vercel.json (Vercel applies redirects before serving the page file), and
+    // add the URL to public/sitemap.xml.
     hidden: true,
     title: 'Malmljusstakar',
     itemNoun: 'Malmljusstake',

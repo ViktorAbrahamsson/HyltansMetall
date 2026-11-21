@@ -2,7 +2,13 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     { "source": "/om-foretaget", "destination": "/om-oss", "permanent": true },
-    { "source": "/tillverkningen", "destination": "/tillverkning", "permanent": true }
+    { "source": "/tillverkningen", "destination": "/tillverkning", "permanent": true },
+    { "source": "/kontakta-oss", "destination": "/kontakt", "permanent": true },
+    { "source": "/produkter/till-kyrka-och-forsamling", "destination": "/produkter", "permanent": true },
+    { "source": "/produkter/ovriga-produkter", "destination": "/produkter", "permanent": true },
+    { "source": "/produkter/tavlor", "destination": "/produkter", "permanent": true },
+    { "source": "/produkter/malmklockor", "destination": "/produkter", "permanent": true },
+    { "source": "/produkter/malmljusstakar", "destination": "/produkter", "permanent": false }
   ],
   "cleanUrls": true,
   "trailingSlash": false,
