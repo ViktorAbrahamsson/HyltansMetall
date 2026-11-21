@@ -67,16 +67,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Full-bleed banner */}
-      <section className={styles['home-banner']} aria-label="Nygjutet gods i verkstaden">
-        <Figure
-          image={images['hero/gjutgods']}
-          alt="Nygjutna änglar sitter kvar på gjutkanalerna i formlådorna."
-          ratio="banner"
-          sizes="100vw"
-        />
-      </section>
-
       {/* Products section */}
       <section className="block products-block">
         <div className="container">
@@ -100,6 +90,16 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Full-bleed banner */}
+      <section className={styles['home-banner']} aria-label="Nygjutet gods i verkstaden">
+        <Figure
+          image={images['hero/gjutgods']}
+          alt="Nygjutna änglar sitter kvar på gjutkanalerna i formlådorna."
+          ratio="banner"
+          sizes="100vw"
+        />
       </section>
 
       <InstagramFeed />

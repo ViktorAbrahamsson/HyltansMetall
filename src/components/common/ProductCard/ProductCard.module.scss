@@ -8,8 +8,20 @@
   overflow: hidden;
   transition: border-color v.$transition-fast;
 
-  &:hover {
+  // Photo link (the site's hover language, main.scss): the photo zooms
+  // slightly, as an Instagram post does, the frame turns bronze and the title
+  // bronze-deep. Keyboard focus on the card's link shows the same.
+  &:hover,
+  &:has(.card__link:focus-visible) {
     border-color: v.$color-bronze;
+
+    :global(.fig__img) {
+      transform: scale(1.04);
+    }
+
+    .card__title {
+      color: v.$color-bronze-deep;
+    }
   }
 }
 
@@ -22,14 +34,10 @@
   color: inherit;
   text-decoration: none;
 
-  @include m.focus-ring(#B07A2E);
-
-  // The link fills the card, and .card clips with overflow:hidden, so the
-  // mixin's outset ring was drawn outside the card and never shown — the card
-  // looked unfocusable even though it was in the tab order. Inset it instead.
-  &:focus-visible {
-    outline-offset: -3px;
-  }
+  // The link fills the card, and .card clips with overflow:hidden, so an
+  // outset ring was drawn outside the card and never shown — the card looked
+  // unfocusable even though it was in the tab order. Inset instead.
+  @include m.focus-ring(#B07A2E, -4px);
 }
 
 // ─── Media ───────────────────────────────────────────────────────────────────
@@ -59,6 +67,7 @@
   display: flex;
   align-items: flex-start;
   margin-bottom: v.$space-3;
+  transition: color v.$transition-base;
 }
 
 // ─── Description ─────────────────────────────────────────────────────────────

@@ -34,7 +34,9 @@ export default function Hero() {
       <div className={`container ${styles['hero__content']}`}>
         <p className="label">Gjuteri · Gnosjö</p>
         <h1 className={styles['hero__heading']}>
-          Hyltans <span className="molten">Metall AB</span>
+          {/* No-break space: "Metall AB" (the gold part) wraps as one unit, so
+              "AB" never ends up alone on a line. */}
+          Hyltans <span className="molten">{'Metall AB'}</span>
         </h1>
         <p className={styles['hero__tagline']}>
           Sandgjutning i brons och mässing.

@@ -89,14 +89,21 @@
   gap: v.$space-1;
 }
 
+// Dark-background text link (the site's hover language, main.scss): brightens
+// to cream with a bronze-light underline. Not a colour change to bronze, which
+// is how the current page is marked.
 .footer__nav-link {
   font-size: v.$font-size-sm;
   color: v.$color-cream-soft;
-  text-decoration: none;
-  transition: color v.$transition-base;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: color v.$transition-base, text-decoration-color v.$transition-base;
 
-  &:hover {
-    color: v.$color-bronze-light;
+  &:hover,
+  &:focus-visible {
+    color: v.$color-cream;
+    text-decoration-color: v.$color-bronze-light;
   }
 
   @include m.focus-ring(#D9A24B);
@@ -116,24 +123,27 @@
   gap: 0.25rem;
 }
 
-// align-self keeps the link as wide as its text, not the whole column.
-.contact__email {
-  font-size: v.$font-size-sm;
-  color: v.$color-bronze-light;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  margin-bottom: v.$space-2;
-  align-self: flex-start;
-}
-
-// Same look as the e-mail link above it; tel: opens the dialler on phones.
+// E-mail and phone (tel: opens the dialler on phones). Bronze and underlined
+// at rest, so they read as contact links; on hover the text brightens to
+// cream over the bronze underline — the same "brighten + bronze underline"
+// as the other footer links. Until Nov 2026 their only hover was a global
+// rule setting the bronze they already had, so nothing changed.
+// align-self keeps each link as wide as its text, not the whole column.
+.contact__email,
 .contact__phone {
   font-size: v.$font-size-sm;
   color: v.$color-bronze-light;
   text-decoration: underline;
+  text-decoration-color: v.$color-bronze-light;
   text-underline-offset: 3px;
   margin-bottom: v.$space-2;
   align-self: flex-start;
+  transition: color v.$transition-base;
+
+  &:hover,
+  &:focus-visible {
+    color: v.$color-cream;
+  }
 
   @include m.focus-ring(#D9A24B);
 }
@@ -151,7 +161,9 @@
   color: v.$color-cream;
   transition: color v.$transition-base;
 
-  &:hover {
+  // Icon control: the icon turns bronze.
+  &:hover,
+  &:focus-visible {
     color: v.$color-bronze-light;
   }
 

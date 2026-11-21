@@ -57,11 +57,16 @@
 }
 
 // ─── Focus ring ──────────────────────────────────────────────────────────────
+// The one keyboard-focus style on the site: a 2px ring 3px outside the
+// element. #B07A2E (bronze) on light backgrounds, #D9A24B (bronze-light) on
+// dark ones. Pass $offset: -4px for an element inside something that clips
+// (a card, a scrolling row, a full-width menu row): an outside ring would be
+// cut off there and the element would look unfocusable.
 // Literal colors to avoid circular @use with variables.scss.
-@mixin focus-ring($color: #B07A2E) {
+@mixin focus-ring($color: #B07A2E, $offset: 3px) {
   &:focus-visible {
     outline: 2px solid $color;
-    outline-offset: 3px;
+    outline-offset: $offset;
   }
 }
 

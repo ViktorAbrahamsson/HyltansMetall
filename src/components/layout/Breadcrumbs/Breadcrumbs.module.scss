@@ -72,7 +72,9 @@
   border-bottom: 1px solid v.$color-line;
   transition: color v.$transition-fast, border-color v.$transition-fast;
 
-  &:hover {
+  // Light-background text link: text and underline turn bronze-deep.
+  &:hover,
+  &:focus-visible {
     // $color-bronze is only 2.87:1 on sand; the deep tone clears AA.
     color: v.$color-bronze-deep;
     border-color: v.$color-bronze-deep;

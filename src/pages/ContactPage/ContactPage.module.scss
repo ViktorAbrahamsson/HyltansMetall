@@ -93,7 +93,9 @@
   text-underline-offset: 0.2em;
   transition: color v.$transition-base;
 
-  &:hover {
+  // Light-background text link: text and underline turn bronze-deep.
+  &:hover,
+  &:focus-visible {
     color: v.$color-bronze-deep;
   }
 
@@ -144,18 +146,19 @@
   font-size: v.$font-size-md;
   color: v.$color-ink;
   width: 100%;
-  transition: border-color v.$transition-base, box-shadow v.$transition-base;
+  transition: border-color v.$transition-base;
   outline: none;
   appearance: none;
 
-  &:hover {
+  // Form field: bronze border on hover and focus, plus the site's one focus
+  // ring (it used to be a soft glow of its own). Text fields match
+  // :focus-visible on a click too, so the ring shows however they got focus.
+  &:hover,
+  &:focus {
     border-color: v.$color-bronze;
   }
 
-  &:focus {
-    border-color: v.$color-bronze;
-    box-shadow: 0 0 0 3px rgba(176, 122, 46, 0.15);
-  }
+  @include m.focus-ring(#B07A2E);
 
   &::placeholder {
     color: v.$color-ink-soft;

@@ -70,6 +70,15 @@
   letter-spacing: -0.02em;
   line-height: 1.1;
   color: v.$color-cream;
+  transition: color v.$transition-base;
+
+  // The home link: the name warms to bronze (an underline under a logo
+  // would look like a stray rule). Three classes, to outrank
+  // `.header .logo__name`.
+  .logo:hover &,
+  .logo:focus-visible & {
+    color: v.$color-bronze-light;
+  }
 }
 
 .logo__tagline {
@@ -246,14 +255,9 @@
     }
   }
 
-  @include m.focus-ring(#D9A24B);
-
-  // These rows span the panel's full width, so the mixin's outset ring spilled
-  // over the panel's edge. Inset, it frames the row the way the ring frames a
-  // .btn.
-  &:focus-visible {
-    outline-offset: -4px;
-  }
+  // These rows span the panel's full width, so an outset ring spilled over
+  // the panel's edge. Inset, it frames the row the way the ring frames a .btn.
+  @include m.focus-ring(#D9A24B, -4px);
 }
 
 .nav__submenu-link--active {
@@ -282,8 +286,16 @@
   padding-bottom: 4px;
   transition: color v.$transition-base;
 
-  &:hover {
+  // Dark-background text link: brightens to cream and a bronze-light
+  // underline grows in from the left. (The underline was drawn but never
+  // shown, so the only hover was a barely visible 82% -> 100% white.)
+  &:hover,
+  &:focus-visible {
     color: v.$color-cream;
+
+    &::after {
+      width: 100%;
+    }
   }
 
   &::after {
@@ -303,16 +315,14 @@
 // Active page is marked in bronze rather than with an underline. Doubled-up
 // selector because `.header .nav__link` also sets `color` with two classes and
 // would otherwise win.
+// On hover it keeps its bronze and gets the same underline as the others.
 .nav__link.nav__link--active {
   color: v.$color-bronze-light;
   font-weight: 600;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: v.$color-bronze-light;
-  }
-
-  &::after {
-    width: 0;
   }
 }
 
@@ -335,7 +345,8 @@
   transition: border-color v.$transition-base, background-color v.$transition-base;
   @include m.focus-ring(#D9A24B);
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     border-color: v.$color-bronze-light;
   }
 
@@ -432,10 +443,17 @@
   display: flex;
   align-items: baseline;
   gap: v.$space-2;
-  transition: color v.$transition-base;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color v.$transition-base, text-decoration-color v.$transition-base;
 
-  &:hover {
-    color: v.$color-bronze-light;
+  // Dark-background text link: a bronze-light underline. The text is already
+  // cream, and bronze text marks the current page.
+  &:hover,
+  &:focus-visible {
+    text-decoration-color: v.$color-bronze-light;
   }
 
   @include m.focus-ring(#D9A24B);
@@ -444,7 +462,8 @@
 .overlay__link--active {
   color: v.$color-bronze-light;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: v.$color-bronze-light;
   }
 }
@@ -466,11 +485,15 @@
   font-size: v.$font-size-sm;
   letter-spacing: 0.04em;
   color: v.$color-cream-soft;
-  text-decoration: none;
-  transition: color v.$transition-fast;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: color v.$transition-fast, text-decoration-color v.$transition-fast;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: v.$color-cream;
+    text-decoration-color: v.$color-bronze-light;
   }
 
   @include m.focus-ring(#D9A24B);

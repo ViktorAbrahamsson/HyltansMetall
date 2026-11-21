@@ -23,10 +23,16 @@
   text-decoration: underline;
   transform: translateY(-200%);
 
+  // :focus, not just :focus-visible: it must appear however it got focus.
+  // Same ring as everywhere else; bronze-light, since it shows over the header.
   &:focus {
     transform: none;
-    outline: 2px solid #B07A2E;
-    outline-offset: 2px;
+    outline: 2px solid #D9A24B;
+    outline-offset: 3px;
+  }
+
+  &:hover {
+    color: v.$color-bronze-deep;
   }
 }
 
@@ -180,15 +186,36 @@ h3 { font-size: v.$font-size-display-3; }
 p { max-width: 70ch; }
 
 // ─── Links ───────────────────────────────────────────────────────────────────
+// ─── Hover language ──────────────────────────────────────────────────────────
+// Every hoverable element shows it, the same way across the site, and
+// keyboard focus (:focus-visible) shows the same state plus the focus ring:
+// - Text links on dark (header, footer, mobile menu): text brightens to cream
+//   and a bronze-light underline appears.
+// - Text links on light (breadcrumbs, contact details): text and underline
+//   turn bronze-deep (AA on sand; plain bronze is not).
+// - Buttons (.btn): the brass wipe below.
+// - Photo links (product cards, Instagram posts): the photo zooms slightly.
+// - Icon controls (menu button, arrows, dots, social icon, scroll cue): the
+//   icon or border turns bronze.
+// - Form fields: bronze border.
+// Each component writes its own hover; the default below is only for a bare
+// link (bronze-deep, darkening to ink; cream on dark), at zero specificity
+// (:where) so it never overrides a component's — the old `a:hover` outranked
+// single-class rules and was the only "hover" some links had, set to the
+// colour they already were.
 a {
-  color: v.$color-bronze;
+  color: v.$color-bronze-deep;
   text-decoration: underline;
   text-underline-offset: 3px;
-  transition: color v.$transition-base;
+  transition: color v.$transition-base, text-decoration-color v.$transition-base;
+}
 
-  &:hover {
-    color: v.$color-bronze-light;
-  }
+:where(a:hover) {
+  color: v.$color-ink;
+}
+
+:where(.block--dark a:hover) {
+  color: v.$color-cream;
 }
 
 // ─── Motif classes ───────────────────────────────────────────────────────────
@@ -274,7 +301,11 @@ a {
     color: v.$color-coal;
   }
 
-  @include m.focus-ring(#D9A24B);
+  @include m.focus-ring(#B07A2E);
+
+  .block--dark & {
+    @include m.focus-ring(#D9A24B);
+  }
 }
 
 .btn--ghost {
@@ -295,7 +326,7 @@ a {
     color: v.$color-coal;
   }
 
-  @include m.focus-ring(#D9A24B);
+  @include m.focus-ring(#B07A2E);
 
   // Exception: the ghost button on a dark section stays flat and transparent.
   .block--dark & {
@@ -330,19 +361,21 @@ a {
 
 // ─── Section blocks ──────────────────────────────────────────────────────────
 // Two blocks meet with both paddings between them, so the gap a reader sees is
-// double this. 6rem on a phone left ~190px of blank between sections.
+// double this: 96px on a phone, 128px on a tablet, 192px on a desktop.
+// (Was 4/5/8rem until Nov 2026, too airy; 6rem on a phone, earlier still,
+// left ~190px of blank between sections.)
 .block {
-  padding-top: v.$space-8;
-  padding-bottom: v.$space-8;
+  padding-top: v.$space-6;
+  padding-bottom: v.$space-6;
 
   @include m.respond-to(md) {
-    padding-top: v.$space-10;
-    padding-bottom: v.$space-10;
+    padding-top: v.$space-8;
+    padding-bottom: v.$space-8;
   }
 
   @include m.respond-to(lg) {
-    padding-top: v.$space-16;
-    padding-bottom: v.$space-16;
+    padding-top: v.$space-12;
+    padding-bottom: v.$space-12;
   }
 }
 

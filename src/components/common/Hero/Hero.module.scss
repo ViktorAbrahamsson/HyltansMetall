@@ -69,16 +69,27 @@
 // ─── Ghost numeral ───────────────────────────────────────────────────────────
 // Kept fully inside the hero. The section clips its overflow, so bleeding the
 // numeral off the bottom edge cut the digits in half on small screens.
-.hero__ghost {
+// Qualified with the element: the global .ghost-numeral sets font-size with
+// equal specificity and comes later in the CSS, so it would otherwise win.
+span.hero__ghost {
   position: absolute;
   right: 1.5rem;
-  bottom: v.$space-6;
+  // Phones: small enough to sit in the bottom-right corner, inside the
+  // content's 8rem bottom padding (6.5rem type is an ~211 x 88px box, set
+  // 1.5rem up from the edge), instead of the global 10rem minimum, which made
+  // it ~325px wide and ran it up behind the buttons. The hero centres its
+  // content in at least the full screen height, so taller phones only get
+  // more room.
+  font-size: 6.5rem;
+  bottom: v.$space-3;
   z-index: 1;
   line-height: 0.85;
   animation: hero-ghost-breathe 9s ease-in-out infinite;
 
   @include m.respond-to(md) {
+    font-size: clamp(10rem, 22vw, 24rem);
     right: 2rem;
+    bottom: v.$space-6;
   }
 
   @include m.respond-to(lg) {
@@ -114,6 +125,10 @@
   margin-top: v.$space-2;
   line-height: 0.95;
   text-transform: uppercase;
+  // The company name never hyphenates: the global heading safety net
+  // (hyphens: auto) split it as "ME- / TALL" on some phones. Its words are
+  // short enough to wrap whole; overflow-wrap still catches a true overflow.
+  hyphens: manual;
 
   // shimmer sweep across the molten gradient word
   :global(.molten) {
@@ -185,10 +200,12 @@
   font: inherit;
   cursor: pointer;
   pointer-events: auto;
-  transition: opacity v.$transition-base;
 
-  &:hover {
-    opacity: 0.8;
+  // Icon control: the label turns bronze to match the mark below it (it used
+  // to fade to 80%, the only fade-on-hover on the site).
+  &:hover .hero__scroll-cue-label,
+  &:focus-visible .hero__scroll-cue-label {
+    color: v.$color-bronze-light;
   }
 
   @include m.focus-ring(#D9A24B);
@@ -203,6 +220,7 @@
   color: v.$color-cream-soft;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
+  transition: color v.$transition-base;
 }
 
 // Line and arrowhead pulse as one element so they cannot drift out of step.
