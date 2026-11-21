@@ -73,10 +73,12 @@ interface SeoProps {
  * server they come out first in the rendered HTML, where
  * src/entry-server.tsx picks them up for the prerendered <head>.
  *
- * Canonical, og:url and og:image always point at the live domain
- * (`company.siteUrl`), so the preview deploy never competes with the real
- * site. A noindex page (the 404) gets neither a canonical nor an og:url: it
- * has no address of its own worth sharing.
+ * Canonical, og:url and og:image use `company.siteUrl`, the Vercel
+ * project's production domain at build time (see vite.config.ts): the
+ * vercel.app address on the preview, so share previews there load their
+ * images (the noindex header keeps it out of search), and hyltansmetall.se
+ * once that domain is added. A noindex page (the 404) gets neither a
+ * canonical nor an og:url: it has no address of its own worth sharing.
  */
 export default function Seo({ title, description = DEFAULT_DESCRIPTION, noindex = false }: SeoProps) {
   const { pathname } = useLocation();

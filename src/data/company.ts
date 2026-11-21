@@ -10,12 +10,15 @@ export const company = {
   phoneHref: '+46709104438',
   website: 'hyltansmetall.se',
   /**
-   * The live site's origin, no trailing slash. Canonical URLs, og:url and the
-   * sitemap all use it. Must match the domain the site is served from at
-   * launch (with or without www) — also in public/robots.txt,
-   * public/sitemap.xml and the JSON-LD in index.html.
+   * The site's public origin, no trailing slash: canonical URLs, og:url,
+   * og:image and the breadcrumb data use it. Set at build time in
+   * vite.config.ts — the Vercel project's production domain (the vercel.app
+   * address until hyltansmetall.se is added there), otherwise
+   * https://hyltansmetall.se. The static files that name the live domain by
+   * hand (public/robots.txt, public/sitemap.xml, public/llms.txt, the JSON-LD
+   * in index.html) stay on https://hyltansmetall.se.
    */
-  siteUrl: 'https://hyltansmetall.se',
+  siteUrl: __SITE_URL__,
   // What the contact-page map searches Google Maps for.
   mapQuery: 'Hyltan 40, 335 91 Gnosjö',
   description:
