@@ -4,7 +4,7 @@ import Figure from '@/components/common/Figure/Figure';
 import styles from './ProductCard.module.scss';
 
 /** Widths of the three-column grid on /produkter, which is the common case. */
-const DEFAULT_SIZES = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw';
+const DEFAULT_SIZES = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, calc(100vw - 3rem)';
 
 interface ProductCardProps {
   product: ProductCategory;

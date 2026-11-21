@@ -98,7 +98,7 @@ export default function CustomOrdersPage() {
             image={images['custom/beslag-serie']}
             alt="En större serie små polerade beslag och detaljer i mässing."
             ratio="landscape"
-            sizes="(min-width: 1024px) 45vw, 100vw"
+            sizes="(min-width: 1024px) 45vw, calc(100vw - 3rem)"
             className={styles['custom-orders__split-media']}
           />
         </div>
@@ -119,7 +119,7 @@ export default function CustomOrdersPage() {
             image={images['process/01-modell']}
             alt="En modell läggs på plats i gjutlådan inför formningen."
             ratio="landscape"
-            sizes="(min-width: 1024px) 45vw, 100vw"
+            sizes="(min-width: 1024px) 45vw, calc(100vw - 3rem)"
             className={styles['custom-orders__split-media']}
           />
         </div>

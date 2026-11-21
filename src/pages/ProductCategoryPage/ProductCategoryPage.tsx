@@ -8,16 +8,16 @@ import WorkGallery from '@/components/common/WorkGallery/WorkGallery';
 import { getCategoryBySlug, productCategories } from '@/data/products';
 import styles from './ProductCategoryPage.module.scss';
 
-const ITEM_SIZES = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw';
+const ITEM_SIZES = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, calc(100vw - 3rem)';
 
 // The featured photo: ~60% of the 1200px container from lg up.
-const FEATURE_SIZES = '(min-width: 1200px) 680px, (min-width: 1024px) 57vw, 100vw';
+const FEATURE_SIZES = '(min-width: 1200px) 680px, (min-width: 1024px) 57vw, calc(100vw - 3rem)';
 
 // Two photos inside .container-sm: 836px of content split by a 2.5rem gap.
-const GALLERY_SIZES = '(min-width: 900px) 400px, (min-width: 768px) 50vw, 100vw';
+const GALLERY_SIZES = '(min-width: 900px) 400px, (min-width: 768px) 50vw, calc(100vw - 3rem)';
 
 // Two cards inside .container-sm: 836px of content split by a 2.5rem gap.
-const MORE_SIZES = '(min-width: 900px) 400px, (min-width: 768px) 50vw, 100vw';
+const MORE_SIZES = '(min-width: 900px) 400px, (min-width: 768px) 50vw, calc(100vw - 3rem)';
 
 // Most categories are made to order. One that is not carries its own ctaText.
 const DEFAULT_CTA_TEXT =

@@ -95,7 +95,7 @@ export default function ManufacturingPage() {
                   image={step.image}
                   alt={step.imageAlt}
                   ratio="landscape"
-                  sizes="(min-width: 1200px) 530px, (min-width: 1024px) 44vw, (min-width: 768px) 60vw, 100vw"
+                  sizes="(min-width: 1200px) 530px, (min-width: 1024px) 44vw, (min-width: 768px) 60vw, calc(100vw - 3rem)"
                   priority={i === 0}
                   className={styles['mfg-step__media']}
                 />

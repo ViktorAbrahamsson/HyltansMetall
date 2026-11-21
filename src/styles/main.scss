@@ -204,6 +204,17 @@ a {
   font-size: clamp(10rem, 22vw, 24rem);
   font-weight: 500;
   line-height: 0.85;
+  // A box that does not depend on the font. Every ghost numeral is anchored by
+  // its right edge, and as a shrink-to-fit box its left edge jumped when
+  // Fraunces replaced the fallback (on Android and Linux, without Georgia, the
+  // fallback "1926" is ~10% wider): PageSpeed measured CLS 0.088 from the
+  // hero's numeral alone. Sized in em to "1926" in Fraunces 500 (2.025em), so
+  // it renders exactly as before; a wider fallback just spills to the left
+  // without moving anything. Holds four digits; resize it for other text.
+  width: 2.03em;
+  height: 0.85em;
+  text-align: right;
+  white-space: nowrap;
   color: transparent;
   -webkit-text-stroke: 1px rgba(176, 122, 46, 0.35);
   pointer-events: none;

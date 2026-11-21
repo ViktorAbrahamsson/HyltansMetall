@@ -36,14 +36,14 @@ interface WorkGalleryProps {
 
 /** The srcset hint for each tile, matching its width in the grid. */
 const TILE_SIZES: Record<WorkTile, string> = {
-  portrait: '(min-width: 1200px) 370px, (min-width: 768px) 31vw, 46vw',
-  landscape: '(min-width: 1200px) 760px, (min-width: 768px) 64vw, 100vw',
-  half: '(min-width: 1200px) 565px, (min-width: 768px) 48vw, 100vw',
-  full: '(min-width: 1200px) 1140px, 100vw',
+  portrait: '(min-width: 1200px) 370px, (min-width: 768px) 31vw, calc((100vw - 4.5rem) / 2)',
+  landscape: '(min-width: 1200px) 760px, (min-width: 768px) 64vw, calc(100vw - 3rem)',
+  half: '(min-width: 1200px) 565px, (min-width: 768px) 48vw, calc(100vw - 3rem)',
+  full: '(min-width: 1200px) 1140px, calc(100vw - 3rem)',
 };
 
 /** A solo portrait is full width on phones, so it needs a bigger candidate. */
-const SOLO_SIZES = '(min-width: 1200px) 370px, (min-width: 768px) 31vw, 100vw';
+const SOLO_SIZES = '(min-width: 1200px) 370px, (min-width: 768px) 31vw, calc(100vw - 3rem)';
 
 /** Photos only, with or without a heading — the alt text says what each is. */
 export default function WorkGallery({

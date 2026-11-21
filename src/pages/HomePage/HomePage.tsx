@@ -25,7 +25,7 @@ const strip = [
 ];
 
 // Card width when fewer than three categories share the row.
-const TWO_UP_SIZES = '(min-width: 1200px) 570px, (min-width: 768px) 48vw, 100vw';
+const TWO_UP_SIZES = '(min-width: 1200px) 570px, (min-width: 768px) 48vw, calc(100vw - 3rem)';
 
 export default function HomePage() {
   const featuredProducts = productCategories.slice(0, 3);
@@ -54,7 +54,7 @@ export default function HomePage() {
               image={images['workshop/gjutarfigur']}
               alt="Målad figur av en gjutare i läderförkläde som häller smält metall i en form."
               ratio="portrait"
-              sizes="(min-width: 1024px) 280px, (min-width: 640px) 320px, 100vw"
+              sizes="(min-width: 1024px) 280px, (min-width: 368px) 320px, calc(100vw - 3rem)"
               className={styles['home-about__media']}
             />
             <span
@@ -115,7 +115,7 @@ export default function HomePage() {
                 image={item.image}
                 alt={item.alt}
                 ratio="landscape"
-                sizes="(min-width: 768px) 33vw, 100vw"
+                sizes="(min-width: 768px) 33vw, calc(100vw - 3rem)"
               />
             ))}
           </div>

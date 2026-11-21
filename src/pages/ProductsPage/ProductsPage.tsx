@@ -48,7 +48,7 @@ const otherProducts: WorkPiece[] = [
 ];
 
 // Card width when fewer than three categories share the row.
-const TWO_UP_SIZES = '(min-width: 1200px) 570px, (min-width: 768px) 48vw, 100vw';
+const TWO_UP_SIZES = '(min-width: 1200px) 570px, (min-width: 768px) 48vw, calc(100vw - 3rem)';
 
 export default function ProductsPage() {
   return (

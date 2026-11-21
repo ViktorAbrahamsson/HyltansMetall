@@ -5,7 +5,7 @@ import { images } from '@/assets/images/manifest';
 import styles from './AboutPage.module.scss';
 
 /** Sections here sit inside .container-sm, which caps out at 900px. */
-const ABOUT_SIZES = '(min-width: 900px) 900px, 100vw';
+const ABOUT_SIZES = '(min-width: 900px) 900px, calc(100vw - 3rem)';
 
 export default function AboutPage() {
   return (

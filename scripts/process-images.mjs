@@ -32,11 +32,14 @@ const BLUR_WIDTH = 20;
  * Target aspect ratios and the widths rendered for each. Widths above the
  * source's own width are skipped so nothing is upscaled.
  */
+// The 640 rung serves the common phone case: a photo across the content width
+// (~342-364 CSS px) at 1.75-2x density needs ~600-640px, and the ladder used
+// to jump from 400 straight to 800 (PageSpeed flagged ~240 KB extra on mobile).
 const SHAPES = {
-  portrait: { ratio: 4 / 5, widths: [400, 800] },
-  landscape: { ratio: 3 / 2, widths: [400, 800, 1200] },
-  square: { ratio: 1, widths: [400, 800, 1200] },
-  strip: { ratio: 3 / 2, widths: [400, 800, 1200] },
+  portrait: { ratio: 4 / 5, widths: [400, 640, 800] },
+  landscape: { ratio: 3 / 2, widths: [400, 640, 800, 1200] },
+  square: { ratio: 1, widths: [400, 640, 800, 1200] },
+  strip: { ratio: 3 / 2, widths: [400, 640, 800, 1200] },
   wide: { ratio: 16 / 9, widths: [800, 1400, 1800] },
   banner: { ratio: 3.2, widths: [800, 1200, 1600] },
   // No ratio: keeps the source's own proportions and its transparency. For

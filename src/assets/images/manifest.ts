@@ -2,111 +2,149 @@
 // Re-run: INBOX=<path> node scripts/process-images.mjs
 
 import products_ljusstakar_400 from './products/ljusstakar-400.webp';
+import products_ljusstakar_640 from './products/ljusstakar-640.webp';
 import products_ljusstakar_800 from './products/ljusstakar-800.webp';
 import products_ljusstakar_1200 from './products/ljusstakar-1200.webp';
 import products_tomtar_kort_400 from './products/tomtar-kort-400.webp';
+import products_tomtar_kort_640 from './products/tomtar-kort-640.webp';
 import products_tomtar_kort_800 from './products/tomtar-kort-800.webp';
 import products_tomtar_kort_1200 from './products/tomtar-kort-1200.webp';
 import products_anglar_kort_400 from './products/anglar-kort-400.webp';
+import products_anglar_kort_640 from './products/anglar-kort-640.webp';
 import products_anglar_kort_800 from './products/anglar-kort-800.webp';
 import products_anglar_kort_1200 from './products/anglar-kort-1200.webp';
 import products_tomtefar_400 from './products/tomtefar-400.webp';
+import products_tomtefar_640 from './products/tomtefar-640.webp';
 import products_tomtefar_800 from './products/tomtefar-800.webp';
 import products_tomtemor_400 from './products/tomtemor-400.webp';
+import products_tomtemor_640 from './products/tomtemor-640.webp';
 import products_tomtemor_800 from './products/tomtemor-800.webp';
 import products_tomtenisse_400 from './products/tomtenisse-400.webp';
+import products_tomtenisse_640 from './products/tomtenisse-640.webp';
 import products_tomtenisse_800 from './products/tomtenisse-800.webp';
 import products_tomtar_familj_400 from './products/tomtar-familj-400.webp';
+import products_tomtar_familj_640 from './products/tomtar-familj-640.webp';
 import products_tomtar_familj_800 from './products/tomtar-familj-800.webp';
 import products_tomtar_paret_400 from './products/tomtar-paret-400.webp';
+import products_tomtar_paret_640 from './products/tomtar-paret-640.webp';
 import products_tomtar_paret_800 from './products/tomtar-paret-800.webp';
 import products_angel_400 from './products/angel-400.webp';
+import products_angel_640 from './products/angel-640.webp';
 import products_angel_800 from './products/angel-800.webp';
 import products_angel_1200 from './products/angel-1200.webp';
 import products_anglar_trio_400 from './products/anglar-trio-400.webp';
+import products_anglar_trio_640 from './products/anglar-trio-640.webp';
 import products_anglar_trio_800 from './products/anglar-trio-800.webp';
 import products_anglar_trio_1200 from './products/anglar-trio-1200.webp';
 import products_anglar_verkstad_400 from './products/anglar-verkstad-400.webp';
+import products_anglar_verkstad_640 from './products/anglar-verkstad-640.webp';
 import products_anglar_verkstad_800 from './products/anglar-verkstad-800.webp';
 import products_anglar_verkstad_1200 from './products/anglar-verkstad-1200.webp';
 import products_angel_sida_400 from './products/angel-sida-400.webp';
+import products_angel_sida_640 from './products/angel-sida-640.webp';
 import products_angel_sida_800 from './products/angel-sida-800.webp';
 import products_angel_snett_400 from './products/angel-snett-400.webp';
+import products_angel_snett_640 from './products/angel-snett-640.webp';
 import products_angel_snett_800 from './products/angel-snett-800.webp';
 import custom_namnskyltar_400 from './custom/namnskyltar-400.webp';
+import custom_namnskyltar_640 from './custom/namnskyltar-640.webp';
 import custom_namnskyltar_800 from './custom/namnskyltar-800.webp';
 import custom_namnskyltar_1200 from './custom/namnskyltar-1200.webp';
 import custom_namnskyltar_ra_400 from './custom/namnskyltar-ra-400.webp';
+import custom_namnskyltar_ra_640 from './custom/namnskyltar-ra-640.webp';
 import custom_namnskyltar_ra_800 from './custom/namnskyltar-ra-800.webp';
 import custom_klockor_400 from './custom/klockor-400.webp';
+import custom_klockor_640 from './custom/klockor-640.webp';
 import custom_klockor_800 from './custom/klockor-800.webp';
 import custom_klockor_1200 from './custom/klockor-1200.webp';
 import custom_plakett_400 from './custom/plakett-400.webp';
+import custom_plakett_640 from './custom/plakett-640.webp';
 import custom_plakett_800 from './custom/plakett-800.webp';
 import custom_ringar_400 from './custom/ringar-400.webp';
+import custom_ringar_640 from './custom/ringar-640.webp';
 import custom_ringar_800 from './custom/ringar-800.webp';
 import custom_beslag_400 from './custom/beslag-400.webp';
+import custom_beslag_640 from './custom/beslag-640.webp';
 import custom_beslag_800 from './custom/beslag-800.webp';
 import custom_beslag_1200 from './custom/beslag-1200.webp';
 import custom_beslag_serie_400 from './custom/beslag-serie-400.webp';
+import custom_beslag_serie_640 from './custom/beslag-serie-640.webp';
 import custom_beslag_serie_800 from './custom/beslag-serie-800.webp';
 import custom_beslag_serie_1200 from './custom/beslag-serie-1200.webp';
 import custom_sweet_sixteen_800 from './custom/sweet-sixteen-800.webp';
 import custom_sweet_sixteen_1400 from './custom/sweet-sixteen-1400.webp';
 import custom_sweet_sixteen_1800 from './custom/sweet-sixteen-1800.webp';
 import custom_kalmar_400 from './custom/kalmar-400.webp';
+import custom_kalmar_640 from './custom/kalmar-640.webp';
 import custom_kalmar_800 from './custom/kalmar-800.webp';
 import custom_kalmar_1200 from './custom/kalmar-1200.webp';
 import custom_pendyl_400 from './custom/pendyl-400.webp';
+import custom_pendyl_640 from './custom/pendyl-640.webp';
 import custom_pendyl_800 from './custom/pendyl-800.webp';
 import custom_kraftor_400 from './custom/kraftor-400.webp';
+import custom_kraftor_640 from './custom/kraftor-640.webp';
 import custom_kraftor_800 from './custom/kraftor-800.webp';
 import custom_kraftor_ask_400 from './custom/kraftor-ask-400.webp';
+import custom_kraftor_ask_640 from './custom/kraftor-ask-640.webp';
 import custom_kraftor_ask_800 from './custom/kraftor-ask-800.webp';
 import custom_kraftor_ask_1200 from './custom/kraftor-ask-1200.webp';
 import custom_faglar_mossa_400 from './custom/faglar-mossa-400.webp';
+import custom_faglar_mossa_640 from './custom/faglar-mossa-640.webp';
 import custom_faglar_mossa_800 from './custom/faglar-mossa-800.webp';
 import custom_faglar_mossa_960 from './custom/faglar-mossa-960.webp';
 import custom_faglar_rad_400 from './custom/faglar-rad-400.webp';
+import custom_faglar_rad_640 from './custom/faglar-rad-640.webp';
 import custom_faglar_rad_800 from './custom/faglar-rad-800.webp';
 import custom_faglar_rad_1200 from './custom/faglar-rad-1200.webp';
 import process_01_modell_400 from './process/01-modell-400.webp';
+import process_01_modell_640 from './process/01-modell-640.webp';
 import process_01_modell_800 from './process/01-modell-800.webp';
 import process_01_modell_900 from './process/01-modell-900.webp';
 import process_02_sandpackning_400 from './process/02-sandpackning-400.webp';
 import process_02_sandpackning_622 from './process/02-sandpackning-622.webp';
 import process_03_smaltning_400 from './process/03-smaltning-400.webp';
+import process_03_smaltning_640 from './process/03-smaltning-640.webp';
 import process_03_smaltning_800 from './process/03-smaltning-800.webp';
 import process_03_smaltning_1200 from './process/03-smaltning-1200.webp';
 import process_04_gjutning_400 from './process/04-gjutning-400.webp';
+import process_04_gjutning_640 from './process/04-gjutning-640.webp';
 import process_04_gjutning_800 from './process/04-gjutning-800.webp';
 import process_04_gjutning_1200 from './process/04-gjutning-1200.webp';
 import process_05_rensning_400 from './process/05-rensning-400.webp';
+import process_05_rensning_640 from './process/05-rensning-640.webp';
 import process_05_rensning_800 from './process/05-rensning-800.webp';
 import process_05_rensning_1200 from './process/05-rensning-1200.webp';
 import workshop_gjutarfigur_400 from './workshop/gjutarfigur-400.webp';
+import workshop_gjutarfigur_640 from './workshop/gjutarfigur-640.webp';
 import workshop_gjutarfigur_800 from './workshop/gjutarfigur-800.webp';
 import workshop_generationer_400 from './workshop/generationer-400.webp';
+import workshop_generationer_640 from './workshop/generationer-640.webp';
 import workshop_generationer_800 from './workshop/generationer-800.webp';
 import workshop_generationer_1200 from './workshop/generationer-1200.webp';
 import workshop_larling_400 from './workshop/larling-400.webp';
+import workshop_larling_640 from './workshop/larling-640.webp';
 import workshop_larling_800 from './workshop/larling-800.webp';
 import workshop_larling_1200 from './workshop/larling-1200.webp';
 import workshop_deglar_400 from './workshop/deglar-400.webp';
+import workshop_deglar_640 from './workshop/deglar-640.webp';
 import workshop_deglar_800 from './workshop/deglar-800.webp';
 import workshop_deglar_1200 from './workshop/deglar-1200.webp';
 import workshop_kol_400 from './workshop/kol-400.webp';
 import workshop_kol_622 from './workshop/kol-622.webp';
 import workshop_polerat_400 from './workshop/polerat-400.webp';
+import workshop_polerat_640 from './workshop/polerat-640.webp';
 import workshop_polerat_800 from './workshop/polerat-800.webp';
 import workshop_polerat_1200 from './workshop/polerat-1200.webp';
 import history_arkiv_gjutare_400 from './history/arkiv-gjutare-400.webp';
+import history_arkiv_gjutare_640 from './history/arkiv-gjutare-640.webp';
 import history_arkiv_gjutare_800 from './history/arkiv-gjutare-800.webp';
 import history_arkiv_gjutare_1200 from './history/arkiv-gjutare-1200.webp';
 import history_national_geographic_400 from './history/national-geographic-400.webp';
+import history_national_geographic_640 from './history/national-geographic-640.webp';
 import history_national_geographic_800 from './history/national-geographic-800.webp';
 import history_national_geographic_1200 from './history/national-geographic-1200.webp';
 import place_fasad_400 from './place/fasad-400.webp';
+import place_fasad_640 from './place/fasad-640.webp';
 import place_fasad_800 from './place/fasad-800.webp';
 import place_fasad_1200 from './place/fasad-1200.webp';
 import place_natt_800 from './place/natt-800.webp';
@@ -132,140 +170,140 @@ export interface ResponsiveImage {
 export const images = {
   'products/ljusstakar': {
     src: products_ljusstakar_1200,
-    srcSet: `${products_ljusstakar_400} 400w, ${products_ljusstakar_800} 800w, ${products_ljusstakar_1200} 1200w`,
+    srcSet: `${products_ljusstakar_400} 400w, ${products_ljusstakar_640} 640w, ${products_ljusstakar_800} 800w, ${products_ljusstakar_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAwCdASoUAA0APxFysFAsJqSisAgBgCIJQBYdg6f3UXuCgD+ougAA/svmcF5mbfTm/+vY4klPeoOxdjIjwGAhd6SHRgXq1YMZcIfSt2kRVUja/FGxJhivdQVZlVPgAAA=',
   },
   'products/tomtar-kort': {
     src: products_tomtar_kort_1200,
-    srcSet: `${products_tomtar_kort_400} 400w, ${products_tomtar_kort_800} 800w, ${products_tomtar_kort_1200} 1200w`,
+    srcSet: `${products_tomtar_kort_400} 400w, ${products_tomtar_kort_640} 640w, ${products_tomtar_kort_800} 800w, ${products_tomtar_kort_1200} 1200w`,
     width: 1200,
     height: 1200,
     blur: 'data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAABQBACdASoUABQAPxF6sFKsJ6QiqA1RgCIJYgDDNAdD9GHKcVGzmmnSYYwAAP2znjacTaHFHvyhCNSUMoDmMxuPhas6kU6is28P+2C0p6mSXE53qDkBc+C8u1drp2T4mqHISi1VwmW4pcnvyN08EH3UDDKErkBkvzWc9WdiDaKWDIcoK/Dk+toC2rLF19QMAAA=',
   },
   'products/anglar-kort': {
     src: products_anglar_kort_1200,
-    srcSet: `${products_anglar_kort_400} 400w, ${products_anglar_kort_800} 800w, ${products_anglar_kort_1200} 1200w`,
+    srcSet: `${products_anglar_kort_400} 400w, ${products_anglar_kort_640} 640w, ${products_anglar_kort_800} 800w, ${products_anglar_kort_1200} 1200w`,
     width: 1200,
     height: 1200,
     blur: 'data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAADwBACdASoUABQAPxF4t1MsJyWiqAqpgCIJQBftbIA2VgewFE8Jpgb3zhvc5Tk6CAAA/uL0gMXXu1auoa9tRf4CTuPvfNrCUmcTQbDNK3E9cql1bwl6T/ukpjf8Qk7SeU53Xje7A+Y/BumVjNAjMpFFCjWEf7bRwoeNRt4G7W6ekKukWqQAAAAA',
   },
   'products/tomtefar': {
     src: products_tomtefar_800,
-    srcSet: `${products_tomtefar_400} 400w, ${products_tomtefar_800} 800w`,
+    srcSet: `${products_tomtefar_400} 400w, ${products_tomtefar_640} 640w, ${products_tomtefar_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAAAQBQCdASoUABkAPxF6s1QsJ6SjKAqpgCIJagCuIagAmyFB3YhHWYPNPzWOPgDsbry2AMwFNsT17OJMTzHPuC+o4+cOoAAQ37SYWkTGolX6M4bGkxzm/VHYxw0DVbqPpGR267MI27a5bY97S2oDRxZsM4X4hJZcRIYHgNP7c5/+SuMeyjS5Yz/hVEDWFB8FE1Qyq6d0HCu6H7M0Hmst//gtjO8gUWZMiDH2AVVXQCk5UoyfiIAAAA==',
   },
   'products/tomtemor': {
     src: products_tomtemor_800,
-    srcSet: `${products_tomtemor_400} 400w, ${products_tomtemor_800} 800w`,
+    srcSet: `${products_tomtemor_400} 400w, ${products_tomtemor_640} 640w, ${products_tomtemor_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAADQBACdASoUABkAPxGAuFWsKCUjKAgBgCIJZACw7BEIuYK/d3Yw7IhR0wJJK9QOgAD+srNAUDaE5XSQ4fVNPaq6HEfHfiRJRAtBO063rjoilCKFGuDqPxnIYkUT1hYTRQrjBCol6XqBAgsq6CCTtJu1LjZURgajOdd5O2+mBtbmZurTmPA6siXBSXapU8mioTZBytxLumRQLX4KkWehjyNkO84zVvzp7YDY/zBEAAA=',
   },
   'products/tomtenisse': {
     src: products_tomtenisse_800,
-    srcSet: `${products_tomtenisse_400} 400w, ${products_tomtenisse_800} 800w`,
+    srcSet: `${products_tomtenisse_400} 400w, ${products_tomtenisse_640} 640w, ${products_tomtenisse_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAACwBACdASoUABkAPxF6s1QsJ6QjKAqpgCIJZgCuHA2KpNECB+Oa9KAYOAYYuZgAAP7D24QHIyoUD1q13q6T0L5UVPtjtwG70EfGjImSdgGXhbOIzt+33HpvEXR/we7lDW/miDv3I1D/Opyx8jaTDdg7QvkDk7Z/GMS0se6ea96gIUFVoBBzDDngxU9k9vMki78Wyw6BzSGFSaMn1lhURfYhvRK4cAAA',
   },
   'products/tomtar-familj': {
     src: products_tomtar_familj_800,
-    srcSet: `${products_tomtar_familj_400} 400w, ${products_tomtar_familj_800} 800w`,
+    srcSet: `${products_tomtar_familj_400} 400w, ${products_tomtar_familj_640} 640w, ${products_tomtar_familj_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADQBACdASoUABkAPxF+tVWsJ6SjKAgBgCIJZACzgBIyWURF/0m/l0LLhnkVM8UrAAD5bZzRumVjHWGBNmU9tsIidwjsCS88koOoc+Xf5hUqbxbqSlcSIA7DADyxhsWmgaTypcjPCi0k4I6WMXFqpdqsAzKzl50xfsoeen7GlEZLp6BdiKwU2YPtblkvv/nFLAyatDSRMsypcIuCdrVd/WL1FMVG2KAA',
   },
   'products/tomtar-paret': {
     src: products_tomtar_paret_800,
-    srcSet: `${products_tomtar_paret_400} 400w, ${products_tomtar_paret_800} 800w`,
+    srcSet: `${products_tomtar_paret_400} 400w, ${products_tomtar_paret_640} 640w, ${products_tomtar_paret_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAADQBACdASoUABkAPxF+tVWsJ6SjKAgBgCIJaACdMw6BGPm7RJjHYkmlxdRP5EO+YAD+l5dJG5eDWsfFAeMfw+S3+4ZTKUxBqrA3A8WmY81wYZcfCJxYSBzVxiGhqU263W+WUT9f2foo0jMouaR/316W1cWySd8SzxvN1XjJPvy3LUZS+Cj6Wb8C2OqLnCggz9n2C7KpqJwJm1EykKaDMDQKMCzLOE7wAAA=',
   },
   'products/angel': {
     src: products_angel_1200,
-    srcSet: `${products_angel_400} 400w, ${products_angel_800} 800w, ${products_angel_1200} 1200w`,
+    srcSet: `${products_angel_400} 400w, ${products_angel_640} 640w, ${products_angel_800} 800w, ${products_angel_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAABQBACdASoUAA0APxFysFAsJqSisAgBgCIJYgCdMoGv/gPOttmLMUWyIhosAP7RZN23UR4x7bAvQ1eOIXMqyFVQATPgmzzrqUGRinBGHtWwDX99twNn0iMJsrGmpI0He25tVPTJgluNAd7a1gRMCgAA',
   },
   'products/anglar-trio': {
     src: products_anglar_trio_1200,
-    srcSet: `${products_anglar_trio_400} 400w, ${products_anglar_trio_800} 800w, ${products_anglar_trio_1200} 1200w`,
+    srcSet: `${products_anglar_trio_400} 400w, ${products_anglar_trio_640} 640w, ${products_anglar_trio_800} 800w, ${products_anglar_trio_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAACwAwCdASoUAA0APxFwsFAsJiSisAgBgCIJYgCw7B7D6tNzg+XkoADNwUT0AdUVKhD5QNjwa5Lyn8V6Kh7LKc1qGthDLYTlxwan0GaeHLV9uz4AAAA=',
   },
   'products/anglar-verkstad': {
     src: products_anglar_verkstad_1200,
-    srcSet: `${products_anglar_verkstad_400} 400w, ${products_anglar_verkstad_800} 800w, ${products_anglar_verkstad_1200} 1200w`,
+    srcSet: `${products_anglar_verkstad_400} 400w, ${products_anglar_verkstad_640} 640w, ${products_anglar_verkstad_800} 800w, ${products_anglar_verkstad_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADQAwCdASoUAA0APxFysFAsJqSisAgBgCIJQBWAA4mvzUKPH2Hk2wAA/TfUWu/KuX2RdTnmxbTKk/T986XPV3gpMR+t7zSsrpomy9+iLoEkL9imD0ZhO56xJ34YwFNFfvJ7+DsIiBZ+5rLwAAA=',
   },
   'products/angel-sida': {
     src: products_angel_sida_800,
-    srcSet: `${products_angel_sida_400} 400w, ${products_angel_sida_800} 800w`,
+    srcSet: `${products_angel_sida_400} 400w, ${products_angel_sida_640} 640w, ${products_angel_sida_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAADwBACdASoUABkAPxF8tVOsJ6SiqAqpgCIJYwCdAA/BM4m31mse/2qp/xYWU0Q1UYAA9lAkXZDn4gpU9ILwMgzxVJwtaZkvL2NssrP/ZKj56BaJRmIaRKwUdO77eudyttEXWjHdpwGBYPtLvaRDcGyRWgP/IplQ8pxntlE5w4EGlOg+egiz5U3SyACdwB3h8AEkAAAA',
   },
   'products/angel-snett': {
     src: products_angel_snett_800,
-    srcSet: `${products_angel_snett_400} 400w, ${products_angel_snett_800} 800w`,
+    srcSet: `${products_angel_snett_400} 400w, ${products_angel_snett_640} 640w, ${products_angel_snett_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAACwBACdASoUABkAPxF+t1WsJ6UjKAgBgCIJYwCw7Av5wLWvcSSZJpAvNVkiAxFAAO+PNA1jh3kxLgHfjZ54Hd/yEiaUDyd7WKE72WL+6qHzsoWwA+8UIh4XrtDeTIwI88rPigaZ9cDxcHKO7x0OhwOduTHrDNFri8aAfNTLTJOn1s67TAl7xIpj5/Aa2MAA',
   },
   'custom/namnskyltar': {
     src: custom_namnskyltar_1200,
-    srcSet: `${custom_namnskyltar_400} 400w, ${custom_namnskyltar_800} 800w, ${custom_namnskyltar_1200} 1200w`,
+    srcSet: `${custom_namnskyltar_400} 400w, ${custom_namnskyltar_640} 640w, ${custom_namnskyltar_800} 800w, ${custom_namnskyltar_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAABwAwCdASoUAA0APxFysVCsJqSisAgBgCIJYwDG9BkmQG9FWTAA/sAtvx/PQ6tpikCG4jR1GmSfyuu/chtezv1p8tMC+12SpzbzkWAA',
   },
   'custom/namnskyltar-ra': {
     src: custom_namnskyltar_ra_800,
-    srcSet: `${custom_namnskyltar_ra_400} 400w, ${custom_namnskyltar_ra_800} 800w`,
+    srcSet: `${custom_namnskyltar_ra_400} 400w, ${custom_namnskyltar_ra_640} 640w, ${custom_namnskyltar_ra_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAACwBACdASoUABkAPxF+t1WsJ6UjKAgBgCIJZQC3uAblqkkjc6Tc4DJASo7haMAAAP5+p+N6fzbTdz6f0Tgg9mRWrf4iSrZi3sUzqHMROPPByIOEXxGJ3clBbRj4rkd0NXlJxkC0Kfe9z5qApReRZVK769xrCYy6wsS5BHKaJKU/V0CQcecO3SOdcP62O9zONwAAAA==',
   },
   'custom/klockor': {
     src: custom_klockor_1200,
-    srcSet: `${custom_klockor_400} 400w, ${custom_klockor_800} 800w, ${custom_klockor_1200} 1200w`,
+    srcSet: `${custom_klockor_400} 400w, ${custom_klockor_640} 640w, ${custom_klockor_800} 800w, ${custom_klockor_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoUAA0APxFysFAsJqSisAgBgCIJYwCo9BYFVkkmB1OdoADMRh21MksVmj9XO/k22L4dK4IftKdgMG/RnYy0B9LJfaEH3RrW2m6mi8I30PKNRXk/raTFmgUwU1/9SmIs9rwAAA==',
   },
   'custom/plakett': {
     src: custom_plakett_800,
-    srcSet: `${custom_plakett_400} 400w, ${custom_plakett_800} 800w`,
+    srcSet: `${custom_plakett_400} 400w, ${custom_plakett_640} 640w, ${custom_plakett_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAABQBACdASoUABkAPxF6tFQsJ6SjKAqpgCIJal2ARgAJxplpWE68ZlW60L4AAP7H9MiNUYo7r0c+8PNgiYpic9/EN7kHHUQde7twqgmTx61B5XTTB1VS2SKY0SkkPP99vvyrqXehWuqAC8QH2QRfUPr9R7ulYCrEbAA=',
   },
   'custom/ringar': {
     src: custom_ringar_800,
-    srcSet: `${custom_ringar_400} 400w, ${custom_ringar_800} 800w`,
+    srcSet: `${custom_ringar_400} 400w, ${custom_ringar_640} 640w, ${custom_ringar_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAADwBACdASoUABkAPxGAt1WsKCUjKAgBgCIJZQDBkBElwGfn5h/OgEBhaJTT/UgorHAA/qbFw+gbDInn3fkniExZLGhfxFblUeQxWO2tYSEm0NV+p+5SJMiawveK4TOS9p3TsyyEDo9txMH6EsFXvYK1DdOZvEvhOtQ8QL1g9/CHoeTA7xAA3okAWVfjREAA',
   },
   'custom/beslag': {
     src: custom_beslag_1200,
-    srcSet: `${custom_beslag_400} 400w, ${custom_beslag_800} 800w, ${custom_beslag_1200} 1200w`,
+    srcSet: `${custom_beslag_400} 400w, ${custom_beslag_640} 640w, ${custom_beslag_800} 800w, ${custom_beslag_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAACQAwCdASoUAA0APxFysFAsJqSisAgBgCIJaACdABhDSWW7JvZQAP6fl7nCp7Xlu3pREnTxYtRgmikvCu4extBiqT7tUH2xcxLGxd6YtfmQ1UjuobEy8Q5HVrt19ve0SUcW18mf+OL49kFwAAA=',
   },
   'custom/beslag-serie': {
     src: custom_beslag_serie_1200,
-    srcSet: `${custom_beslag_serie_400} 400w, ${custom_beslag_serie_800} 800w, ${custom_beslag_serie_1200} 1200w`,
+    srcSet: `${custom_beslag_serie_400} 400w, ${custom_beslag_serie_640} 640w, ${custom_beslag_serie_800} 800w, ${custom_beslag_serie_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAAAQBACdASoUAA0APxFysFAsJqSisAgBgCIJYgCdAYwwnsHOC9fmCroRcADv64sI0NRkyGMuYkmN5m4JPxaiOmq5FpjdvjE2ed7dafi17+NC5LefEaLsMqw389WubuowxpBP2DWVJR9mKc4GE3lf8q/YwWEdnnR2sxxLVnpIaE/t7AsAADVxNRTama2ft4AA',
@@ -279,49 +317,49 @@ export const images = {
   },
   'custom/kalmar': {
     src: custom_kalmar_1200,
-    srcSet: `${custom_kalmar_400} 400w, ${custom_kalmar_800} 800w, ${custom_kalmar_1200} 1200w`,
+    srcSet: `${custom_kalmar_400} 400w, ${custom_kalmar_640} 640w, ${custom_kalmar_800} 800w, ${custom_kalmar_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAwCdASoUAA0APxFysFAsJqSisAgBgCIJYwDCgCFKSGxUzGaxpAAA/tBSlOvE0XVKrNWFts44R3vGXQu5da/IQnAEq9pP0N/j9gAA',
   },
   'custom/pendyl': {
     src: custom_pendyl_800,
-    srcSet: `${custom_pendyl_400} 400w, ${custom_pendyl_800} 800w`,
+    srcSet: `${custom_pendyl_400} 400w, ${custom_pendyl_640} 640w, ${custom_pendyl_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAACwBQCdASoUABkAPxF+t1WsJ6UjKAgBgCIJQBbfUBDAAbtVuq9VZG9x0lJtRfwBub+TIxRQLAAA/p/c+kSNur+FYJhKXWIgNqJ4/m91pNajKj+z4UroFkPhdIi3NzBapnfkAO9pj3ZUlCWgGfQjlcJ51ks5jArUxXh0di4YVrZV8fRHdoTv2O3QxcJnuoiyrMnr8aT2557pjfS+gJ4MWotv/uPAAA==',
   },
   'custom/kraftor': {
     src: custom_kraftor_800,
-    srcSet: `${custom_kraftor_400} 400w, ${custom_kraftor_800} 800w`,
+    srcSet: `${custom_kraftor_400} 400w, ${custom_kraftor_640} 640w, ${custom_kraftor_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAACQBACdASoUABkAPxF8tlOsJ6UiqAqpgCIJZQDDcBEJ8fzLvMjQb3Qqr6+puQAA/ujMt03gppORvdji4bkwq2sykkYlc4FNoTVJiguE/tsPiXgdhYXi24WAkakiv1dpLMGYyOFW+8ajJaAu37SHc2sl+zSpGO6CBvV8w7kD3XbptoL5hHOtOGz54TCdDFGdaezBmvFwYnd1oAAA',
   },
   'custom/kraftor-ask': {
     src: custom_kraftor_ask_1200,
-    srcSet: `${custom_kraftor_ask_400} 400w, ${custom_kraftor_ask_800} 800w, ${custom_kraftor_ask_1200} 1200w`,
+    srcSet: `${custom_kraftor_ask_400} 400w, ${custom_kraftor_ask_640} 640w, ${custom_kraftor_ask_800} 800w, ${custom_kraftor_ask_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAQBACdASoUAA0APxFysFAsJqSisAgBgCIJZACdMoAC21Qj77XAKbd2AAD+NGRrDhBhOhuhAjysg/4t+IXIgKblvqdjU5IoFcLXkwt0OQwshyAE9HR9MXV4/g/Dh3p64OlFv8VvYLWGdk6dZUCM3/vA7C7QfL3SoFQAAA==',
   },
   'custom/faglar-mossa': {
     src: custom_faglar_mossa_960,
-    srcSet: `${custom_faglar_mossa_400} 400w, ${custom_faglar_mossa_800} 800w, ${custom_faglar_mossa_960} 960w`,
+    srcSet: `${custom_faglar_mossa_400} 400w, ${custom_faglar_mossa_640} 640w, ${custom_faglar_mossa_800} 800w, ${custom_faglar_mossa_960} 960w`,
     width: 960,
     height: 640,
     blur: 'data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAACwAwCdASoUAA0APxFwsFAsJiSisAgBgCIJbAC06A+IuscgHDAp8AD3z4S2SlbxzVQncUZ/NjzMdLsR3tmo9AAqaNRxs2lPO+aRmU2bUO4ESbu90Uo+1ZiPxghPUSV4A28SqTI63ycnJxEQ0YFwUgdyha9qXmguvHKoZO2gAAA=',
   },
   'custom/faglar-rad': {
     src: custom_faglar_rad_1200,
-    srcSet: `${custom_faglar_rad_400} 400w, ${custom_faglar_rad_800} 800w, ${custom_faglar_rad_1200} 1200w`,
+    srcSet: `${custom_faglar_rad_400} 400w, ${custom_faglar_rad_640} 640w, ${custom_faglar_rad_800} 800w, ${custom_faglar_rad_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADwAwCdASoUAA0APxFysFAsJqSisAgBgCIJYwCdABxKydUnzXIuH4xAAPV2G3cGE4TKxPjps/brrFbrm6bvA2zgPLnlszx2UvJZ+KdsK0sFmfiVZmxuFE51hjyGLTp1ndX2mHbZJ9sKAtaOwTJ1rgAA',
   },
   'process/01-modell': {
     src: process_01_modell_900,
-    srcSet: `${process_01_modell_400} 400w, ${process_01_modell_800} 800w, ${process_01_modell_900} 900w`,
+    srcSet: `${process_01_modell_400} 400w, ${process_01_modell_640} 640w, ${process_01_modell_800} 800w, ${process_01_modell_900} 900w`,
     width: 900,
     height: 600,
     blur: 'data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQBACdASoUAA0APxFysVCsJqSisAgBgCIJYwCdAB9PRbcPd17A2FXOwAD9irLlxY115XZJ9sOU2spSt6kHjr5xHxDgne2PJf+aTT06E2/Dd3cKo5PmzegiMO+x4UAA',
@@ -335,49 +373,49 @@ export const images = {
   },
   'process/03-smaltning': {
     src: process_03_smaltning_1200,
-    srcSet: `${process_03_smaltning_400} 400w, ${process_03_smaltning_800} 800w, ${process_03_smaltning_1200} 1200w`,
+    srcSet: `${process_03_smaltning_400} 400w, ${process_03_smaltning_640} 640w, ${process_03_smaltning_800} 800w, ${process_03_smaltning_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAwBACdASoUAA0APxFysFAsJqSisAgBgCIJbACdMoR4GCPWBYix3cc3QQAA/rfNSryl0+FL/FdgJVI8CvbuBP5q0sppIJRjpmssZYV968JtM2/azK36KaLDhbBaewf+Ggyop/AXVe/kJBK/2rEHoK/sT0T3GfcQL5xovjQzj16yk0fQAAA=',
   },
   'process/04-gjutning': {
     src: process_04_gjutning_1200,
-    srcSet: `${process_04_gjutning_400} 400w, ${process_04_gjutning_800} 800w, ${process_04_gjutning_1200} 1200w`,
+    srcSet: `${process_04_gjutning_400} 400w, ${process_04_gjutning_640} 640w, ${process_04_gjutning_800} 800w, ${process_04_gjutning_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAADwAwCdASoUAA0APxFysFAsJqSisAgBgCIJbACdMoAC7HIpIR6K3qIAAP7jTFLRMZfrMe8ooiqIlng2jyX2lD+qYzvaRCtITdN011tOJU6YUwALF1LZMVCryr8PoJUr6KVKECHi/0yBtPJ1Fyr920lfJbpKBTVji+tQQtSAZrszAwhFJQxI5wKVfUE4yAAA',
   },
   'process/05-rensning': {
     src: process_05_rensning_1200,
-    srcSet: `${process_05_rensning_400} 400w, ${process_05_rensning_800} 800w, ${process_05_rensning_1200} 1200w`,
+    srcSet: `${process_05_rensning_400} 400w, ${process_05_rensning_640} 640w, ${process_05_rensning_800} 800w, ${process_05_rensning_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoUAA0APxFysFAsJqSisAgBgCIJYgCw7BwjqZRFyh6iAAD+honoFJOz3pXd0mGQXrxruUk5N7b+VwnQUP3R84RsgGsoGl6yHdX8x+5boSdg+m5vrW85ts1dU3Zs6qJqBqgAAA==',
   },
   'workshop/gjutarfigur': {
     src: workshop_gjutarfigur_800,
-    srcSet: `${workshop_gjutarfigur_400} 400w, ${workshop_gjutarfigur_800} 800w`,
+    srcSet: `${workshop_gjutarfigur_400} 400w, ${workshop_gjutarfigur_640} 640w, ${workshop_gjutarfigur_800} 800w`,
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAQBQCdASoUABkAPxF8s1QsJ6QjKAqpgCIJYwC7MuiBotUB2SE+RrYMyn3viLDE+dAAAP7jK7XtczSlaI/mc11sWjv3TJ8opZEGjhS4ds2Y945Bgi9hc63R6EtS+6PtuhHEzVJer8ebdPMKyRt916e97AHIBF9Crbupmfnz9cuZW98xyZRlkcvY8Jtr7bD1CE+E7wBRgT2YMOIjgfSQEyUAAAA=',
   },
   'workshop/generationer': {
     src: workshop_generationer_1200,
-    srcSet: `${workshop_generationer_400} 400w, ${workshop_generationer_800} 800w, ${workshop_generationer_1200} 1200w`,
+    srcSet: `${workshop_generationer_400} 400w, ${workshop_generationer_640} 640w, ${workshop_generationer_800} 800w, ${workshop_generationer_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAwBACdASoUAA0APxFysFAsJqSisAgBgCIJbACdLwDs/wHvztZVB4TSEHAA/tpUsmaMpinR3mA1CGwfd6zTMW8xvOnu00T5HooTD//xjxQ+uMnhS1RIragfb1AmI1c7Xz2H6+Ds1Zf4X37htRt3tXv88Z0YmXxWMCb9lYMiwwzswAAA',
   },
   'workshop/larling': {
     src: workshop_larling_1200,
-    srcSet: `${workshop_larling_400} 400w, ${workshop_larling_800} 800w, ${workshop_larling_1200} 1200w`,
+    srcSet: `${workshop_larling_400} 400w, ${workshop_larling_640} 640w, ${workshop_larling_800} 800w, ${workshop_larling_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoUAA0APxFysFAsJqSisAgBgCIJYgDG9BkZ2mJ/dACE0AAA/f2vJIFJFgnlHRDbD2j8JoTLrPPlFFFXw2c9xEB2BZu7ToNQFU6S+Su0gcLAYRyePGFWLxh8LVGMRhAA',
   },
   'workshop/deglar': {
     src: workshop_deglar_1200,
-    srcSet: `${workshop_deglar_400} 400w, ${workshop_deglar_800} 800w, ${workshop_deglar_1200} 1200w`,
+    srcSet: `${workshop_deglar_400} 400w, ${workshop_deglar_640} 640w, ${workshop_deglar_800} 800w, ${workshop_deglar_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACQAwCdASoUAA0APxFysFCsJqSisAgBgCIJQBOgAu8yWSi45riAAPrMyDkGPibWKeREw8QIXC+vkvzh9LbzjU3Y4COrmz5oeQgyGmdglBzSXp4dSWnplLIbueEZkGAA',
@@ -391,28 +429,28 @@ export const images = {
   },
   'workshop/polerat': {
     src: workshop_polerat_1200,
-    srcSet: `${workshop_polerat_400} 400w, ${workshop_polerat_800} 800w, ${workshop_polerat_1200} 1200w`,
+    srcSet: `${workshop_polerat_400} 400w, ${workshop_polerat_640} 640w, ${workshop_polerat_800} 800w, ${workshop_polerat_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAwCdASoUAA0APxFysFAsJqSisAgBgCIJQBYdg6f3UXuCgD+ougAA/svmcF5mbfTm/+vY4klPeoOxdjIjwGAhd6SHRgXq1YMZcIfSt2kRVUja/FGxJhivdQVZlVPgAAA=',
   },
   'history/arkiv-gjutare': {
     src: history_arkiv_gjutare_1200,
-    srcSet: `${history_arkiv_gjutare_400} 400w, ${history_arkiv_gjutare_800} 800w, ${history_arkiv_gjutare_1200} 1200w`,
+    srcSet: `${history_arkiv_gjutare_400} 400w, ${history_arkiv_gjutare_640} 640w, ${history_arkiv_gjutare_800} 800w, ${history_arkiv_gjutare_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAABQAwCdASoUAA0APxF0sFCsJqSisAgBgCIJZwDCgAfE72iBYADd/DUh+OR1AwEhLTDmyo27YIcDBnirfc3Qy+xsFFiMQtx7xVs2gt3AAAA=',
   },
   'history/national-geographic': {
     src: history_national_geographic_1200,
-    srcSet: `${history_national_geographic_400} 400w, ${history_national_geographic_800} 800w, ${history_national_geographic_1200} 1200w`,
+    srcSet: `${history_national_geographic_400} 400w, ${history_national_geographic_640} 640w, ${history_national_geographic_800} 800w, ${history_national_geographic_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADQAwCdASoUAA0APxFysFAsJqSisAgBgCIJYwDCgBeJvVr2CiS6kwAA/p47aTBQFdALqCUBrIZlPuKxaD1piXwC6/4aWiQuzwwVncFX0Qf0q5Ui+THOhOLWSAA=',
   },
   'place/fasad': {
     src: place_fasad_1200,
-    srcSet: `${place_fasad_400} 400w, ${place_fasad_800} 800w, ${place_fasad_1200} 1200w`,
+    srcSet: `${place_fasad_400} 400w, ${place_fasad_640} 640w, ${place_fasad_800} 800w, ${place_fasad_1200} 1200w`,
     width: 1200,
     height: 800,
     blur: 'data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQAwCdASoUAA0APxFysFAsJqSisAgBgCIJaACw7Bjyn5xDyAD+6PDhclFXGzjl9s5nwH5gzMmahd8qoxH3Og+h1LbEpDuE8bo0wT4gIuZ/xKOnad51hDR+3s08AA==',
