@@ -94,6 +94,43 @@ const JOBS = [
   { src: 'tomtar/tomtenisse.jpg', out: 'products/tomtenisse', shape: 'portrait', rotate: true, crop: 'attention' },
   { src: 'tomtar/tomtefamilj.jpg', out: 'products/tomtar-familj', shape: 'portrait', rotate: true, crop: 'attention' },
   { src: 'tomtar/tomtefar-tomtemor.jpg', out: 'products/tomtar-paret', shape: 'portrait', rotate: true, crop: 'attention' },
+  // Round 4: 4000x1848 phone shots with upright pixels (orientation 1). Each
+  // preCrop is already the target ratio, placed on the figures by eye.
+  // Seven standing tomtar on a windowsill: 3:2 around the whole row.
+  {
+    src: 'round4/tomtar-fonster.jpg',
+    out: 'products/tomtar-fonster',
+    shape: 'landscape',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 644, top: 0, width: 2772, height: 1848 },
+  },
+  // The same row, the two in focus at the front: 4:5 around them.
+  {
+    src: 'round4/tomtar-fonster-nara.jpg',
+    out: 'products/tomtar-fonster-nara',
+    shape: 'portrait',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 1032, top: 0, width: 1478, height: 1848 },
+  },
+  // The reclining tomte on leather: one in focus, then four together.
+  {
+    src: 'round4/liggande-tomte.jpg',
+    out: 'products/liggande-tomte',
+    shape: 'landscape',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 200, top: 0, width: 2772, height: 1848 },
+  },
+  {
+    src: 'round4/liggande-tomtar.jpg',
+    out: 'products/liggande-tomtar',
+    shape: 'landscape',
+    rotate: false,
+    crop: 'center',
+    preCrop: { left: 385, top: 0, width: 2772, height: 1848 },
+  },
 
   // --- Änglar -------------------------------------------------------------
   // Shot on a barrel top, 4000x1848 with upright pixels; the figures sit in

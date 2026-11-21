@@ -28,6 +28,21 @@ import products_tomtar_familj_800 from './products/tomtar-familj-800.webp';
 import products_tomtar_paret_400 from './products/tomtar-paret-400.webp';
 import products_tomtar_paret_640 from './products/tomtar-paret-640.webp';
 import products_tomtar_paret_800 from './products/tomtar-paret-800.webp';
+import products_tomtar_fonster_400 from './products/tomtar-fonster-400.webp';
+import products_tomtar_fonster_640 from './products/tomtar-fonster-640.webp';
+import products_tomtar_fonster_800 from './products/tomtar-fonster-800.webp';
+import products_tomtar_fonster_1200 from './products/tomtar-fonster-1200.webp';
+import products_tomtar_fonster_nara_400 from './products/tomtar-fonster-nara-400.webp';
+import products_tomtar_fonster_nara_640 from './products/tomtar-fonster-nara-640.webp';
+import products_tomtar_fonster_nara_800 from './products/tomtar-fonster-nara-800.webp';
+import products_liggande_tomte_400 from './products/liggande-tomte-400.webp';
+import products_liggande_tomte_640 from './products/liggande-tomte-640.webp';
+import products_liggande_tomte_800 from './products/liggande-tomte-800.webp';
+import products_liggande_tomte_1200 from './products/liggande-tomte-1200.webp';
+import products_liggande_tomtar_400 from './products/liggande-tomtar-400.webp';
+import products_liggande_tomtar_640 from './products/liggande-tomtar-640.webp';
+import products_liggande_tomtar_800 from './products/liggande-tomtar-800.webp';
+import products_liggande_tomtar_1200 from './products/liggande-tomtar-1200.webp';
 import products_angel_400 from './products/angel-400.webp';
 import products_angel_640 from './products/angel-640.webp';
 import products_angel_800 from './products/angel-800.webp';
@@ -223,6 +238,34 @@ export const images = {
     width: 800,
     height: 1000,
     blur: 'data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAADQBACdASoUABkAPxF+tVWsJ6SjKAgBgCIJaACdMw6BGPm7RJjHYkmlxdRP5EO+YAD+l5dJG5eDWsfFAeMfw+S3+4ZTKUxBqrA3A8WmY81wYZcfCJxYSBzVxiGhqU263W+WUT9f2foo0jMouaR/316W1cWySd8SzxvN1XjJPvy3LUZS+Cj6Wb8C2OqLnCggz9n2C7KpqJwJm1EykKaDMDQKMCzLOE7wAAA=',
+  },
+  'products/tomtar-fonster': {
+    src: products_tomtar_fonster_1200,
+    srcSet: `${products_tomtar_fonster_400} 400w, ${products_tomtar_fonster_640} 640w, ${products_tomtar_fonster_800} 800w, ${products_tomtar_fonster_1200} 1200w`,
+    width: 1200,
+    height: 800,
+    blur: 'data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAwCdASoUAA0APxFysFAsJqSisAgBgCIJYwC/OBt7+/L09qzvyQAA/etrhSVakhrtJ4oyZdt9jrDPEScg4JcBJhDBLxFkplr1zshsx/XjblVOtUEVYJu/86yWMk+7cEAAAA==',
+  },
+  'products/tomtar-fonster-nara': {
+    src: products_tomtar_fonster_nara_800,
+    srcSet: `${products_tomtar_fonster_nara_400} 400w, ${products_tomtar_fonster_nara_640} 640w, ${products_tomtar_fonster_nara_800} 800w`,
+    width: 800,
+    height: 1000,
+    blur: 'data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAADQBACdASoUABkAPxF+t1WsJ6UjKAgBgCIJYwDGQBCV57XuA/cDbEhFsMBXCzcfgAD8dv178FSIfxQKBeONVkT+0/TI2eFp9da9K+G49NTTCcM7p4TmpJPHU2sDPYYmqVAKWtSAE4fDUbcJ8P8sKPM04/YB2poYwafyy/vjDesN8hKD2tDMJuSj/IOLPm8/sAAAAA==',
+  },
+  'products/liggande-tomte': {
+    src: products_liggande_tomte_1200,
+    srcSet: `${products_liggande_tomte_400} 400w, ${products_liggande_tomte_640} 640w, ${products_liggande_tomte_800} 800w, ${products_liggande_tomte_1200} 1200w`,
+    width: 1200,
+    height: 800,
+    blur: 'data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAwCdASoUAA0APxFysFAsJqSisAgBgCIJQBOmUDX/wE/jB4ScVXQAAP2bu3HHW6GZCZGaaIuKM/owKisE9ZC9J85/Gz6FjLgqWRiKnQ3xazDlyRMPTxfo43UYF9b195gAAA==',
+  },
+  'products/liggande-tomtar': {
+    src: products_liggande_tomtar_1200,
+    srcSet: `${products_liggande_tomtar_400} 400w, ${products_liggande_tomtar_640} 640w, ${products_liggande_tomtar_800} 800w, ${products_liggande_tomtar_1200} 1200w`,
+    width: 1200,
+    height: 800,
+    blur: 'data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAwCdASoUAA0APxFysFAsJqSisAgBgCIJQBadAuvE4HR3dPa+OAAA1MX/2aHVnQE43YaQxK5dGN+6MbB6ftuXi/5tTXbs42meMHenaQKh8sgA',
   },
   'products/angel': {
     src: products_angel_1200,

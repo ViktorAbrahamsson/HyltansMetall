@@ -185,6 +185,31 @@ const allCategories: ProductCategory[] = [
         alt: 'Tomtefar och Tomtemor sida vid sida med skogen bakom sig.',
       },
     ],
+    // Round 4 photos. Which tomte stands on the windowsill, and what the
+    // reclining one is called, is not confirmed yet, so the alt text names
+    // neither.
+    showcase: [
+      {
+        image: images['products/tomtar-fonster-nara'],
+        alt: 'Två stående tomtar i brons på en fönsterbänk, med fler tomtar suddigt bakom.',
+        tile: 'portrait',
+      },
+      {
+        image: images['products/tomtar-fonster'],
+        alt: 'Sju stående tomtar i brons på rad på en fönsterbänk.',
+        tile: 'landscape',
+      },
+      {
+        image: images['products/liggande-tomte'],
+        alt: 'En liggande tomte i brons som vilar huvudet mot handen, på en läderyta.',
+        tile: 'half',
+      },
+      {
+        image: images['products/liggande-tomtar'],
+        alt: 'Fyra liggande tomtar i brons på en läderyta.',
+        tile: 'half',
+      },
+    ],
   },
 ];
 
